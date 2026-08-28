@@ -1,7 +1,12 @@
 # Guia de download — dados do IBGE (Censo 2022)
 
-Passo a passo para baixar as **duas** fontes do IBGE que o passo 1 do pipeline
-usa: a **malha de setores censitários** (geometria) e a **população por setor**.
+O passo 1 usa duas coisas do IBGE: a **malha de setores** (geometria) e a
+**população por setor**.
+
+> **Você não precisa mais baixar a malha à mão.** O `step01` baixa a geometria
+> automaticamente com o pacote `geobr` (fonte: IBGE). A **Parte A** abaixo só é
+> necessária se você quiser usar um shapefile local (`--shapefile`). A **Parte B
+> (população) continua sendo necessária** — o geobr não fornece população.
 
 > O IBGE às vezes reorganiza as pastas de download. Se um link mudar, use a busca
 > do próprio site pelo nome em **negrito** e confira pela descrição do arquivo.
@@ -10,7 +15,10 @@ usa: a **malha de setores censitários** (geometria) e a **população por setor
 
 ---
 
-## Parte A — Malha de setores censitários (geometria)
+## Parte A — Malha de setores censitários (geometria) — OPCIONAL
+
+> Só precisa disto se for rodar com `--shapefile`. Caso contrário, pule para a
+> Parte B: o `geobr` baixa a malha sozinho.
 
 **O que é:** o desenho (shapefile) de cada setor censitário. É a base para
 recortar as regiões-piloto.
@@ -114,8 +122,9 @@ colunas do CSV** — escolha a da população e rode de novo com
 
 ---
 
-## Atalho opcional (Python, sem baixar manualmente)
+## Sobre o geobr (já é o padrão)
 
-Existe o pacote **`geobr`**, que baixa malhas do IBGE direto pelo Python
-(`pip install geobr`). Se preferir esse caminho em vez do download manual, me
-avise que eu adapto o `step01` para usá-lo — a fonte continua sendo o IBGE.
+A malha de setores é baixada automaticamente pelo pacote **`geobr`** (fonte:
+IBGE), que já está no `requirements.txt`. Por isso a Parte A é opcional. Escolha
+o ano com `--ano` (padrão 2022). Só a **população** (Parte B) precisa de download
+manual, porque o geobr não fornece esse dado.

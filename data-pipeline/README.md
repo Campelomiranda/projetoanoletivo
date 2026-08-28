@@ -20,19 +20,20 @@ pip install -r data-pipeline/requirements.txt
 > `pip install` falhar no seu sistema, instale antes com conda/mamba:
 > `conda install -c conda-forge geopandas osmnx`.
 
-## 2. Baixar os dados brutos
+## 2. Dados brutos
 
-Coloque cada fonte em `data/raw/` (essa pasta **não** é versionada — cada pessoa
-baixa das fontes oficiais). Estrutura esperada pelo passo 1:
+A **geometria** (malha de setores) é baixada automaticamente pelo `geobr` — você
+**não precisa** baixar shapefile à mão. A **população** ainda é um CSV do IBGE
+(o geobr não fornece população), colocado em `data/raw/`:
 
 ```
 data/raw/
-  setores_ibge/      → shapefile da malha de SETORES CENSITÁRIOS (Censo 2022)
-                       de SP/Sorocaba (.shp + .dbf + .shx + .prj juntos)
   populacao_ibge/    → CSV de população por setor (Agregados por Setor, Censo 2022)
+  setores_ibge/      → (opcional) shapefile, só se você usar --shapefile
 ```
 
-Links das fontes (confirmadas no projeto) estão em
+Essa pasta **não** é versionada — cada pessoa baixa das fontes. Links e passo a
+passo: [`GUIA_DOWNLOAD_IBGE.md`](GUIA_DOWNLOAD_IBGE.md) e
 [`../data/raw/README.md`](../data/raw/README.md).
 
 ## 3. Rodar o passo 1 — conferir malha + população
@@ -43,8 +44,10 @@ python data-pipeline/src/step01_setores_populacao.py
 
 O que ele faz e imprime:
 
-- carrega o shapefile e informa quantos setores há no arquivo;
-- filtra Sorocaba (código IBGE `3552205`) e informa a contagem;
+- baixa a malha de setores de Sorocaba via **geobr** (fonte: IBGE) e informa a
+  contagem — já filtrada pelo código `3552205`;
+- salva a geometria em **`data/processed/setores_sorocaba.gpkg`** (para os
+  próximos passos reutilizarem);
 - junta a população pela chave do setor e mostra quantos setores casaram;
 - salva **`data/processed/setores_sorocaba.txt`** (lista de códigos, útil para
   preencher o `regions.yaml`);
@@ -53,6 +56,12 @@ O que ele faz e imprime:
 Opções úteis:
 
 ```bash
+# escolher o ano da malha (padrão 2022)
+python data-pipeline/src/step01_setores_populacao.py --ano 2010
+
+# usar um shapefile local em vez do geobr (data/raw/setores_ibge/)
+python data-pipeline/src/step01_setores_populacao.py --shapefile
+
 # se o nome da coluna de população for diferente do detectado automaticamente
 python data-pipeline/src/step01_setores_populacao.py --coluna-pop V0001
 

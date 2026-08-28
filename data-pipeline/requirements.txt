@@ -9,6 +9,7 @@ geopandas>=0.14
 shapely>=2.0
 pandas>=2.0
 requests>=2.31
+geobr>=0.2          # baixa a malha de setores do IBGE direto pelo Python (passo 1)
 osmnx>=1.9          # consultas à Overpass API (passo 2 em diante)
 matplotlib>=3.8     # mapas de conferência (plots rápidos)
 pyyaml>=6.0         # leitura do config/regions.yaml
