@@ -136,16 +136,44 @@
   .seg button:hover{color:var(--ink)}
   .seg button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:600}
 
-  .map-card{padding:16px}
-  .mapsvg{width:100%;height:auto;display:block;touch-action:manipulation}
-  .region{cursor:pointer;transition:filter .15s ease}
-  .region:hover{filter:brightness(1.06)}
-  .region:focus-visible{outline:none}
-  .region.sel{stroke:var(--ink)!important}
-  .region-lbl{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;pointer-events:none}
-  .region-val{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px;pointer-events:none}
-  .river{fill:none;stroke:color-mix(in srgb,var(--accent) 55%,transparent);stroke-width:3;stroke-dasharray:2 7;stroke-linecap:round;opacity:.5;pointer-events:none}
-  .river-lbl{fill:var(--ink-faint);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;pointer-events:none}
+  .map-card{padding:14px 14px 30px;position:relative}
+  .map-stage{position:relative}
+  .mapsvg{width:100%;height:auto;display:block;touch-action:manipulation;overflow:visible}
+  .soro-shape{fill:var(--map-void);stroke:var(--line-strong);stroke-width:1.6;stroke-linejoin:round}
+  .soro-cap{position:absolute;left:20px;bottom:14px;font-size:10.5px;color:var(--ink-faint);font-family:'IBM Plex Mono',monospace;letter-spacing:.02em;max-width:60%;line-height:1.4;pointer-events:none}
+  .compass{fill:var(--ink-faint)}
+  .pin{cursor:pointer}
+  .pin:focus{outline:none}
+  .pin-halo{fill:none;stroke:var(--accent);stroke-width:3;opacity:0;transition:opacity .15s}
+  .pin:hover .pin-halo{opacity:.4}
+  .pin.sel .pin-halo{opacity:.7;stroke:var(--ink);stroke-width:3.5}
+  .pin:focus-visible .pin-halo{opacity:.7;stroke:var(--accent)}
+  .pin-dot{stroke:var(--surface);stroke-width:3;transition:transform .12s;transform-box:fill-box;transform-origin:center}
+  .pin:hover .pin-dot{stroke-width:3.5}
+  .pin-val{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px;pointer-events:none;dominant-baseline:central}
+  .pin-name{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;pointer-events:none;paint-order:stroke;stroke:var(--surface);stroke-width:3.5px;stroke-linejoin:round}
+
+  /* popup da região sobre o mapa */
+  .mpop{position:absolute;z-index:20;width:250px;max-width:82%;background:var(--surface);border:1px solid var(--line-strong);border-radius:14px;box-shadow:0 12px 34px rgba(0,0,0,.22);transform:translate(-50%,calc(-100% - 20px));animation:pop .18s ease both}
+  @keyframes pop{from{opacity:0;transform:translate(-50%,calc(-100% - 12px))}to{opacity:1;transform:translate(-50%,calc(-100% - 20px))}}
+  .mpop::after{content:"";position:absolute;left:50%;bottom:-8px;width:15px;height:15px;background:var(--surface);border-right:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);transform:translateX(-50%) rotate(45deg)}
+  .mpop-h{display:flex;align-items:center;gap:10px;padding:13px 14px 10px}
+  .mpop-h .mp-sw{width:38px;height:38px;flex:none;border-radius:10px;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px}
+  .mpop-h .mp-t{flex:1;min-width:0}
+  .mpop-h .mp-t .n{display:block;font-weight:600;font-size:15px;line-height:1.15}
+  .mpop-h .mp-t .s{display:block;font-size:11px;color:var(--ink-faint);font-family:'IBM Plex Mono',monospace}
+  .mpop-close{appearance:none;border:0;background:none;cursor:pointer;color:var(--ink-faint);padding:4px;border-radius:6px;line-height:0}
+  .mpop-close:hover{color:var(--ink);background:var(--surface-2)}
+  .mpop-axes{padding:2px 14px 8px;display:flex;flex-direction:column;gap:7px}
+  .mpax{display:grid;grid-template-columns:74px 1fr 26px;gap:8px;align-items:center;font-size:11px}
+  .mpax .k{color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mpax .bar{height:6px;border-radius:3px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
+  .mpax .bar i{display:block;height:100%;border-radius:3px}
+  .mpax .vv{font-family:'IBM Plex Mono',monospace;font-weight:600;text-align:right;color:var(--ink)}
+  .mpax .vv.na{color:var(--ink-faint);font-weight:400}
+  .mpop-cta{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;border:0;border-top:1px solid var(--line);background:none;cursor:pointer;padding:11px;font-family:inherit;font-size:13px;font-weight:600;color:var(--accent);border-radius:0 0 13px 13px}
+  .mpop-cta:hover{background:var(--accent-soft)}
+  .map-hint{font-size:12px;color:var(--ink-faint);text-align:center;margin-top:2px}
 
   .legend{margin-top:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .legend .bar{height:10px;flex:1;min-width:160px;border-radius:5px;border:1px solid var(--line)}
@@ -162,8 +190,8 @@
   .rank.sel{background:var(--accent-soft)}
   .rank .swatch{width:12px;height:34px;border-radius:4px;flex:none}
   .rank .rk-name{flex:1;min-width:0}
-  .rank .rk-name .n{font-weight:600;font-size:14px}
-  .rank .rk-name .s{font-size:11.5px;color:var(--ink-faint)}
+  .rank .rk-name .n{display:block;font-weight:600;font-size:14px}
+  .rank .rk-name .s{display:block;font-size:11.5px;color:var(--ink-faint)}
   .rank .rk-val{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:19px;letter-spacing:-.02em}
   .rank .rk-val small{font-size:11px;color:var(--ink-faint);font-weight:400}
   .rank .chev{color:var(--ink-faint);flex:none}
@@ -397,6 +425,12 @@ var REGIONS = {
 var ORDER = ["centro","campolim","alemponte","zonanorte","eden","wanelville","aparecidinha"];
 var MEASURABLE = ["servicos","mobilidade","caminhabilidade","ambiente"];
 
+/* Contorno municipal REAL de Sorocaba (IBGE · malha 2022, simplificada),
+   projetado para o viewBox abaixo. A posição dos pinos é ilustrativa. */
+var MAP_VB=[820,798];
+var MAP_PATH="M 459.3 56.5 L 477.4 67.2 L 492.3 43.6 L 501.8 49.8 L 521.2 111.2 L 557.2 164.5 L 568.0 153.7 L 612.6 148.2 L 633.9 159.0 L 655.9 154.0 L 643.9 168.2 L 598.8 196.5 L 630.3 245.9 L 645.4 248.9 L 661.7 280.0 L 683.1 298.8 L 703.5 295.5 L 719.5 304.7 L 724.1 312.7 L 728.7 352.9 L 748.0 379.8 L 738.0 396.3 L 745.1 437.3 L 731.1 455.8 L 726.8 532.0 L 768.4 537.3 L 769.2 547.0 L 785.0 552.9 L 786.0 564.3 L 768.8 579.4 L 783.0 597.6 L 771.4 678.1 L 676.4 664.3 L 667.9 675.8 L 632.2 680.7 L 633.7 643.2 L 622.1 636.3 L 621.2 612.0 L 607.8 606.8 L 620.6 585.1 L 610.3 560.7 L 596.3 560.5 L 590.1 546.7 L 575.4 558.5 L 529.5 560.1 L 519.6 572.5 L 499.3 562.9 L 441.1 560.7 L 407.6 568.3 L 390.3 559.0 L 371.4 586.2 L 342.8 584.3 L 327.8 628.3 L 296.6 639.5 L 280.7 632.6 L 261.7 612.0 L 238.3 612.8 L 232.3 595.4 L 180.8 623.8 L 222.5 632.7 L 228.1 663.4 L 251.3 670.6 L 253.4 684.3 L 253.0 744.6 L 228.0 755.3 L 193.2 747.5 L 177.1 764.0 L 139.8 748.6 L 94.6 718.3 L 71.0 719.7 L 88.5 679.9 L 54.2 651.5 L 49.2 612.9 L 83.8 576.6 L 92.6 512.5 L 91.1 492.9 L 82.9 477.3 L 85.3 453.1 L 54.2 416.8 L 49.5 392.9 L 62.8 370.3 L 98.7 374.0 L 106.7 338.4 L 111.9 315.7 L 135.5 262.6 L 119.7 261.9 L 115.6 215.6 L 91.6 209.8 L 111.4 184.3 L 86.5 181.1 L 83.5 166.1 L 105.0 159.6 L 80.6 148.8 L 43.6 159.9 L 34.0 148.0 L 49.5 131.6 L 68.3 139.4 L 97.5 121.1 L 122.7 122.1 L 147.1 103.6 L 163.3 83.4 L 198.5 77.8 L 220.5 61.1 L 263.4 63.2 L 276.1 66.6 L 285.7 69.5 L 302.7 69.0 L 313.2 44.4 L 331.9 34.0 L 459.3 56.5 Z";
+var PINS={centro:[402,515],alemponte:[312,450],zonanorte:[430,352],aparecidinha:[527,300],eden:[178,470],campolim:[330,590],wanelville:[200,602]};
+
 /* -------- helpers de cálculo (espelham a metodologia do MVP) -------- */
 function availAxes(r){ return MEASURABLE.filter(function(k){ return r.scores[k]!=null; }); }
 function composite(r){
@@ -448,12 +482,13 @@ var IC={
   warn:'<path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
   info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
   chev:'<path d="M9 6l6 6-6 6"/>',
-  down:'<path d="M6 9l6 6 6-6"/>'
+  down:'<path d="M6 9l6 6 6-6"/>',
+  close:'<path d="M6 6l12 12M18 6L6 18"/>'
 };
 function svgIcon(name,extra){return '<svg viewBox="0 0 24 24" '+(extra||'width="16" height="16"')+' fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+IC[name]+'</svg>';}
 
 /* =================== ESTADO =================== */
-var state={ tab:"mapa", mapMetric:"composto", region:"campolim", cmpA:"centro", cmpB:"wanelville" };
+var state={ tab:"mapa", mapMetric:"composto", region:"campolim", cmpA:"centro", cmpB:"wanelville", popup:null };
 var TABS=[["mapa","Mapa"],["regiao","Região"],["comparacao","Comparação"],["metodologia","Metodologia"]];
 var METRICS=[["composto","Índice composto"],["servicos","Serviços"],["mobilidade","Mobilidade"],["caminhabilidade","Caminhabilidade"],["ambiente","Meio ambiente"]];
 function metricLabel(m){for(var i=0;i<METRICS.length;i++)if(METRICS[i][0]===m)return METRICS[i][1];return m;}
@@ -482,34 +517,50 @@ function renderMapa(){
   var m=state.mapMetric;
   var segs=METRICS.map(function(x){return '<button data-m="'+x[0]+'" aria-pressed="'+(m===x[0])+'">'+x[1]+'</button>';}).join("");
 
-  // regiões svg
-  var polys=ORDER.map(function(id){
-    var r=REGIONS[id]; var v=metricValue(r,m);
-    var pts=r.poly.map(function(p){return p.join(",");}).join(" ");
-    var fill=fillFor(v);
-    var sel=state.region===id?" sel":"";
-    return '<polygon class="region'+sel+'" data-id="'+id+'" tabindex="0" role="button" aria-label="'+r.name+', índice '+(v==null?"sem dado":v)+'" '+
-      'points="'+pts+'" fill="'+fill+'" stroke="var(--map-stroke)" stroke-width="2.5" stroke-linejoin="round"/>';
-  }).join("");
-  var labels=ORDER.map(function(id){
-    var r=REGIONS[id]; var v=metricValue(r,m); var col=textOn(v);
-    var vs = v==null ? "s/d" : v;
-    return '<g pointer-events="none">'+
-      '<text class="region-lbl" x="'+r.c[0]+'" y="'+(r.c[1]-6)+'" text-anchor="middle" fill="'+col+'">'+r.name+'</text>'+
-      '<text class="region-val" x="'+r.c[0]+'" y="'+(r.c[1]+16)+'" text-anchor="middle" fill="'+col+'">'+vs+'</text></g>';
+  // pinos sobre a silhueta real
+  var pinsSVG=ORDER.map(function(id){
+    var r=REGIONS[id]; var v=metricValue(r,m); var p=PINS[id];
+    var fill=fillFor(v); var tcol=textOn(v); var vs=v==null?"s/d":v;
+    var sel=state.popup===id?" sel":"";
+    var valFont=v==null?'style="font-size:12px"':'';
+    return '<g class="pin'+sel+'" data-id="'+id+'" tabindex="0" role="button" aria-label="'+r.name+', índice '+(v==null?"sem dado":v)+'. Abrir informações">'+
+      '<circle class="pin-halo" cx="'+p[0]+'" cy="'+p[1]+'" r="26"/>'+
+      '<circle class="pin-dot" cx="'+p[0]+'" cy="'+p[1]+'" r="20" fill="'+fill+'"/>'+
+      '<text class="pin-val" '+valFont+' x="'+p[0]+'" y="'+p[1]+'" text-anchor="middle" fill="'+tcol+'">'+vs+'</text>'+
+      '<text class="pin-name" x="'+p[0]+'" y="'+(p[1]+37)+'" text-anchor="middle" fill="var(--ink)">'+r.name+'</text></g>';
   }).join("");
 
-  var svg='<svg class="mapsvg" viewBox="0 0 800 640" role="group" aria-label="Mapa coroplético das regiões-piloto de Sorocaba">'+
+  var svg='<svg class="mapsvg" viewBox="0 0 '+MAP_VB[0]+' '+MAP_VB[1]+'" role="group" aria-label="Mapa de Sorocaba com as regiões-piloto">'+
     '<defs><pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">'+
-    '<rect width="7" height="7" fill="var(--map-void)"/><line x1="0" y1="0" x2="0" y2="7" stroke="var(--line-strong)" stroke-width="2"/></pattern></defs>'+
-    polys+
-    '<path class="river" d="M40 300 C 200 300 240 430 430 405 S 660 520 770 505"/>'+
-    '<text class="river-lbl" x="452" y="398" transform="rotate(6 452 398)">Rio Sorocaba</text>'+
-    labels+'</svg>';
+      '<rect width="7" height="7" fill="var(--map-void)"/><line x1="0" y1="0" x2="0" y2="7" stroke="var(--line-strong)" stroke-width="2"/></pattern>'+
+      '<filter id="pinsh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.25"/></filter></defs>'+
+    '<path class="soro-shape" d="'+MAP_PATH+'"/>'+
+    '<g class="compass" transform="translate(756,54)"><path d="M0 -16 L6 8 L0 3 L-6 8 Z"/><text x="0" y="24" text-anchor="middle" font-size="12" font-family="IBM Plex Mono,monospace" fill="var(--ink-faint)">N</text></g>'+
+    '<g filter="url(#pinsh)">'+pinsSVG+'</g></svg>';
 
-  // legenda gradiente
+  // popup
+  var popupHTML="";
+  if(state.popup && REGIONS[state.popup]){
+    var pr=REGIONS[state.popup]; var pp=PINS[state.popup]; var pv=metricValue(pr,m);
+    var prel=reliability(pr); var comp=composite(pr);
+    var axline=MEASURABLE.map(function(k){
+      var ax=null; for(var i=0;i<AXES.length;i++)if(AXES[i].key===k)ax=AXES[i];
+      var val=pr.scores[k]; var short=ax.label.split("·")[0].split(" ")[0];
+      var nm={servicos:"Serviços",mobilidade:"Mobilidade",caminhabilidade:"Caminhab.",ambiente:"Meio amb."}[k];
+      if(val==null) return '<div class="mpax"><span class="k">'+nm+'</span><div class="bar"></div><span class="vv na">s/d</span></div>';
+      return '<div class="mpax"><span class="k">'+nm+'</span><div class="bar"><i style="width:'+val+'%;background:'+ramp(val/100)+'"></i></div><span class="vv">'+val+'</span></div>';
+    }).join("");
+    popupHTML='<div class="mpop" style="left:'+(pp[0]/MAP_VB[0]*100)+'%;top:'+(pp[1]/MAP_VB[1]*100)+'%" role="dialog" aria-label="Informações de '+pr.name+'">'+
+      '<div class="mpop-h"><span class="mp-sw" style="background:'+fillFor(comp)+';color:'+textOn(comp)+'">'+comp+'</span>'+
+        '<span class="mp-t"><span class="n">'+pr.name+'</span><span class="s">índice composto · '+prel.have+'/'+prel.exp+' eixos</span></span>'+
+        '<button class="mpop-close" data-close="1" aria-label="Fechar">'+svgIcon("close",'width="18" height="18"')+'</button></div>'+
+      '<div class="mpop-axes">'+axline+'</div>'+
+      '<button class="mpop-cta" data-open="'+state.popup+'">Ver detalhes da região '+svgIcon("chev",'width="15" height="15"')+'</button></div>';
+  }
+
+  // legenda
   var gstops=[]; for(var i=0;i<=10;i++){ gstops.push(ramp(i/10)+" "+(i*10)+"%"); }
-  var legend='<div class="legend"><span class="cap">Índice '+(m==="composto"?"composto":metricLabel(m))+'</span>'+
+  var legend='<div class="legend"><span class="cap">Cor dos pinos · '+(m==="composto"?"índice composto":metricLabel(m))+'</span>'+
     '<div style="flex:1;min-width:180px"><div class="bar" style="background:linear-gradient(90deg,'+gstops.join(",")+')"></div>'+
     '<div class="ends"><span>0 · menor acesso</span><span>100 · maior acesso</span></div></div>'+
     '<span class="hatch-key"><span class="hatch-swatch"></span>sem dado</span></div>';
@@ -521,10 +572,10 @@ function renderMapa(){
   });
   var rows=sorted.map(function(id){
     var r=REGIONS[id]; var v=metricValue(r,m); var rel=reliability(r);
-    var sel=state.region===id?" sel":""; var na=v==null?" na":"";
+    var sel=state.popup===id?" sel":""; var na=v==null?" na":"";
     var valHTML = v==null ? '<span class="rk-val">indisponível</span>' :
       '<span class="rk-val">'+v+'<small>/100</small></span>';
-    return '<button class="rank'+sel+na+'" data-id="'+id+'">'+
+    return '<button class="rank'+sel+na+'" data-pin="'+id+'">'+
       '<span class="swatch" style="background:'+fillFor(v)+'"></span>'+
       '<span class="rk-name"><span class="n">'+r.name+'</span><span class="s">'+rel.have+'/'+rel.exp+' eixos · '+r.setores.length+' setores</span></span>'+
       valHTML+'<span class="chev">'+svgIcon("chev",'width="16" height="16"')+'</span></button>';
@@ -533,12 +584,14 @@ function renderMapa(){
   var html=noticeHTML()+
     '<div class="screen"><div class="map-head">'+
       '<div><span class="eyebrow">Tela 01 · Mapa</span><h2>Radiografia por região</h2>'+
-      '<p class="lead">Não é um ranking de bairro bom ou ruim. É a leitura de <strong>acesso a serviços e infraestrutura</strong> por região — cada cor puxa de um dado público, uma fórmula e uma data. Escolha o que colorir:</p></div>'+
-      '<div class="seg" role="group" aria-label="Métrica do mapa">'+segs+'</div>'+
+      '<p class="lead">Não é um ranking de bairro bom ou ruim. É a leitura de <strong>acesso a serviços e infraestrutura</strong> por região. Clique num <strong>pino</strong> para ver a região; a cor do pino segue o índice escolhido:</p></div>'+
+      '<div class="seg" role="group" aria-label="Métrica dos pinos">'+segs+'</div>'+
     '</div>'+
     '<div class="map-grid">'+
-      '<div><div class="card map-card">'+svg+legend+'</div></div>'+
-      '<div class="card ranklist"><h3>Regiões-piloto · toque para abrir</h3>'+rows+'</div>'+
+      '<div><div class="card map-card"><div class="map-stage">'+svg+popupHTML+'</div>'+
+        '<span class="soro-cap">Contorno municipal: IBGE · malha 2022&nbsp;&nbsp;|&nbsp;&nbsp;posição dos pinos ilustrativa</span></div>'+
+        '<p class="map-hint">Toque num pino no mapa ou numa região na lista →</p></div>'+
+      '<div class="card ranklist"><h3>Regiões-piloto</h3>'+rows+'</div>'+
     '</div></div>';
 
   document.getElementById("app").innerHTML=html;
@@ -547,16 +600,22 @@ function renderMapa(){
   Array.prototype.forEach.call(document.querySelectorAll(".seg button"),function(b){
     b.addEventListener("click",function(){ state.mapMetric=b.dataset.m; renderMapa(); });
   });
-  function openRegion(id){ state.region=id; state.tab="regiao"; render(); window.scrollTo({top:0,behavior:"smooth"}); }
-  Array.prototype.forEach.call(document.querySelectorAll(".region"),function(p){
-    p.addEventListener("click",function(){ openRegion(p.dataset.id); });
-    p.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openRegion(p.dataset.id); } });
-    p.addEventListener("mousemove",function(e){ showTip(e,p.dataset.id); });
+  function togglePop(id){ state.popup = (state.popup===id? null : id); renderMapa(); }
+  function openRegion(id){ state.region=id; state.tab="regiao"; state.popup=null; render(); window.scrollTo({top:0,behavior:"smooth"}); }
+  Array.prototype.forEach.call(document.querySelectorAll(".pin"),function(p){
+    p.addEventListener("click",function(e){ e.stopPropagation(); togglePop(p.dataset.id); });
+    p.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); togglePop(p.dataset.id); } });
+    p.addEventListener("mousemove",function(e){ if(state.popup!==p.dataset.id) showTip(e,p.dataset.id); });
     p.addEventListener("mouseleave",hideTip);
   });
   Array.prototype.forEach.call(document.querySelectorAll(".rank"),function(b){
-    b.addEventListener("click",function(){ openRegion(b.dataset.id); });
+    b.addEventListener("click",function(){ state.popup=b.dataset.pin; renderMapa(); });
   });
+  var closeBtn=document.querySelector(".mpop-close");
+  if(closeBtn) closeBtn.addEventListener("click",function(){ state.popup=null; renderMapa(); });
+  var ctaBtn=document.querySelector(".mpop-cta");
+  if(ctaBtn) ctaBtn.addEventListener("click",function(){ openRegion(ctaBtn.dataset.open); });
+  hideTip();
 }
 
 /* tooltip */
