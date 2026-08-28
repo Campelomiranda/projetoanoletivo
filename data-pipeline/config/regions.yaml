@@ -1,0 +1,73 @@
+# =============================================================================
+# Composição das regiões-piloto — Radiografia Urbana de Sorocaba
+# =============================================================================
+# Cada região-piloto é um agrupamento de SETORES CENSITÁRIOS do IBGE (Censo 2022)
+# sob um nome de bairro reconhecível. A composição fica AQUI (config legível),
+# nunca espalhada pelo código — assim qualquer pessoa audita o recorte.
+#
+# Como preencher:
+#   1. Rode o passo 1 do pipeline para gerar a lista de setores de Sorocaba
+#      (src/step01_setores_populacao.py imprime e salva os códigos disponíveis).
+#   2. Para cada região, cole abaixo os códigos (CD_SETOR, 15 dígitos) que a compõem.
+#   3. Um setor deve pertencer a NO MÁXIMO uma região (sem sobreposição).
+#
+# ⚠️ Os códigos da região "centro" abaixo são um EXEMPLO ILUSTRATIVO só para você
+#    entender o formato — troque-os pelos códigos reais antes de calcular o índice.
+# =============================================================================
+
+meta:
+  municipio: "Sorocaba"
+  uf: "SP"
+  codigo_ibge: "3552205"
+  censo: 2022
+  observacao: >
+    Regiões são recortes analíticos (agregados de setores do IBGE), não
+    fronteiras oficiais de bairro. O recorte é uma escolha documentada.
+
+# Eixos esperados do índice (para o selo de confiabilidade = calculados / esperados).
+# PCD fica FORA do cálculo no MVP (sempre "dados insuficientes"), então não entra aqui.
+eixos_esperados:
+  - servicos_essenciais
+  - mobilidade
+  - acesso_urbano
+  - meio_ambiente
+
+regions:
+
+  # ---- EXEMPLO PREENCHIDO (trocar pelos códigos reais) -----------------------
+  centro:
+    nome: "Centro"
+    # ⚠️ EXEMPLO — estes códigos são fictícios, apenas para ilustrar o formato:
+    setores:
+      - "355220505000012"
+      - "355220505000013"
+      - "355220505000027"
+      - "355220505000031"
+
+  # ---- REGIÕES A PREENCHER ---------------------------------------------------
+  # Deixe 'setores: []' até você colar os códigos reais. O pipeline trata uma
+  # região sem setores como AINDA NÃO CONFIGURADA (não inventa dados).
+
+  campolim:
+    nome: "Campolim"
+    setores: []
+
+  alem_ponte:
+    nome: "Além Ponte"
+    setores: []
+
+  zona_norte:
+    nome: "Zona Norte"
+    setores: []
+
+  eden:
+    nome: "Éden"
+    setores: []
+
+  wanel_ville:
+    nome: "Wanel Ville"
+    setores: []
+
+  aparecidinha:
+    nome: "Aparecidinha"
+    setores: []

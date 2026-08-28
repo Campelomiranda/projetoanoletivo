@@ -1,0 +1,14 @@
+# Pipeline de dados — Radiografia Urbana de Sorocaba
+# Python 3.10+ recomendado.
+#
+# Instale dentro de um ambiente virtual (ver data-pipeline/README.md):
+#   python -m venv .venv && source .venv/bin/activate
+#   pip install -r data-pipeline/requirements.txt
+
+geopandas>=0.14
+shapely>=2.0
+pandas>=2.0
+requests>=2.31
+osmnx>=1.9          # consultas à Overpass API (passo 2 em diante)
+matplotlib>=3.8     # mapas de conferência (plots rápidos)
+pyyaml>=6.0         # leitura do config/regions.yaml

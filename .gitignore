@@ -1,0 +1,19 @@
+# Ambiente Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.python-version
+
+# Dados brutos baixados (grandes; não versionar — cada pessoa baixa das fontes)
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/README.md
+
+# Saídas geradas pelo pipeline (imagens de conferência)
+data/processed/*
+!data/processed/.gitkeep
+
+# Sistema
+.DS_Store
+Thumbs.db
