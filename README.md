@@ -1,8 +1,8 @@
-# Radiografia Urbana de Sorocaba
+# CityLens — Sorocaba
 
-Plataforma web que mostra a infraestrutura urbana ao redor de diferentes
-regiões de **Sorocaba (SP)** através de um **Índice de Infraestrutura Urbana
-(0–100)** por região, visualizado num mapa.
+**CityLens** é uma plataforma web que faz a radiografia urbana de **Sorocaba (SP)**:
+mostra a infraestrutura ao redor de diferentes regiões através de um **Índice de
+Infraestrutura Urbana (0–100)** por região, visualizado num mapa.
 
 > **Não é um ranking de "bairro bom ou ruim".** É uma radiografia transparente
 > de acesso a serviços, mobilidade, meio ambiente etc. — cada nota é rastreável
