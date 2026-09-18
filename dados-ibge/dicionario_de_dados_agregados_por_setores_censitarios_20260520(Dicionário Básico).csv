@@ -1,0 +1,10 @@
+Tema;Variável;Descrição
+Básico;V0001;Total de pessoas
+Básico;V0002;Total de Domicílios (DPPO + DPPV + DPPUO + DPIO + DCCM + DCSM)
+Básico;V0003;Total de Domicílios Particulares (DPPO + DPPV + DPPUO + DPIO)
+Básico;V0004;Total de Domicílios Coletivos (DCCM + DCSM)
+Básico;V0005;Média de moradores em Domicílios Particulares Ocupados (Total pessoas em Domicílios Particulares Ocupados / DPPO + DPIO)
+Básico;V0006;Percentual de Domicílios Particulares Ocupados Imputados (Total DPO imputados / Total DPO)
+Básico;V0007;Total de Domicílios Particulares Ocupados (DPPO + DPIO)
+Básico;V0008;Total de Domicílios Particulares  de Uso Ocasional (DPPUO)
+Básico;V0009;Total de Domicílios Particulares Permanentes Vagos (DPPV)
