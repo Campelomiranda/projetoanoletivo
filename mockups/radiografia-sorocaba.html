@@ -1,7 +1,7 @@
 <title>CityLens Sorocaba</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap">
 
 <style>
   /* ============ TOKENS ============ */
@@ -92,15 +92,19 @@
     margin:0;
     background:var(--paper);
     color:var(--ink);
-    font-family:'IBM Plex Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
     font-size:15px;
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
-  .mono{font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+  .mono{font-family:'Nunito',ui-monospace,SFMono-Regular,Menlo,monospace}
   h1,h2,h3,h4{margin:0;line-height:1.2;text-wrap:balance;font-weight:600}
-  h1,h2,.cov-title,.map-head h2,.pt-name,.cmp-sum .cs-n{font-family:'Archivo','IBM Plex Sans',system-ui,sans-serif;letter-spacing:-.02em}
-  .display{font-family:'Archivo','IBM Plex Sans',system-ui,sans-serif}
+  h1,h2,.cov-title,.map-head h2,.pt-name,.cmp-sum .cs-n{font-family:'Baloo 2','Nunito',system-ui,sans-serif;letter-spacing:-.02em}
+  .display{font-family:'Baloo 2','Nunito',system-ui,sans-serif}
+  /* números com cara de Impact */
+  .num,.pin-val,.pt-score,.pr-score,.cs-v,.a-score .v,.rk-val,.mp-sw,.mpax .vv,.cmp-track i,.seal .ring i{font-family:'Anton','Nunito',sans-serif;font-weight:400;letter-spacing:.03em}
+  /* cor legível e fixa nos números grandes (a intensidade fica na barra) */
+  .num,.pt-score,.cs-v,.a-score .v,.rk-val,.pr-score{color:var(--accent)}
   a{color:var(--accent)}
   button{font-family:inherit}
   ::selection{background:var(--accent);color:#fff}
@@ -114,7 +118,7 @@
   .glyph{width:34px;height:34px;flex:none;border-radius:9px;background:#111d1b;display:grid;place-items:center;box-shadow:var(--shadow)}
   .glyph-img{width:25px;height:25px;display:block;object-fit:contain}
   .brand-txt{display:flex;flex-direction:column;line-height:1.05;min-width:0}
-  .brand-txt .b1{font-family:'Archivo','IBM Plex Sans',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:16px;white-space:nowrap}
+  .brand-txt .b1{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:16px;white-space:nowrap}
   .brand-txt .b2{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
   .spacer{flex:1}
   .mock-badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--warn);background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent);padding:5px 10px;border-radius:999px}
@@ -140,7 +144,7 @@
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){.screen{animation:none}*{scroll-behavior:auto!important}}
 
-  .eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;font-family:'IBM Plex Mono',monospace}
+  .eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;font-family:'Nunito',monospace}
   .lead{color:var(--ink-soft);font-size:14.5px;max-width:64ch}
 
   /* ============ CARDS ============ */
@@ -160,9 +164,9 @@
   .mapsvg{width:100%;height:auto;display:block;touch-action:manipulation;overflow:hidden;border-radius:10px;background:var(--map-land)}
   .map-bg{fill:var(--map-land)}
   .neigh{fill:var(--map-neighbor);stroke:var(--map-stroke2);stroke-width:1;stroke-linejoin:round}
-  .neigh-lbl{fill:var(--map-neighlbl);font-size:11px;font-family:'IBM Plex Mono',monospace;letter-spacing:.05em;text-transform:uppercase;pointer-events:none;paint-order:stroke;stroke:var(--map-land);stroke-width:3px;stroke-linejoin:round}
+  .neigh-lbl{fill:var(--map-neighlbl);font-size:11px;font-family:'Nunito',monospace;letter-spacing:.05em;text-transform:uppercase;pointer-events:none;paint-order:stroke;stroke:var(--map-land);stroke-width:3px;stroke-linejoin:round}
   .soro-shape{fill:var(--map-soro-fill);stroke:var(--accent);stroke-width:2.4;stroke-linejoin:round}
-  .soro-cap{position:absolute;right:22px;bottom:22px;font-size:10.5px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;letter-spacing:.02em;max-width:70%;line-height:1.4;pointer-events:none;background:color-mix(in srgb,var(--surface) 86%,transparent);padding:5px 9px;border-radius:8px;text-align:right;backdrop-filter:blur(3px)}
+  .soro-cap{position:absolute;right:22px;bottom:22px;font-size:10.5px;color:var(--ink-soft);font-family:'Nunito',monospace;letter-spacing:.02em;max-width:70%;line-height:1.4;pointer-events:none;background:color-mix(in srgb,var(--surface) 86%,transparent);padding:5px 9px;border-radius:8px;text-align:right;backdrop-filter:blur(3px)}
   .compass{fill:var(--ink-faint)}
   .pin{cursor:pointer}
   .pin:focus{outline:none}
@@ -172,18 +176,18 @@
   .pin:focus-visible .pin-halo{opacity:.7;stroke:var(--accent)}
   .pin-dot{stroke:var(--surface);stroke-width:3;transition:transform .12s;transform-box:fill-box;transform-origin:center}
   .pin:hover .pin-dot{stroke-width:3.5}
-  .pin-val{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:14px;pointer-events:none;dominant-baseline:central}
-  .pin-name{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:12.5px;pointer-events:none;paint-order:stroke;stroke:var(--surface);stroke-width:3.5px;stroke-linejoin:round}
+  .pin-val{font-family:'Nunito',monospace;font-weight:600;font-size:14px;pointer-events:none;dominant-baseline:central}
+  .pin-name{font-family:'Nunito',sans-serif;font-weight:600;font-size:12.5px;pointer-events:none;paint-order:stroke;stroke:var(--surface);stroke-width:3.5px;stroke-linejoin:round}
 
   /* popup da região sobre o mapa */
   .mpop{position:absolute;z-index:20;width:250px;max-width:82%;background:var(--surface);border:1px solid var(--line-strong);border-radius:14px;box-shadow:0 12px 34px rgba(0,0,0,.22);transform:translate(-50%,calc(-100% - 20px));animation:pop .18s ease both}
   @keyframes pop{from{opacity:0;transform:translate(-50%,calc(-100% - 12px))}to{opacity:1;transform:translate(-50%,calc(-100% - 20px))}}
   .mpop::after{content:"";position:absolute;left:50%;bottom:-8px;width:15px;height:15px;background:var(--surface);border-right:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);transform:translateX(-50%) rotate(45deg)}
   .mpop-h{display:flex;align-items:center;gap:10px;padding:13px 14px 10px}
-  .mpop-h .mp-sw{width:38px;height:38px;flex:none;border-radius:10px;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px}
+  .mpop-h .mp-sw{width:38px;height:38px;flex:none;border-radius:10px;display:grid;place-items:center;font-family:'Nunito',monospace;font-weight:600;font-size:16px}
   .mpop-h .mp-t{flex:1;min-width:0}
   .mpop-h .mp-t .n{display:block;font-weight:600;font-size:15px;line-height:1.15}
-  .mpop-h .mp-t .s{display:block;font-size:11px;color:var(--ink-faint);font-family:'IBM Plex Mono',monospace}
+  .mpop-h .mp-t .s{display:block;font-size:11px;color:var(--ink-faint);font-family:'Nunito',monospace}
   .mpop-close{appearance:none;border:0;background:none;cursor:pointer;color:var(--ink-faint);padding:4px;border-radius:6px;line-height:0}
   .mpop-close:hover{color:var(--ink);background:var(--surface-2)}
   .mpop-axes{padding:2px 14px 8px;display:flex;flex-direction:column;gap:7px}
@@ -191,11 +195,11 @@
   .mpax .k{color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .mpax .bar{height:6px;border-radius:3px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
   .mpax .bar i{display:block;height:100%;border-radius:3px}
-  .mpax .vv{font-family:'IBM Plex Mono',monospace;font-weight:600;text-align:right;color:var(--ink)}
+  .mpax .vv{font-family:'Nunito',monospace;font-weight:600;text-align:right;color:var(--ink)}
   .mpax .vv.na{color:var(--ink-faint);font-weight:400}
   .mpax.on{background:var(--accent-soft);border-radius:6px;margin:0 -6px;padding:3px 6px}
   .mpax.on .k{color:var(--accent);font-weight:600}
-  .mpop-comp{padding:2px 14px 10px;font-size:11.5px;color:var(--ink-faint);font-family:'IBM Plex Mono',monospace}
+  .mpop-comp{padding:2px 14px 10px;font-size:11.5px;color:var(--ink-faint);font-family:'Nunito',monospace}
   .mpop-comp b{color:var(--ink-soft)}
   .mpop-cta{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;border:0;border-top:1px solid var(--line);background:none;cursor:pointer;padding:11px;font-family:inherit;font-size:13px;font-weight:600;color:var(--accent);border-radius:0 0 13px 13px}
   .mpop-cta:hover{background:var(--accent-soft)}
@@ -203,7 +207,7 @@
 
   .legend{margin-top:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .legend .bar{height:10px;flex:1;min-width:160px;border-radius:5px;border:1px solid var(--line)}
-  .legend .ends{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-faint);font-family:'IBM Plex Mono',monospace;width:100%;margin-top:-4px}
+  .legend .ends{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-faint);font-family:'Nunito',monospace;width:100%;margin-top:-4px}
   .legend .cap{font-size:12px;color:var(--ink-soft)}
   .hatch-key{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-soft)}
   .hatch-swatch{width:16px;height:16px;border-radius:4px;border:1px solid var(--line);background-image:repeating-linear-gradient(45deg,var(--line-strong) 0 2px,transparent 2px 5px)}
@@ -218,16 +222,16 @@
   .rank .rk-name{flex:1;min-width:0}
   .rank .rk-name .n{display:block;font-weight:600;font-size:14px}
   .rank .rk-name .s{display:block;font-size:11.5px;color:var(--ink-faint)}
-  .rank .rk-val{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:19px;letter-spacing:-.02em}
-  .rank .rk-val small{font-size:11px;color:var(--ink-faint);font-weight:400}
+  .rank .rk-val{font-family:'Nunito',monospace;font-weight:600;font-size:19px;letter-spacing:-.02em}
+  .rank .rk-val small{font-family:'Nunito',sans-serif;font-size:11px;color:var(--ink-faint);font-weight:600;letter-spacing:0}
   .rank .chev{color:var(--ink-faint);flex:none}
-  .rank.na .rk-val{color:var(--ink-faint);font-size:13px}
+  .rank.na .rk-val{font-family:'Nunito',sans-serif;color:var(--ink-faint);font-size:13px;letter-spacing:0}
 
   /* tooltip */
   .tip{position:fixed;z-index:60;pointer-events:none;background:var(--ink);color:var(--paper);padding:8px 11px;border-radius:9px;font-size:12.5px;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transform:translateY(4px);transition:opacity .12s;max-width:230px}
   .tip.on{opacity:1;transform:none}
   .tip .t-n{font-weight:600;margin-bottom:2px}
-  .tip .t-v{font-family:'IBM Plex Mono',monospace}
+  .tip .t-v{font-family:'Nunito',monospace}
   .tip .t-s{color:color-mix(in srgb,var(--paper) 70%,var(--ink));font-size:11px;margin-top:3px}
 
   /* ============ REGIÃO ============ */
@@ -236,19 +240,19 @@
   .picker select{appearance:none;font-family:inherit;font-size:15px;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:11px;padding:10px 40px 10px 14px;cursor:pointer;box-shadow:var(--shadow)}
   .picker select:hover{border-color:var(--accent)}
   .picker .ic{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--ink-faint)}
-  .picker .pl{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-bottom:5px;font-family:'IBM Plex Mono',monospace}
+  .picker .pl{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-bottom:5px;font-family:'Nunito',monospace}
 
   .region-top{display:grid;grid-template-columns:300px 1fr;gap:22px;align-items:stretch;margin-bottom:22px}
   .index-card{padding:22px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
-  .index-card .ic-eye{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;font-family:'IBM Plex Mono',monospace}
+  .index-card .ic-eye{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;font-family:'Nunito',monospace}
   .gauge{display:flex;align-items:baseline;gap:8px;margin:2px 0}
-  .gauge .num{font-family:'IBM Plex Mono',monospace;font-size:62px;font-weight:600;letter-spacing:-.04em;line-height:1}
-  .gauge .den{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--ink-faint)}
+  .gauge .num{font-family:'Nunito',monospace;font-size:62px;font-weight:600;letter-spacing:-.04em;line-height:1}
+  .gauge .den{font-family:'Nunito',monospace;font-size:18px;color:var(--ink-faint)}
   .gauge-track{height:9px;border-radius:5px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden;margin-top:4px}
   .gauge-fill{height:100%;border-radius:5px}
   .seal{display:flex;align-items:center;gap:9px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
   .seal .ring{--p:100;width:40px;height:40px;flex:none;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center}
-  .seal .ring i{width:30px;height:30px;background:var(--surface);border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace;font-style:normal;color:var(--ink)}
+  .seal .ring i{width:30px;height:30px;background:var(--surface);border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;font-family:'Nunito',monospace;font-style:normal;color:var(--ink)}
   .seal .st{font-size:12.5px;line-height:1.35}
   .seal .st b{display:block;font-size:13px}
   .seal .st span{color:var(--ink-faint)}
@@ -257,7 +261,7 @@
   .setores-card h3{font-size:13px;color:var(--ink-soft);margin-bottom:4px}
   .setores-card p{font-size:12.5px;color:var(--ink-faint);margin:0 0 12px}
   .chips{display:flex;flex-wrap:wrap;gap:7px}
-  .chip{font-family:'IBM Plex Mono',monospace;font-size:11.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:7px;padding:5px 9px;color:var(--ink-soft)}
+  .chip{font-family:'Nunito',monospace;font-size:11.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:7px;padding:5px 9px;color:var(--ink-soft)}
   .setores-card .note{margin-top:14px;font-size:12px;color:var(--ink-faint);display:flex;gap:8px;align-items:flex-start}
   .setores-card .note svg{flex:none;width:14px;height:14px;margin-top:2px;color:var(--accent)}
 
@@ -271,18 +275,18 @@
   .axis-h .a-name .ai{width:26px;height:26px;flex:none;border-radius:7px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
   .axis-h .a-name .ai svg{width:15px;height:15px}
   .a-score{text-align:right;flex:none}
-  .a-score .v{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:24px;letter-spacing:-.02em;line-height:1}
-  .a-score .w{font-size:10.5px;color:var(--ink-faint);font-family:'IBM Plex Mono',monospace}
+  .a-score .v{font-family:'Nunito',monospace;font-weight:600;font-size:24px;letter-spacing:-.02em;line-height:1}
+  .a-score .w{font-size:10.5px;color:var(--ink-faint);font-family:'Nunito',monospace}
   .a-bar{height:7px;border-radius:4px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
   .a-bar i{display:block;height:100%;border-radius:4px}
   .a-raw{font-size:12.5px;color:var(--ink-soft);display:flex;flex-direction:column;gap:3px}
   .a-raw .rw{display:flex;gap:7px}
   .a-raw .rw .k{color:var(--ink-faint);flex:none}
-  .a-raw .rw .val{font-family:'IBM Plex Mono',monospace;color:var(--ink)}
+  .a-raw .rw .val{font-family:'Nunito',monospace;color:var(--ink)}
   .a-meta{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:11px;padding-top:10px;border-top:1px dashed var(--line-strong)}
   .a-meta div{display:flex;flex-direction:column;gap:1px}
-  .a-meta .lab{color:var(--ink-faint);letter-spacing:.08em;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;font-size:9.5px}
-  .a-meta .dat{color:var(--ink-soft);font-family:'IBM Plex Mono',monospace}
+  .a-meta .lab{color:var(--ink-faint);letter-spacing:.08em;text-transform:uppercase;font-family:'Nunito',monospace;font-size:9.5px}
+  .a-meta .dat{color:var(--ink-soft);font-family:'Nunito',monospace}
   .axis.warn{border-color:color-mix(in srgb,var(--warn) 40%,var(--line))}
   .axis.warn .ai{background:var(--warn-soft);color:var(--warn)}
   .warn-body{display:flex;gap:10px;align-items:flex-start;background:var(--warn-soft);border-radius:10px;padding:11px 12px;font-size:13px;color:var(--ink)}
@@ -292,21 +296,21 @@
 
   /* ============ COMPARAÇÃO ============ */
   .cmp-pickers{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:end;margin-bottom:22px}
-  .cmp-vs{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--ink-faint);padding-bottom:10px}
+  .cmp-vs{font-family:'Nunito',monospace;font-weight:600;color:var(--ink-faint);padding-bottom:10px}
   .cmp-summary{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
   .cmp-sum{padding:18px;text-align:center}
   .cmp-sum .cs-n{font-weight:600;font-size:15px;margin-bottom:4px}
-  .cmp-sum .cs-v{font-family:'IBM Plex Mono',monospace;font-size:42px;font-weight:600;letter-spacing:-.03em;line-height:1}
+  .cmp-sum .cs-v{font-family:'Nunito',monospace;font-size:42px;font-weight:600;letter-spacing:-.03em;line-height:1}
   .cmp-sum .cs-s{font-size:11.5px;color:var(--ink-faint);margin-top:4px}
   .cmp-rows{padding:8px 20px 20px}
   .cmp-rows h3{font-size:14px;padding:14px 0 6px}
   .cmp-row{padding:13px 0;border-top:1px solid var(--line)}
   .cmp-row .cr-lbl{font-size:13px;font-weight:500;margin-bottom:9px;display:flex;justify-content:space-between}
-  .cmp-row .cr-lbl .cr-delta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-faint)}
+  .cmp-row .cr-lbl .cr-delta{font-family:'Nunito',monospace;font-size:12px;color:var(--ink-faint)}
   .cmp-bars{display:grid;grid-template-columns:44px 1fr;gap:8px 10px;align-items:center}
-  .cmp-bars .who{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-faint)}
+  .cmp-bars .who{font-family:'Nunito',monospace;font-size:11px;color:var(--ink-faint)}
   .cmp-track{position:relative;height:22px;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;overflow:hidden}
-  .cmp-track i{position:absolute;left:0;top:0;height:100%;border-radius:5px 0 0 5px;display:flex;align-items:center;justify-content:flex-end;padding-right:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:#fff;min-width:26px}
+  .cmp-track i{position:absolute;left:0;top:0;height:100%;border-radius:5px 0 0 5px;display:flex;align-items:center;justify-content:flex-end;padding-right:7px;font-family:'Nunito',monospace;font-size:11px;font-weight:600;color:#fff;min-width:26px}
   .cmp-track.na{display:flex;align-items:center;padding-left:9px;font-size:11px;color:var(--ink-faint)}
 
   /* ============ PERFIS (Para você) ============ */
@@ -319,11 +323,11 @@
   .pchip .pc-ic svg{width:16px;height:16px}
   .persona-desc{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--ink-soft);margin:6px 0 18px;max-width:74ch}
   .persona-desc svg{flex:none;width:15px;height:15px;color:var(--accent);margin-top:2px}
-  .persona-desc .pw{color:var(--ink-faint);font-family:'IBM Plex Mono',monospace;font-size:11px}
+  .persona-desc .pw{color:var(--ink-faint);font-family:'Nunito',monospace;font-size:11px}
   .persona-top{padding:20px;margin-bottom:16px}
-  .pt-badge{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;font-family:'IBM Plex Mono',monospace;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px;margin-bottom:14px}
+  .pt-badge{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;font-family:'Nunito',monospace;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px;margin-bottom:14px}
   .pt-main{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .pt-score{font-family:'IBM Plex Mono',monospace;font-size:56px;font-weight:600;letter-spacing:-.03em;line-height:1}
+  .pt-score{font-family:'Nunito',monospace;font-size:56px;font-weight:600;letter-spacing:-.03em;line-height:1}
   .pt-name{font-size:22px;font-weight:600;letter-spacing:-.01em}
   .pt-reasons{font-size:13.5px;color:var(--ink-soft);margin-top:3px}
   .pt-reasons b{color:var(--ink);font-weight:600}
@@ -337,18 +341,32 @@
   .rank,.pchip,.pt-cta,.mpop-cta{transition:transform .13s ease,background .13s ease,border-color .13s ease,color .13s ease}
   .rank:hover{transform:translateX(3px)}
   .pchip:hover{transform:translateY(-1px)}
-  .prow .pr-rk{width:22px;flex:none;font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--ink-faint);text-align:center}
+  .prow .pr-rk{width:22px;flex:none;font-family:'Nunito',monospace;font-weight:600;color:var(--ink-faint);text-align:center}
   .prow.win .pr-rk{color:var(--accent)}
   .pr-bar-wrap{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
   .pr-name{font-weight:600;font-size:13.5px}
   .pr-bar{height:7px;border-radius:4px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
   .pr-bar i{display:block;height:100%;border-radius:4px}
   .pr-reasons{font-size:11.5px;color:var(--ink-faint)}
-  .pr-score{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:19px;flex:none;width:34px;text-align:right;font-variant-numeric:tabular-nums}
+  .pr-score{font-family:'Nunito',monospace;font-weight:600;font-size:19px;flex:none;width:34px;text-align:right;font-variant-numeric:tabular-nums}
   .persona-warn{padding:20px;display:flex;gap:14px;align-items:flex-start;border-color:color-mix(in srgb,var(--warn) 35%,var(--line))}
   .persona-warn>svg{flex:none;width:22px;height:22px;color:var(--warn);margin-top:2px}
   .persona-warn h3{font-size:16px;margin-bottom:4px}
   .persona-warn p{font-size:13.5px;color:var(--ink-soft);margin:0;max-width:70ch}
+  /* construtor de perfil */
+  .persona-builder{padding:18px 20px;margin-bottom:16px}
+  .persona-builder h3{font-size:16px;display:flex;align-items:center;gap:8px;margin-bottom:2px}
+  .persona-builder h3 svg{color:var(--accent)}
+  .pb-hint{font-size:12.5px;color:var(--ink-faint);margin:0 0 14px}
+  .pb-grid{display:flex;flex-direction:column;gap:10px}
+  .pb-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .pb-lbl{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--ink)}
+  .pb-ic{width:28px;height:28px;flex:none;border-radius:8px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+  .pb-ic svg{width:16px;height:16px}
+  .pb-opts{display:inline-flex;gap:4px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:4px}
+  .pb-opt{appearance:none;border:0;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--ink-soft);padding:6px 12px;border-radius:7px;transition:background .12s ease,color .12s ease}
+  .pb-opt:hover{color:var(--ink)}
+  .pb-opt.on{background:var(--accent);color:#fff}
 
   /* ============ METODOLOGIA ============ */
   .method{display:grid;grid-template-columns:210px 1fr;gap:34px;align-items:start}
@@ -357,8 +375,17 @@
   .toc a:hover{background:var(--surface-2);color:var(--ink)}
   .prose{max-width:68ch}
   .prose section{padding:8px 0 26px;scroll-margin-top:150px}
-  .prose h2{font-size:20px;letter-spacing:-.01em;margin-bottom:8px;display:flex;align-items:center;gap:10px}
-  .prose h2 .hn{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);font-weight:600}
+  .prose h2{font-size:21px;letter-spacing:-.01em;margin-bottom:8px;display:flex;align-items:center;gap:11px}
+  .prose h2 .sec-ic{width:34px;height:34px;flex:none;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+  .prose h2 .sec-ic svg{width:19px;height:19px}
+  .steps{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+  .step{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;gap:13px;align-items:flex-start}
+  .step-n{font-family:'Anton','Nunito',sans-serif;font-size:30px;line-height:.9;color:var(--accent);flex:none;width:34px;text-align:center}
+  .step-t{font-weight:700;font-size:14.5px;color:var(--ink);margin-bottom:3px}
+  .step-b p{font-size:12.5px;color:var(--ink-soft);margin:0}
+  .step-b em{color:var(--accent);font-style:normal;font-weight:600}
+  .m-note{display:flex;gap:9px;align-items:flex-start;background:var(--accent-soft);border-radius:12px;padding:12px 14px;font-size:12.5px;color:var(--ink)!important;margin:14px 0 0}
+  .m-note svg{flex:none;width:16px;height:16px;color:var(--accent);margin-top:1px}
   .prose h3{font-size:14px;margin:16px 0 4px}
   .prose p{color:var(--ink-soft);margin:6px 0}
   .prose li{color:var(--ink-soft);margin:4px 0}
@@ -368,11 +395,11 @@
   .mini h4{font-size:13px;margin-bottom:6px;display:flex;align-items:center;gap:7px}
   .mini.yes h4{color:var(--accent)} .mini.no h4{color:var(--warn)}
   .mini p{font-size:12.5px;margin:2px 0}
-  .formula{background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:12px 15px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink);margin:10px 0;overflow-x:auto;white-space:nowrap}
+  .formula{background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:12px 15px;font-family:'Nunito',monospace;font-size:12.5px;color:var(--ink);margin:10px 0;overflow-x:auto;white-space:nowrap}
   .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:12px 0}
   table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:520px}
   th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;background:var(--surface-2)}
+  th{font-family:'Nunito',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;background:var(--surface-2)}
   tr:last-child td{border-bottom:0}
   td .mono{font-size:11.5px;color:var(--ink-soft)}
   .limit{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line)}
@@ -388,7 +415,7 @@
   .cover{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;min-height:calc(100vh - 150px);padding:10px 0 40px;
     background:radial-gradient(115% 85% at 88% 18%, color-mix(in srgb,var(--accent) 9%,transparent), transparent 55%)}
   .cov-left{max-width:37rem}
-  .cov-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;font-family:'IBM Plex Mono',monospace;color:var(--accent);background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);padding:6px 12px;border-radius:999px;margin-bottom:20px;animation:covrise .6s .05s both}
+  .cov-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;font-family:'Nunito',monospace;color:var(--accent);background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);padding:6px 12px;border-radius:999px;margin-bottom:20px;animation:covrise .6s .05s both}
   .cov-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:covpulse 2s ease-in-out infinite}
   .cov-logo{display:none;height:clamp(52px,7vw,80px);width:auto;max-width:100%;margin-bottom:14px;animation:covrise .6s .12s both}
   .cl-light{display:block}
@@ -398,7 +425,7 @@
   :root[data-theme="dark"] .cl-dark{display:block}
   :root[data-theme="light"] .cl-light{display:block}
   :root[data-theme="light"] .cl-dark{display:none}
-  .cov-tag{font-family:'Archivo','IBM Plex Sans',sans-serif;font-size:clamp(19px,2.4vw,24px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px;animation:covrise .6s .18s both}
+  .cov-tag{font-family:'Baloo 2','Nunito',sans-serif;font-size:clamp(19px,2.4vw,24px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px;animation:covrise .6s .18s both}
   .cov-tag strong{color:var(--accent)}
   .cov-sub{font-size:16px;line-height:1.6;color:var(--ink-soft);max-width:46ch;margin-bottom:22px;animation:covrise .6s .2s both}
   .cov-sub strong{color:var(--ink)}
@@ -572,6 +599,8 @@ function criterio(id,c){
 }
 var CRIT_LABEL={saude:"saúde por perto",educacao:"escolas por perto",comercio:"comércio por perto",
   mobilidade:"ônibus por perto",caminhabilidade:"ruas caminháveis",ambiente:"áreas verdes"};
+var CRIT_ORDER=["saude","educacao","comercio","mobilidade","caminhabilidade","ambiente"];
+var CRIT_ICON={saude:"health",educacao:"walk",comercio:"cart",mobilidade:"bus",caminhabilidade:"walk",ambiente:"leaf"};
 
 /* Perfis: cada um dá mais peso aos critérios que importam para aquele grupo.
    Pesos ilustrativos — servem para mostrar a ideia, não são verdade científica. */
@@ -589,7 +618,9 @@ var PERSONAS=[
    desc:"Ônibus por perto e ruas bem conectadas para circular sem carro.",
    pesos:{mobilidade:0.45,caminhabilidade:0.30,comercio:0.15,educacao:0.10}},
   {key:"pcd",nome:"Pessoas com deficiência",icon:"access",
-   desc:"Acessibilidade: rampas, piso tátil, semáforo sonoro.", indisponivel:true}
+   desc:"Acessibilidade: rampas, piso tátil, semáforo sonoro.", indisponivel:true},
+  {key:"custom",nome:"Criar o meu",icon:"sliders",custom:true,
+   desc:"Monte o seu perfil: escolha o quanto cada coisa importa pra você."}
 ];
 
 function pontuarPerfil(id,persona){
@@ -659,12 +690,18 @@ var IC={
   info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
   chev:'<path d="M9 6l6 6-6 6"/>',
   down:'<path d="M6 9l6 6 6-6"/>',
-  close:'<path d="M6 6l12 12M18 6L6 18"/>'
+  close:'<path d="M6 6l12 12M18 6L6 18"/>',
+  sliders:'<path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h8M16 18h4"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="14" cy="18" r="2"/>',
+  cart:'<circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M3 4h2l2.4 11.4a1.5 1.5 0 0 0 1.5 1.2h7.7a1.5 1.5 0 0 0 1.5-1.2L21 8H6"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  layers:'<path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17l9 5 9-5"/>',
+  doc:'<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/>'
 };
 function svgIcon(name,extra){return '<svg viewBox="0 0 24 24" '+(extra||'width="16" height="16"')+' fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+IC[name]+'</svg>';}
 
 /* =================== ESTADO =================== */
-var state={ tab:"mapa", mapMetric:"composto", region:"campolim", cmpA:"centro", cmpB:"wanelville", popup:null, persona:"idosos", cover:true };
+var state={ tab:"mapa", mapMetric:"composto", region:"campolim", cmpA:"centro", cmpB:"wanelville", popup:null, persona:"idosos", cover:true,
+  customW:{saude:2,educacao:1,comercio:1,mobilidade:2,caminhabilidade:1,ambiente:1} };
 var animatePins=true;
 function reduzMovimento(){ return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
 function animateCounts(root){
@@ -782,7 +819,7 @@ function renderMapa(){
 
   var html=noticeHTML()+
     '<div class="screen"><div class="map-head">'+
-      '<div><span class="eyebrow">Mapa</span><h2>Radiografia por região</h2>'+
+      '<div><span class="eyebrow">Mapa</span><h2>O acesso de cada região</h2>'+
       '<p class="lead">Não é um ranking de bairro bom ou ruim. É a leitura de <strong>acesso a serviços e infraestrutura</strong>. Troque o <strong>filtro</strong> abaixo para recolorir os pinos por eixo, e clique num <strong>pino</strong> para abrir a região:</p></div>'+
       '<div class="seg" role="group" aria-label="Métrica dos pinos">'+segs+'</div>'+
     '</div>'+
@@ -874,7 +911,7 @@ function renderRegiao(){
     }
     return '<div class="card axis">'+
       '<div class="axis-h"><div class="a-name"><span class="ai">'+svgIcon(ax.icon)+'</span>'+ax.label+'</div>'+
-      '<div class="a-score"><div class="v" style="color:'+ramp(v/100)+'">'+v+'</div><div class="w">peso '+w.toFixed(1).replace(".",",")+'%</div></div></div>'+
+      '<div class="a-score"><div class="v">'+v+'</div><div class="w">peso '+w.toFixed(1).replace(".",",")+'%</div></div></div>'+
       '<div class="a-bar"><i style="width:'+v+'%;background:'+ramp(v/100)+'"></i></div>'+
       '<div class="a-raw">'+rawRows+'</div>'+
       '<div class="a-meta"><div><span class="lab">Fonte</span><span class="dat">'+ax.source+'</span></div>'+
@@ -890,7 +927,7 @@ function renderRegiao(){
     '<div class="region-top">'+
       '<div class="card index-card">'+
         '<span class="ic-eye">Índice de Infraestrutura Urbana</span>'+
-        '<div class="gauge"><span class="num" data-count="'+comp+'" style="color:'+ramp(comp/100)+'">'+comp+'</span><span class="den">/ 100</span></div>'+
+        '<div class="gauge"><span class="num" data-count="'+comp+'">'+comp+'</span><span class="den">/ 100</span></div>'+
         '<div class="gauge-track"><div class="gauge-fill" style="width:'+comp+'%;background:'+ramp(comp/100)+'"></div></div>'+
         '<div class="seal"><span class="ring" style="--p:'+relPct+'"><i>'+relPct+'%</i></span>'+
           '<span class="st"><b>Selo de confiabilidade</b><span>'+rel.have+' de '+rel.exp+' eixos calculados nesta região</span></span></div>'+
@@ -921,7 +958,7 @@ function renderComparacao(){
   function sumCard(r,c){
     var rel=reliability(r);
     return '<div class="card cmp-sum"><div class="cs-n">'+r.name+'</div>'+
-      '<div class="cs-v" style="color:'+ramp(c/100)+'">'+c+'</div>'+
+      '<div class="cs-v">'+c+'</div>'+
       '<div class="cs-s">índice composto · '+rel.have+'/'+rel.exp+' eixos</div></div>';
   }
 
@@ -968,9 +1005,29 @@ function renderPerfis(){
   }).join("");
 
   var pesosTxt="";
-  if(!persona.indisponivel){
+  if(persona.pesos){
     var parts=[]; for(var c in persona.pesos) parts.push(CRIT_LABEL[c]+" "+Math.round(persona.pesos[c]*100)+"%");
     pesosTxt=parts.join(" · ");
+  }
+
+  // construtor do perfil personalizado
+  var builder="";
+  var scoring=persona;
+  if(persona.custom){
+    var niveis=[["0","Nada"],["1","Importa"],["2","Muito"]];
+    var rows=CRIT_ORDER.map(function(c){
+      var lv=state.customW[c]||0;
+      var opts=niveis.map(function(o){
+        return '<button class="pb-opt'+(String(lv)===o[0]?" on":"")+'" data-crit="'+c+'" data-lv="'+o[0]+'">'+o[1]+'</button>';
+      }).join("");
+      return '<div class="pb-row"><span class="pb-lbl"><span class="pb-ic">'+svgIcon(CRIT_ICON[c])+'</span>'+CRIT_LABEL[c]+'</span>'+
+        '<span class="pb-opts">'+opts+'</span></div>';
+    }).join("");
+    builder='<div class="card persona-builder"><h3>'+svgIcon("sliders",'width="18" height="18"')+' O que importa pra você?</h3>'+
+      '<p class="pb-hint">Toque para dizer o quanto cada coisa pesa na sua escolha. A recomendação atualiza na hora.</p>'+
+      '<div class="pb-grid">'+rows+'</div></div>';
+    var pesos={}; CRIT_ORDER.forEach(function(c){ if((state.customW[c]||0)>0) pesos[c]=state.customW[c]; });
+    scoring={pesos:pesos, custom:true};
   }
 
   var body;
@@ -980,14 +1037,18 @@ function renderPerfis(){
       '<p>Este é o eixo em que o projeto escolhe ser honesto: não existe base confiável de rampas, '+
       'piso tátil e semáforo sonoro por região em Sorocaba. Recomendar aqui seria inventar dado. '+
       'Assim que a fonte existir, este perfil passa a funcionar como os outros.</p></div></div>';
+  } else if(persona.custom && Object.keys(scoring.pesos).length===0){
+    body=builder+'<div class="card persona-warn" style="border-color:var(--line-strong)">'+svgIcon("info",'width="22" height="22"')+
+      '<div><h3>Escolha pelo menos uma coisa</h3><p>Marque acima o que importa pra você para ver qual região combina mais.</p></div></div>';
   } else {
-    var rank=rankPerfil(persona); var top=rank[0]; var tr=REGIONS[top.id];
+    var badgeName=persona.custom?"o seu perfil":persona.nome.toLowerCase();
+    var rank=rankPerfil(scoring); var top=rank[0]; var tr=REGIONS[top.id];
     var reasons=top.top.map(function(t){return CRIT_LABEL[t.crit];});
     var winner='<div class="card persona-top">'+
-      '<span class="pt-badge">Melhor para '+persona.nome.toLowerCase()+'</span>'+
-      '<div class="pt-main"><span class="pt-score" data-count="'+top.score+'" style="color:'+ramp(top.score/100)+'">'+top.score+'</span>'+
+      '<span class="pt-badge">Melhor para '+badgeName+'</span>'+
+      '<div class="pt-main"><span class="pt-score" data-count="'+top.score+'">'+top.score+'</span>'+
         '<div class="pt-info"><div class="pt-name">'+tr.name+'</div>'+
-        '<div class="pt-reasons">Se destaca em <b>'+reasons.join('</b> e <b>')+'</b> — os critérios que mais pesam para este perfil.</div>'+
+        '<div class="pt-reasons">Se destaca em <b>'+reasons.join('</b> e <b>')+'</b> — o que mais pesa nessa escolha.</div>'+
         '<button class="pt-cta" data-region="'+top.id+'">Ver a região '+svgIcon("chev")+'</button></div></div></div>';
     var list=rank.map(function(x,i){
       var r=REGIONS[x.id];
@@ -999,13 +1060,13 @@ function renderPerfis(){
         '<span class="pr-reasons">força em: '+rs+'</span></span>'+
         '<span class="pr-score">'+x.score+'</span></button>';
     }).join("");
-    body=winner+'<div class="card persona-rank"><h3>Ranking das regiões para este perfil</h3>'+list+'</div>';
+    body=builder+winner+'<div class="card persona-rank"><h3>Ranking das regiões para este perfil</h3>'+list+'</div>';
   }
 
   var html=noticeHTML()+'<div class="screen">'+
     '<span class="eyebrow">Para você</span>'+
-    '<h2 style="font-size:23px;letter-spacing:-.02em;margin:2px 0 4px">Qual região combina com você?</h2>'+
-    '<p class="lead" style="margin-bottom:6px">Cada pessoa precisa de coisas diferentes da cidade. Escolha um perfil e veja quais regiões, <strong>pelos dados</strong>, oferecem melhor o que ele mais precisa. Não é conselho de onde morar — é leitura de acesso.</p>'+
+    '<h2 style="font-size:26px;margin:2px 0 4px">Qual região combina com você?</h2>'+
+    '<p class="lead" style="margin-bottom:6px">Cada pessoa precisa de coisas diferentes da cidade. Escolha um perfil (ou <strong>crie o seu</strong>) e veja quais regiões, <strong>pelos dados</strong>, oferecem melhor o que você precisa. Não é conselho de onde morar — é leitura de acesso.</p>'+
     '<div class="pchips" role="group" aria-label="Perfis">'+chips+'</div>'+
     '<p class="persona-desc">'+svgIcon("info",'width="15" height="15"')+'<span>'+persona.desc+
       (pesosTxt?' &nbsp; <span class="pw">pesos: '+pesosTxt+'</span>':'')+'</span></p>'+
@@ -1017,6 +1078,9 @@ function renderPerfis(){
   Array.prototype.forEach.call(document.querySelectorAll(".pchip"),function(b){
     b.addEventListener("click",function(){ state.persona=b.dataset.persona; renderPerfis(); });
   });
+  Array.prototype.forEach.call(document.querySelectorAll(".pb-opt"),function(b){
+    b.addEventListener("click",function(){ state.customW[b.dataset.crit]=parseInt(b.dataset.lv,10); renderPerfis(); });
+  });
   Array.prototype.forEach.call(document.querySelectorAll("[data-region]"),function(b){
     b.addEventListener("click",function(){ state.region=b.dataset.region; state.tab="regiao"; render(); window.scrollTo({top:0,behavior:"smooth"}); });
   });
@@ -1025,66 +1089,67 @@ function renderPerfis(){
 /* =================== TELA 5 · METODOLOGIA =================== */
 function renderMetodologia(){
   var html=noticeHTML()+'<div class="screen"><span class="eyebrow">Metodologia</span>'+
-  '<h2 style="font-size:24px;letter-spacing:-.02em;margin:2px 0 6px">Como cada nota é construída</h2>'+
-  '<p class="lead" style="margin-bottom:22px">A régua é a transparência: toda nota deve poder ser refeita à mão por qualquer pessoa, a partir de um dado público, uma fórmula e uma data.</p>'+
+  '<h2 style="font-size:27px;margin:2px 0 6px">Como cada nota nasce</h2>'+
+  '<p class="lead" style="margin-bottom:22px">A regra do CityLens é simples: <strong>todo número pode ser conferido</strong>. Cada nota vem de um dado público, uma conta clara e uma data — nada é chutado.</p>'+
   '<div class="method">'+
     '<nav class="toc" aria-label="Seções">'+
       '<a href="#m-oque">O que é / não é</a>'+
       '<a href="#m-calculo">Como calculamos</a>'+
-      '<a href="#m-eixos">Eixos e indicadores</a>'+
-      '<a href="#m-fontes">Fontes e datas</a>'+
-      '<a href="#m-limites">Limitações</a>'+
+      '<a href="#m-eixos">O que a gente mede</a>'+
+      '<a href="#m-fontes">De onde vêm os dados</a>'+
+      '<a href="#m-limites">O que ainda falta</a>'+
     '</nav>'+
     '<div class="prose">'+
 
-    '<section id="m-oque"><h2><span class="hn">01</span>O que é — e o que não é</h2>'+
+    '<section id="m-oque"><h2><span class="sec-ic">'+svgIcon("info")+'</span>O que é — e o que não é</h2>'+
       '<div class="two-col">'+
-        '<div class="mini yes"><h4>'+svgIcon("info",'width="15" height="15"')+' É</h4>'+
-          '<p>Uma radiografia transparente de acesso a serviços e infraestrutura.</p>'+
-          '<p>Cada nota é rastreável até um dado público real.</p>'+
+        '<div class="mini yes"><h4>✓ É</h4>'+
+          '<p>Um retrato transparente do acesso a serviços e infraestrutura.</p>'+
+          '<p>Uma nota que dá para conferir num dado público de verdade.</p>'+
           '<p>Uma ferramenta para conversar sobre a cidade.</p></div>'+
-        '<div class="mini no"><h4>'+svgIcon("warn",'width="15" height="15"')+' Não é</h4>'+
+        '<div class="mini no"><h4>✕ Não é</h4>'+
           '<p>Um ranking de "bairro bom ou ruim".</p>'+
-          '<p>Uma medida de valor imobiliário ou de segurança.</p>'+
+          '<p>Uma medida de preço de imóvel ou de segurança.</p>'+
           '<p>Um dado oficial da Prefeitura.</p></div>'+
       '</div></section>'+
 
-    '<section id="m-calculo"><h2><span class="hn">02</span>Como o índice é calculado</h2>'+
-      '<h3>1 · Normalização (min-max, 0–100)</h3>'+
-      '<p>Cada indicador é reescalado entre as regiões-piloto: a menor vira 0, a maior vira 100. Onde <strong>menor é melhor</strong> (ex.: distância até o mercado), a fórmula é invertida.</p>'+
-      '<div class="formula">norma = ( valor − mín ) / ( máx − mín ) × 100&nbsp;&nbsp;&nbsp;// invertido quando "menor é melhor"</div>'+
-      '<h3>2 · Pesos com redistribuição</h3>'+
-      '<p>Os eixos com dado disponível têm <strong>peso igual</strong>. Se um eixo não tem dado numa região, seu peso é redistribuído proporcionalmente entre os demais — <strong>nunca fixado em zero</strong>, o que puniria a região por uma lacuna de dado.</p>'+
-      '<div class="formula">índice = média( eixos com dado )&nbsp;&nbsp;•&nbsp;&nbsp;4 eixos → 25% cada&nbsp;&nbsp;|&nbsp;&nbsp;3 eixos → 33,3% cada</div>'+
-      '<h3>3 · Selo de confiabilidade</h3>'+
-      '<p>Toda região carrega um selo = <strong>eixos calculados ÷ eixos esperados</strong>. Um índice alto com selo baixo avisa: há poucos dados por trás dele.</p>'+
-      '<h3>4 · Cor do mapa</h3>'+
-      '<p>Um <strong>único matiz</strong> (teal), em intensidade contínua — deliberadamente <strong>não</strong> vermelho/verde, para não sugerir "reprovado/aprovado". Mais intenso = maior acesso medido.</p></section>'+
+    '<section id="m-calculo"><h2><span class="sec-ic">'+svgIcon("sliders")+'</span>Como calculamos, em 4 passos</h2>'+
+      '<div class="steps">'+
+        '<div class="step"><span class="step-n">1</span><div class="step-b"><div class="step-t">Nota de 0 a 100</div>'+
+          '<p>Comparamos as regiões entre si: a que tem menos de algo fica perto de 0; a que tem mais, perto de 100. Quando <em>menos é melhor</em> (como a distância até o mercado), a gente inverte.</p></div></div>'+
+        '<div class="step"><span class="step-n">2</span><div class="step-b"><div class="step-t">Juntamos os eixos</div>'+
+          '<p>A nota da região é a <strong>média</strong> dos eixos que têm dado. Cada eixo pesa igual.</p></div></div>'+
+        '<div class="step"><span class="step-n">3</span><div class="step-b"><div class="step-t">Faltou dado? Divide</div>'+
+          '<p>Se um eixo não tem dado numa região, o peso dele vai para os outros — <strong>nunca vira zero</strong>. Zerar puniria a região por uma falha de dado.</p></div></div>'+
+        '<div class="step"><span class="step-n">4</span><div class="step-b"><div class="step-t">Selo de confiança</div>'+
+          '<p>Cada região mostra quantos eixos deu para calcular (ex.: <strong>3 de 4</strong>). Nota alta com selo baixo pede cautela.</p></div></div>'+
+      '</div>'+
+      '<p class="m-note">'+svgIcon("info")+'<span>No mapa, a cor usa <strong>um tom só</strong> (mais forte = mais acesso). De propósito <strong>não</strong> é vermelho/verde, para não parecer "reprovado/aprovado".</span></p>'+
+    '</section>'+
 
-    '<section id="m-eixos"><h2><span class="hn">03</span>Eixos e indicadores</h2>'+
-      '<div class="tbl-wrap"><table><thead><tr><th>Eixo</th><th>Indicador</th><th>Direção</th></tr></thead><tbody>'+
-      '<tr><td>Serviços essenciais</td><td>Média de: UBS por 10.000 hab.; % da pop. a ≤1 km de escola; distância média a mercado/farmácia</td><td>maior é melhor<br><span class="mono">(distância invertida)</span></td></tr>'+
-      '<tr><td>Mobilidade</td><td>% da população a ≤ 400 m de um ponto de ônibus</td><td>maior é melhor</td></tr>'+
-      '<tr><td>Acesso urbano</td><td>Densidade de interseções de rua por km² (proxy de caminhabilidade)</td><td>maior é melhor</td></tr>'+
-      '<tr><td>Meio ambiente</td><td>m² de área verde mapeada por habitante</td><td>maior é melhor</td></tr>'+
-      '<tr><td>Acessibilidade · PCD</td><td class="mono">Sem cálculo no MVP — exibido como "dados insuficientes"</td><td>—</td></tr>'+
+    '<section id="m-eixos"><h2><span class="sec-ic">'+svgIcon("layers")+'</span>O que a gente mede</h2>'+
+      '<div class="tbl-wrap"><table><thead><tr><th>Eixo</th><th>O que olhamos</th><th>Direção</th></tr></thead><tbody>'+
+      '<tr><td>Serviços essenciais</td><td>Saúde (UBS por habitante), educação (quem mora perto de escola) e comércio (distância até mercado/farmácia)</td><td>mais perto é melhor</td></tr>'+
+      '<tr><td>Mobilidade</td><td>Quanto da população mora a até 400 m de um ponto de ônibus</td><td>mais é melhor</td></tr>'+
+      '<tr><td>Acesso urbano</td><td>O quão conectadas e caminháveis são as ruas (cruzamentos por km²)</td><td>mais é melhor</td></tr>'+
+      '<tr><td>Meio ambiente</td><td>Quanto de área verde existe por habitante</td><td>mais é melhor</td></tr>'+
+      '<tr><td>Acessibilidade · PCD</td><td>Rampas, piso tátil, semáforo sonoro — <em>sem dado por enquanto</em></td><td>—</td></tr>'+
       '</tbody></table></div></section>'+
 
-    '<section id="m-fontes"><h2><span class="hn">04</span>Fontes e datas</h2>'+
-      '<p>Fontes confirmadas do projeto. Onde uma fonte não existe (ex.: GTFS da URBES, portal geoespacial da Prefeitura), o indicador fica indisponível — não é simulado.</p>'+
-      '<div class="tbl-wrap"><table><thead><tr><th>Dado</th><th>Fonte</th><th>Formato</th></tr></thead><tbody>'+
-      '<tr><td>Geometria dos setores</td><td>IBGE · Malha de Setores Censitários 2022</td><td class="mono">Shapefile</td></tr>'+
-      '<tr><td>População por setor</td><td>IBGE · Censo 2022 (agregados por setor)</td><td class="mono">CSV</td></tr>'+
-      '<tr><td>Escolas</td><td>INEP · Catálogo de Escolas / Censo Escolar</td><td class="mono">CSV</td></tr>'+
-      '<tr><td>Unidades de saúde</td><td>CNES / DataSUS</td><td class="mono">Web/CSV</td></tr>'+
-      '<tr><td>Ônibus, vias, POIs, parques</td><td>OpenStreetMap · Overpass API</td><td class="mono">GeoJSON</td></tr>'+
+    '<section id="m-fontes"><h2><span class="sec-ic">'+svgIcon("doc")+'</span>De onde vêm os dados</h2>'+
+      '<p>Só usamos fontes públicas e confiáveis. Quando uma fonte não existe (ex.: horários de ônibus da URBES), o indicador fica <strong>indisponível</strong> — a gente não inventa.</p>'+
+      '<div class="tbl-wrap"><table><thead><tr><th>Dado</th><th>Fonte</th></tr></thead><tbody>'+
+      '<tr><td>Mapa das regiões e população</td><td>IBGE · Censo 2022</td></tr>'+
+      '<tr><td>Escolas</td><td>INEP · Catálogo de Escolas</td></tr>'+
+      '<tr><td>Unidades de saúde</td><td>CNES / DataSUS</td></tr>'+
+      '<tr><td>Ônibus, ruas, mercados, parques</td><td>OpenStreetMap</td></tr>'+
       '</tbody></table></div></section>'+
 
-    '<section id="m-limites"><h2><span class="hn">05</span>Limitações — ditas em voz alta</h2>'+
-      '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>Acessibilidade PCD sem base</b><p>Não há dado confiável de rampas, piso tátil ou semáforo sonoro por região. O eixo aparece, mas sem nota.</p></div></div>'+
-      '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>OpenStreetMap é colaborativo</b><p>Cobertura de pontos de ônibus, comércio e parques varia por região; a qualidade precisa ser checada por amostragem.</p></div></div>'+
-      '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>Sem GTFS público da URBES</b><p>Mobilidade usa proximidade a pontos (OSM), não frequência real de linhas — é um proxy, não o serviço vivido.</p></div></div>'+
-      '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>Regiões são recortes, não bairros oficiais</b><p>Cada região agrega setores do IBGE sob um nome reconhecível; o recorte é uma escolha documentada, não uma fronteira legal.</p></div></div>'+
+    '<section id="m-limites"><h2><span class="sec-ic">'+svgIcon("warn")+'</span>O que ainda falta (dito na cara)</h2>'+
+      '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>Acessibilidade sem base</b><p>Não há dado confiável de rampas, piso tátil ou semáforo sonoro. O eixo aparece, mas sem nota.</p></div></div>'+
+      '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>OpenStreetMap é feito por voluntários</b><p>A cobertura de ônibus, comércio e parques muda de região para região; precisa ser checada por amostragem.</p></div></div>'+
+      '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>Ônibus: só a distância, não o horário</b><p>Medimos se há ponto por perto, não a frequência real das linhas — é uma aproximação.</p></div></div>'+
+      '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>Regiões são recortes nossos</b><p>Juntamos setores do IBGE sob um nome de bairro conhecido; é uma escolha documentada, não uma fronteira oficial.</p></div></div>'+
     '</section>'+
 
     '<div class="foot"><span>CityLens · Sorocaba · protótipo de interface</span><span class="mono">v0 · esquema visual navegável</span></div>'+
@@ -1119,8 +1184,8 @@ function renderCover(){
       '<span class="cov-badge"><span class="dot"></span>Projeto escolar · protótipo</span>'+
       '<img class="cov-logo cl-light" src="'+LOGO_WM_LIGHT+'" alt="CityLens">'+
       '<img class="cov-logo cl-dark" src="'+LOGO_WM_DARK+'" alt="CityLens">'+
-      '<p class="cov-tag">Radiografia urbana de <strong>Sorocaba</strong></p>'+
-      '<p class="cov-sub">Um raio-X transparente do <strong>acesso a serviços e infraestrutura</strong>, região por região — cada nota rastreável a um dado público, uma fórmula e uma data.</p>'+
+      '<p class="cov-tag">O acesso urbano de <strong>Sorocaba</strong>, região por região</p>'+
+      '<p class="cov-sub">Um retrato transparente do <strong>acesso a serviços e infraestrutura</strong> — cada nota rastreável a um dado público, uma fórmula e uma data.</p>'+
       '<div class="cov-chips">'+chips+'</div>'+
       '<button class="cov-enter" id="covEnter">Explorar o mapa '+svgIcon("chev",'width="18" height="18"')+'</button>'+
       '<p class="cov-note">Não é ranking de bairro bom ou ruim. Os números deste protótipo são ilustrativos.</p>'+
