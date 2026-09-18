@@ -1,38 +1,64 @@
-# Bairros de Sorocaba por zona (classificação aproximada)
+# Bairros de Sorocaba por zona (mapa oficial de zoneamento)
 
-**Fontes usadas:**
-- Wikipédia — *Lista de bairros de Sorocaba* (lista dos nomes).
-- Guias locais que agrupam por zona (Sorocaba Comércio / AE Patrimônio) — para
-  decidir a zona de cada bairro.
-- Mapas oficiais do Plano Diretor 2025 no repositório (`mapa-01-macrozoneamento.pdf`,
-  `mapa-02-zoneamento.pdf`, `mapa-03-sistema-viario.pdf`, `mapa_zoneamento.pdf`).
+**Fonte principal (nova):** mapa **oficial de zoneamento da Prefeitura de
+Sorocaba / Urbes** — o desenho que a própria cidade usa para dividir o
+território em zonas. Os bairros abaixo foram **transcritos região por região**
+a partir do PDF (zoom alto), expandindo as abreviações do mapa (`Jd.` = Jardim,
+`Pq.` = Parque, `V.` = Vila).
 
-⚠️ **Aviso:** o IBGE **não** tem bairros para Sorocaba, e a Prefeitura divide a
-cidade por **zonas de uso do solo** (os PDFs acima), não em Norte/Sul/Leste/Oeste.
-A divisão Norte/Sul/Leste/Oeste/Centro é **informal** — os próprios guias locais
-se contradizem em alguns bairros. A classificação abaixo é a **melhor
-aproximação** para o protótipo e pode ser corrigida.
+⚠️ **Ressalva honesta:** o mapa é um recorte de desenho técnico (CAD) com
+centenas de rótulos minúsculos. A maioria foi lida com certeza, mas alguns
+ficaram pequenos demais mesmo com zoom máximo — então esta lista cobre a
+**grande maioria** dos rótulos, mas **não necessariamente 100%**. Ainda assim é
+**muito mais confiável** que as listas anteriores (Wikipédia / sites de
+imobiliária), porque vem direto da fonte oficial de zoneamento.
 
-## Fronteiras (segundo os guias locais)
-- **Centro** — entre Além Linha (N), Campolim-Vergueiro (S), Além Ponte (L), Cerrado (O).
-- **Zona Sul** — eixo Campolim–Vergueiro (mais estruturada/valorizada).
-- **Zona Norte** — a mais populosa; corredores Av. Itavuvu e Av. Ipanema; aeroporto.
-- **Zona Leste** — Além Ponte, Zoológico, Uniso, Av. São Paulo; faz divisa com Brigadeiro Tobias.
-- **Zona Oeste** — Wanel Ville (5 subdivisões) e Cerrado.
+Isto **substitui** a divisão informal Norte/Sul/Leste/Oeste que usávamos antes
+(baseada em guias locais que se contradiziam). Agora são as **6 zonas oficiais**
+que a Sorocaba usa administrativamente.
 
-## Zonas usadas no CityLens (5)
+## 6 zonas oficiais usadas no CityLens
 
-> Síntese a partir dos guias locais que o grupo consolidou. Quando um bairro
-> aparecia em mais de uma zona (ex.: Parque Campolim e Jardim Simus surgiram em
-> Sul e Oeste; Jardim Santa Rosália em Leste e Sul), ficou na zona citada com
-> mais força pela última consolidação. Continua sendo **aproximação, não oficial**.
+- **Centro** — Centro (bairro único da zona). *Referências no mapa:* Catedral,
+  Mercado Municipal, Museu Ferroviário, Rodoviária, Estação Ferroviária, PUC,
+  FADI, UNISO.
+- **Zona Norte** — Jardim Botucatu, Jardim Maria Eugênia, Parque Laranjeiras,
+  Jardim Guaíba, Jardim São Guilherme, Jardim Santa Marina, Parque São Bento,
+  Jardim Novo Horizonte, Jardim Maria Antônia Prado, Jardim Guadalupe, Vila Nova
+  Sorocaba, Vila Angélica, Jardim Húngaros, Jardim Brasilândia, Vila Fiori,
+  Jardim Maria do Carmo, Vila Gabriel, Vila Progresso, Vila Porto, Vila Rica,
+  Parque Vitória Régia, Retiro São João, Jardim Iguatemi, Jardim Morumbi, Jardim
+  Leocádia, Vila Cardoso, Vila Barão, Vila Nova Esperança, Jardim Zulmira, Jardim
+  Simus, Jardim Vera Cruz, Santa Terezinha, Vila Trujillo, Vila Carvalho, Vila
+  Santana, Jardim Santa Rosália. *Referências:* Fazenda Ipanema, Aeroporto.
+- **Zona Oeste** — Jardim Santa Bárbara, Júlio de Mesquita Filho, Jardim Wanel
+  Ville, Parque Esmeralda, Jardim Ouro Fino, Parque Ouro Fino, Parque Manchester,
+  Central Parque, Largo do Divino, Jardim São Paulo. *Referências:* região do
+  Cerqueira, Aeroclube de Itupararanga (margens da represa).
+- **Zona Sul** — Vila Jardini, Jardim Magnólia, Jardim Paulistano, Jardim Europa,
+  Jardim dos Estados, Jardim América, Jardim Portal da Colina, Jardim Emília,
+  Jardim Sandra, Parque da Biquinha, Vila Assis, Parque Água Vermelha, Jardim
+  Guadalajara, Jardim São Carlos, Parque Campolim. *Referências:* região do Mangal.
+- **Zona Leste** — Jardim Gonçalves, Jardim Sol, Jardim Bandeirantes, Jardim
+  Piratininga, Jardim Granja, Vila Haro, Parque Três Meninos, Vila Hortência,
+  Jardim Gutierres, Jardim Prestes de Barros, Vila Colorau, Vila Barcelona,
+  Jardim Parada do Alto. *Referências:* Zoológico Municipal, Senac.
+- **Zona Industrial** — Aparecidinha, Brigadeiro Tobias, Alto da Boa Vista,
+  Parque Chico Mendes. *Referências (prédios públicos concentrados):* Paço
+  Municipal (Prefeitura), Câmara Municipal, Fórum Cível e Criminal, Fórum do
+  Trabalho, Tribunal de Contas, Teatro Municipal, Biblioteca Municipal, Receita
+  Federal, UNIP, SEST SENAT.
 
-- **Centro** — Centro, Além Linha, Vila Leão, Vila Trujillo, Vila Gabriel, Vila Augusta, Vila Independência, Vila Jardini, Vila Boa Vista, Vila Santa Rita
-- **Zona Sul** — Campolim, Parque Campolim, Jardim Vergueiro, Jardim Santa Rosália, Vila Assis, Jardim Simus, Jardim Europa, Jardim Saira, Jardim Portal da Colina, Central Parque Sorocaba
-- **Zona Norte** — Éden, Aparecidinha, Brigadeiro Tobias, Parque São Bento, Habiteto, Vila Helena, Jardim Abaeté, Jardim São Guilherme, Vila Progresso, Vila Santana, Vila Hortência, Vila Fiori, Vila Angélica, Itavuvu
-- **Zona Leste** — Além Ponte, Jardim Faculdade, Jardim Santa Cecília, Vila Haro, Vila Sabiá, Morros, Vila João Romão, Parada do Alto, Vila Zacarias, Ipiranga, Jardim Zulmira
-- **Zona Oeste** — Wanel Ville (I, II, IV), Cerrado, Júlio de Mesquita Filho, Jardim Bandeirantes, Jardim Emília, Jardim Ipanema, Jardim Nova Ipanema, Jardim Maria do Carmo
+## Mapas oficiais no repositório
 
-Para trocar pela divisão oficial: ajuste as arrays `bairros:[...]` de cada zona
-em `mockups/radiografia-sorocaba.html`. No pipeline final, o ideal é mapear cada
-setor censitário do IBGE para uma zona e derivar tudo dos dados.
+- `mapa-01-macrozoneamento.pdf`, `mapa-02-zoneamento.pdf`,
+  `mapa-03-sistema-viario.pdf`, `mapa_zoneamento.pdf` — Plano Diretor / zoneamento
+  da Prefeitura, de onde os bairros foram transcritos.
+
+## Como ajustar
+
+Para corrigir/completar um bairro, edite as arrays `bairros:[...]` (e, se for um
+ponto de referência, `refs:[...]`) de cada zona em
+`mockups/radiografia-sorocaba.html`. No pipeline final, o ideal é mapear cada
+setor censitário do IBGE para uma dessas 6 zonas e derivar os indicadores dos
+dados — em vez de digitar bairro a bairro.

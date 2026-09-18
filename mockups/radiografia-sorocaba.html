@@ -262,6 +262,8 @@
   .setores-card p{font-size:12.5px;color:var(--ink-faint);margin:0 0 12px}
   .chips{display:flex;flex-wrap:wrap;gap:7px}
   .chip{font-family:'Nunito',monospace;font-size:11.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:7px;padding:5px 9px;color:var(--ink-soft)}
+  .chip-ref{background:transparent;border-style:dashed;color:var(--ink-soft);opacity:.9}
+  .refs-lab{margin:11px 0 5px;font-size:12px;color:var(--ink-soft);font-weight:700}
   .setores-card .note{margin-top:14px;font-size:12px;color:var(--ink-faint);display:flex;gap:8px;align-items:flex-start}
   .setores-card .note svg{flex:none;width:14px;height:14px;margin-top:2px;color:var(--accent)}
 
@@ -522,31 +524,42 @@ var AXES = [
 var REGIONS = {
   centro:{name:"Centro",
     scores:{servicos:88,mobilidade:92,caminhabilidade:85,ambiente:42},
-    bairros:["Centro","Além Linha","Vila Leão","Vila Trujillo","Vila Gabriel","Vila Augusta","Vila Independência","Vila Jardini","Vila Boa Vista","Vila Santa Rita"],
+    bairros:["Centro"],
+    refs:["Catedral Metropolitana","Mercado Municipal","Museu Ferroviário","Rodoviária","Estação Ferroviária","PUC","FADI","UNISO"],
     raw:{saude:"0,68 UBS / 10.000 hab.",educacao:"95% da pop. a ≤ 1 km de escola",comercio:"170 m até mercado/farmácia",
          mobilidade:"92% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"122 interseções / km²",ambiente:"6,4 m² de área verde / hab."}},
   sul:{name:"Zona Sul",
     scores:{servicos:72,mobilidade:60,caminhabilidade:58,ambiente:70},
-    bairros:["Campolim","Parque Campolim","Jardim Vergueiro","Jardim Santa Rosália","Vila Assis","Jardim Simus","Jardim Europa","Jardim Saira","Jardim Portal da Colina","Central Parque Sorocaba"],
+    bairros:["Vila Jardini","Jardim Magnólia","Jardim Paulistano","Jardim Europa","Jardim dos Estados","Jardim América","Jardim Portal da Colina","Jardim Emília","Jardim Sandra","Parque da Biquinha","Vila Assis","Parque Água Vermelha","Jardim Guadalajara","Jardim São Carlos","Parque Campolim"],
+    refs:["Região do Mangal"],
     raw:{saude:"0,52 UBS / 10.000 hab.",educacao:"80% da pop. a ≤ 1 km de escola",comercio:"300 m até mercado/farmácia",
          mobilidade:"60% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"70 interseções / km²",ambiente:"16,8 m² de área verde / hab."}},
   norte:{name:"Zona Norte",
     scores:{servicos:58,mobilidade:55,caminhabilidade:50,ambiente:52},
-    bairros:["Éden","Aparecidinha","Brigadeiro Tobias","Parque São Bento","Habiteto","Vila Helena","Jardim Abaeté","Jardim São Guilherme","Vila Progresso","Vila Santana","Vila Hortência","Vila Fiori","Vila Angélica","Itavuvu"],
+    bairros:["Jardim Botucatu","Jardim Maria Eugênia","Parque Laranjeiras","Jardim Guaíba","Jardim São Guilherme","Jardim Santa Marina","Parque São Bento","Jardim Novo Horizonte","Jardim Maria Antônia Prado","Jardim Guadalupe","Vila Nova Sorocaba","Vila Angélica","Jardim Húngaros","Jardim Brasilândia","Vila Fiori","Jardim Maria do Carmo","Vila Gabriel","Vila Progresso","Vila Porto","Vila Rica","Parque Vitória Régia","Retiro São João","Jardim Iguatemi","Jardim Morumbi","Jardim Leocádia","Vila Cardoso","Vila Barão","Vila Nova Esperança","Jardim Zulmira","Jardim Simus","Jardim Vera Cruz","Santa Terezinha","Vila Trujillo","Vila Carvalho","Vila Santana","Jardim Santa Rosália"],
+    refs:["Fazenda Ipanema","Aeroporto"],
     raw:{saude:"0,40 UBS / 10.000 hab.",educacao:"66% da pop. a ≤ 1 km de escola",comercio:"430 m até mercado/farmácia",
          mobilidade:"55% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"66 interseções / km²",ambiente:"10,1 m² de área verde / hab."}},
   leste:{name:"Zona Leste",
     scores:{servicos:49,mobilidade:47,caminhabilidade:44,ambiente:48},
-    bairros:["Além Ponte","Jardim Faculdade","Jardim Santa Cecília","Vila Haro","Vila Sabiá","Morros","Vila João Romão","Parada do Alto","Vila Zacarias","Ipiranga","Jardim Zulmira"],
+    bairros:["Jardim Gonçalves","Jardim Sol","Jardim Bandeirantes","Jardim Piratininga","Jardim Granja","Vila Haro","Parque Três Meninos","Vila Hortência","Jardim Gutierres","Jardim Prestes de Barros","Vila Colorau","Vila Barcelona","Jardim Parada do Alto"],
+    refs:["Zoológico Municipal","Senac"],
     raw:{saude:"0,34 UBS / 10.000 hab.",educacao:"55% da pop. a ≤ 1 km de escola",comercio:"560 m até mercado/farmácia",
          mobilidade:"47% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"56 interseções / km²",ambiente:"9,0 m² de área verde / hab."}},
   oeste:{name:"Zona Oeste",
     scores:{servicos:44,mobilidade:52,caminhabilidade:46,ambiente:null},
-    bairros:["Wanel Ville","Wanel Ville II","Wanel Ville IV","Cerrado","Júlio de Mesquita Filho","Jardim Bandeirantes","Jardim Emília","Jardim Ipanema","Jardim Nova Ipanema","Jardim Maria do Carmo"],
+    bairros:["Jardim Santa Bárbara","Júlio de Mesquita Filho","Jardim Wanel Ville","Parque Esmeralda","Jardim Ouro Fino","Parque Ouro Fino","Parque Manchester","Central Parque","Largo do Divino","Jardim São Paulo"],
+    refs:["Região do Cerqueira","Aeroclube de Itupararanga (represa)"],
     raw:{saude:"0,29 UBS / 10.000 hab.",educacao:"58% da pop. a ≤ 1 km de escola",comercio:"540 m até mercado/farmácia",
-         mobilidade:"52% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"62 interseções / km²",ambiente:null}}
+         mobilidade:"52% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"62 interseções / km²",ambiente:null}},
+  industrial:{name:"Zona Industrial",
+    scores:{servicos:54,mobilidade:57,caminhabilidade:41,ambiente:50},
+    bairros:["Aparecidinha","Brigadeiro Tobias","Alto da Boa Vista","Parque Chico Mendes"],
+    refs:["Paço Municipal (Prefeitura)","Câmara Municipal","Fórum Cível e Criminal","Fórum do Trabalho","Tribunal de Contas","Teatro Municipal","Biblioteca Municipal","Receita Federal","UNIP","SEST SENAT"],
+    raw:{saude:"0,31 UBS / 10.000 hab.",educacao:"60% da pop. a ≤ 1 km de escola",comercio:"620 m até mercado/farmácia",
+         mobilidade:"57% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"48 interseções / km²",ambiente:"11,5 m² de área verde / hab."}}
 };
-var ORDER = ["centro","sul","norte","leste","oeste"];
+var ORDER = ["centro","sul","norte","leste","oeste","industrial"];
 var MEASURABLE = ["servicos","mobilidade","caminhabilidade","ambiente"];
 
 /* Base cartografica REAL: Sorocaba + municipios vizinhos (IBGE - malha 2022,
@@ -561,7 +574,7 @@ var MAP_PATH=MAP2.soro;
 // projetadas no mesmo sistema do mapa). Ilustrativas, mas nas direções certas.
 // Posições dos pinos em COORDENADAS DE PIXEL da imagem real do mapa (949×811),
 // alinhadas aos bairros mostrados no Google Maps. Ilustrativas.
-var PINS={centro:[515,500],norte:[560,205],sul:[470,660],leste:[772,470],oeste:[250,505]};
+var PINS={centro:[515,500],norte:[560,205],sul:[470,660],leste:[772,470],oeste:[250,505],industrial:[690,150]};
 var PIN_LBL={
   centro:{dx:0,dy:-25,a:"middle"},
   sul:{dx:0,dy:-25,a:"middle"},
@@ -748,7 +761,7 @@ function renderMapa(){
       '<text class="pin-name" x="'+(p[0]+lbl.dx)+'" y="'+(p[1]+lbl.dy)+'" text-anchor="'+lbl.a+'" fill="var(--ink)">'+r.name+'</text></g>';
   }).join("");
 
-  var svg='<svg class="mapsvg" viewBox="0 0 '+MAP_VB[0]+' '+MAP_VB[1]+'" role="group" aria-label="Mapa real de Sorocaba com as 5 zonas">'+
+  var svg='<svg class="mapsvg" viewBox="0 0 '+MAP_VB[0]+' '+MAP_VB[1]+'" role="group" aria-label="Mapa real de Sorocaba com as 6 zonas">'+
     '<defs><pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">'+
       '<rect width="7" height="7" fill="var(--map-void)"/><line x1="0" y1="0" x2="0" y2="7" stroke="var(--line-strong)" stroke-width="2"/></pattern>'+
       '<clipPath id="mapclip"><rect x="0" y="0" width="'+MAP_VB[0]+'" height="'+MAP_VB[1]+'" rx="10"/></clipPath>'+
@@ -807,12 +820,12 @@ function renderMapa(){
   var html=noticeHTML()+
     '<div class="screen"><div class="map-head">'+
       '<div><span class="eyebrow">Mapa</span><h2>O acesso de cada zona</h2>'+
-      '<p class="lead">Sorocaba dividida em <strong>5 zonas</strong> (Centro, Norte, Sul, Leste e Oeste). Não é ranking de bom ou ruim — é a leitura de <strong>acesso a serviços e infraestrutura</strong>. Troque o <strong>filtro</strong> para recolorir os pinos por eixo, e clique num <strong>pino</strong> para ver a zona e seus bairros:</p></div>'+
+      '<p class="lead">Sorocaba dividida nas <strong>6 zonas oficiais</strong> do zoneamento da Prefeitura/Urbes (Centro, Norte, Sul, Leste, Oeste e Industrial). Não é ranking de bom ou ruim — é a leitura de <strong>acesso a serviços e infraestrutura</strong>. Troque o <strong>filtro</strong> para recolorir os pinos por eixo, e clique num <strong>pino</strong> para ver a zona e seus bairros:</p></div>'+
       '<div class="seg" role="group" aria-label="Métrica dos pinos">'+segs+'</div>'+
     '</div>'+
     '<div class="map-grid">'+
       '<div><div class="card map-card"><div class="map-stage">'+svg+popupHTML+'</div>'+
-        '<span class="soro-cap">Mapa: Google Maps&nbsp;&nbsp;|&nbsp;&nbsp;pinos nas 5 zonas (posição ilustrativa)</span></div>'+
+        '<span class="soro-cap">Mapa: Google Maps&nbsp;&nbsp;|&nbsp;&nbsp;pinos nas 6 zonas (posição ilustrativa)</span></div>'+
         '<p class="map-hint">Toque num pino no mapa ou numa zona na lista →</p></div>'+
       '<div class="card ranklist"><h3>Zonas de Sorocaba</h3>'+rows+'</div>'+
     '</div></div>';
@@ -870,6 +883,7 @@ function renderRegiao(){
   var relPct=Math.round(rel.have/rel.exp*100);
 
   var setoresChips=r.bairros.map(function(s){return '<span class="chip">'+s+'</span>';}).join("");
+  var refsChips=(r.refs&&r.refs.length)?r.refs.map(function(s){return '<span class="chip chip-ref">'+s+'</span>';}).join(""):"";
 
   var axesHTML=AXES.map(function(ax){
     if(ax.key==="pcd"){
@@ -921,9 +935,10 @@ function renderRegiao(){
       '</div>'+
       '<div class="card setores-card">'+
         '<h3>Bairros da '+(r.name==="Centro"?"região central":r.name)+'</h3>'+
-        '<p>Alguns bairros desta zona ('+r.bairros.length+' dos principais):</p>'+
+        '<p>Bairros transcritos do mapa oficial ('+r.bairros.length+'):</p>'+
         '<div class="chips">'+setoresChips+'</div>'+
-        '<div class="note">'+svgIcon("info",'width="14" height="14"')+'<span>Classificação <strong>aproximada</strong> por zona (não oficial), a partir da lista de bairros da Wikipédia. Sorocaba tem ~250 bairros no total; a divisão oficial da Prefeitura pode diferir e é fácil de ajustar.</span></div>'+
+        (refsChips?'<p class="refs-lab">Referências no mapa oficial:</p><div class="chips">'+refsChips+'</div>':'')+
+        '<div class="note">'+svgIcon("info",'width="14" height="14"')+'<span>Zonas e bairros do <strong>mapa oficial de zoneamento da Prefeitura de Sorocaba / Urbes</strong> (Norte, Oeste, Centro, Sul, Leste e Industrial). Transcrito região por região a partir do PDF; cobre a grande maioria dos rótulos, mas nem todos são legíveis no arquivo — a lista pode não estar 100% completa.</span></div>'+
       '</div>'+
     '</div>'+
 
