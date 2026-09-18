@@ -518,44 +518,35 @@ var AXES = [
    source:"—", date:"—", formula:"sem cálculo no MVP"}
 ];
 
+// Unidade principal = ZONA. Cada zona reúne bairros. Valores ILUSTRATIVOS.
 var REGIONS = {
-  centro:{name:"Centro", poly:[[40,250],[285,215],[320,445],[40,415]], c:[171,331],
-    scores:{servicos:90,mobilidade:95,caminhabilidade:88,ambiente:40},
-    setores:["355220505000012","355220505000013","355220505000027","355220505000031"],
-    raw:{saude:"0,71 UBS / 10.000 hab.",educacao:"95% da pop. a ≤ 1 km de escola",comercio:"150 m até mercado/farmácia",
-         mobilidade:"95% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"128 interseções / km²",ambiente:"6,1 m² de área verde / hab."}},
-  campolim:{name:"Campolim", poly:[[285,215],[575,235],[560,410],[320,445]], c:[435,326],
-    scores:{servicos:82,mobilidade:71,caminhabilidade:64,ambiente:88},
-    setores:["355220510000045","355220510000046","355220510000052"],
-    raw:{saude:"0,55 UBS / 10.000 hab.",educacao:"88% da pop. a ≤ 1 km de escola",comercio:"290 m até mercado/farmácia",
-         mobilidade:"71% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"74 interseções / km²",ambiente:"18,6 m² de área verde / hab."}},
-  alemponte:{name:"Além Ponte", poly:[[40,40],[300,55],[285,215],[40,250]], c:[166,140],
-    scores:{servicos:66,mobilidade:63,caminhabilidade:70,ambiente:60},
-    setores:["355220503000008","355220503000009","355220503000014"],
-    raw:{saude:"0,44 UBS / 10.000 hab.",educacao:"74% da pop. a ≤ 1 km de escola",comercio:"380 m até mercado/farmácia",
-         mobilidade:"63% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"82 interseções / km²",ambiente:"12,3 m² de área verde / hab."}},
-  zonanorte:{name:"Zona Norte", poly:[[300,55],[560,45],[760,40],[760,220],[575,235],[285,215]], c:[540,135],
-    scores:{servicos:61,mobilidade:58,caminhabilidade:52,ambiente:47},
-    setores:["355220507000021","355220507000022","355220507000030","355220507000033"],
-    raw:{saude:"0,40 UBS / 10.000 hab.",educacao:"70% da pop. a ≤ 1 km de escola",comercio:"430 m até mercado/farmácia",
-         mobilidade:"58% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"71 interseções / km²",ambiente:"9,4 m² de área verde / hab."}},
-  eden:{name:"Éden", poly:[[575,235],[760,220],[760,440],[560,410]], c:[664,326],
-    scores:{servicos:48,mobilidade:44,caminhabilidade:39,ambiente:55},
-    setores:["355220512000061","355220512000062","355220512000068"],
-    raw:{saude:"0,33 UBS / 10.000 hab.",educacao:"52% da pop. a ≤ 1 km de escola",comercio:"640 m até mercado/farmácia",
-         mobilidade:"44% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"58 interseções / km²",ambiente:"11,0 m² de área verde / hab."}},
-  wanelville:{name:"Wanel Ville", poly:[[40,415],[320,445],[560,410],[555,600],[300,585],[40,600]], c:[302,509],
-    scores:{servicos:43,mobilidade:51,caminhabilidade:45,ambiente:33},
-    setores:["355220514000074","355220514000075","355220514000081","355220514000083"],
-    raw:{saude:"0,29 UBS / 10.000 hab.",educacao:"61% da pop. a ≤ 1 km de escola",comercio:"560 m até mercado/farmácia",
-         mobilidade:"51% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"62 interseções / km²",ambiente:"7,2 m² de área verde / hab."}},
-  aparecidinha:{name:"Aparecidinha", poly:[[560,410],[760,440],[760,600],[555,600]], c:[659,512],
-    scores:{servicos:35,mobilidade:29,caminhabilidade:31,ambiente:null},
-    setores:["355220516000090","355220516000091"],
-    raw:{saude:"0,24 UBS / 10.000 hab.",educacao:"48% da pop. a ≤ 1 km de escola",comercio:"720 m até mercado/farmácia",
-         mobilidade:"29% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"44 interseções / km²",ambiente:null}}
+  centro:{name:"Centro",
+    scores:{servicos:88,mobilidade:92,caminhabilidade:85,ambiente:42},
+    bairros:["Centro","Além Ponte","Santa Rosália","Vila Hortência","Mangal","Jardim Vergueiro"],
+    raw:{saude:"0,68 UBS / 10.000 hab.",educacao:"95% da pop. a ≤ 1 km de escola",comercio:"170 m até mercado/farmácia",
+         mobilidade:"92% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"122 interseções / km²",ambiente:"6,4 m² de área verde / hab."}},
+  sul:{name:"Zona Sul",
+    scores:{servicos:72,mobilidade:60,caminhabilidade:58,ambiente:70},
+    bairros:["Campolim","Jardim Simus","Jardim Europa","Parque Campolim","Cajuru"],
+    raw:{saude:"0,52 UBS / 10.000 hab.",educacao:"80% da pop. a ≤ 1 km de escola",comercio:"300 m até mercado/farmácia",
+         mobilidade:"60% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"70 interseções / km²",ambiente:"16,8 m² de área verde / hab."}},
+  norte:{name:"Zona Norte",
+    scores:{servicos:58,mobilidade:55,caminhabilidade:50,ambiente:52},
+    bairros:["Éden","Aparecidinha","Brigadeiro Tobias","Vila Angélica","Habiteto"],
+    raw:{saude:"0,40 UBS / 10.000 hab.",educacao:"66% da pop. a ≤ 1 km de escola",comercio:"430 m até mercado/farmácia",
+         mobilidade:"55% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"66 interseções / km²",ambiente:"10,1 m² de área verde / hab."}},
+  leste:{name:"Zona Leste",
+    scores:{servicos:49,mobilidade:47,caminhabilidade:44,ambiente:48},
+    bairros:["Vila Haro","Jardim Zulmira","Iporanga","Jardim Gonçalves"],
+    raw:{saude:"0,34 UBS / 10.000 hab.",educacao:"55% da pop. a ≤ 1 km de escola",comercio:"560 m até mercado/farmácia",
+         mobilidade:"47% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"56 interseções / km²",ambiente:"9,0 m² de área verde / hab."}},
+  oeste:{name:"Zona Oeste",
+    scores:{servicos:44,mobilidade:52,caminhabilidade:46,ambiente:null},
+    bairros:["Wanel Ville","Júlio de Mesquita Filho","Vila Helena","Parque São Bento","Jardim Bandeirantes"],
+    raw:{saude:"0,29 UBS / 10.000 hab.",educacao:"58% da pop. a ≤ 1 km de escola",comercio:"540 m até mercado/farmácia",
+         mobilidade:"52% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"62 interseções / km²",ambiente:null}}
 };
-var ORDER = ["centro","campolim","alemponte","zonanorte","eden","wanelville","aparecidinha"];
+var ORDER = ["centro","sul","norte","leste","oeste"];
 var MEASURABLE = ["servicos","mobilidade","caminhabilidade","ambiente"];
 
 /* Base cartografica REAL: Sorocaba + municipios vizinhos (IBGE - malha 2022,
@@ -570,28 +561,24 @@ var MAP_PATH=MAP2.soro;
 // projetadas no mesmo sistema do mapa). Ilustrativas, mas nas direções certas.
 // Posições dos pinos em COORDENADAS DE PIXEL da imagem real do mapa (949×811),
 // alinhadas aos bairros mostrados no Google Maps. Ilustrativas.
-var PINS={centro:[515,505],alemponte:[585,438],zonanorte:[432,178],eden:[700,120],aparecidinha:[642,168],campolim:[458,632],wanelville:[300,560]};
+var PINS={centro:[515,500],norte:[560,205],sul:[470,660],leste:[772,470],oeste:[250,505]};
 var PIN_LBL={
   centro:{dx:0,dy:-25,a:"middle"},
-  campolim:{dx:0,dy:-25,a:"middle"},
-  alemponte:{dx:25,dy:5,a:"start"},
-  eden:{dx:25,dy:5,a:"start"},
-  aparecidinha:{dx:0,dy:31,a:"middle"},
-  zonanorte:{dx:0,dy:31,a:"middle"},
-  wanelville:{dx:0,dy:31,a:"middle"}
+  sul:{dx:0,dy:-25,a:"middle"},
+  norte:{dx:0,dy:32,a:"middle"},
+  leste:{dx:0,dy:32,a:"middle"},
+  oeste:{dx:0,dy:32,a:"middle"}
 };
 var NEIGH=MAP2.neighbors;
 
 /* Sub-notas normalizadas (0-100) que detalham o eixo "Serviços essenciais"
    (saúde/educação/comércio), usadas na recomendação por perfil. Ilustrativas. */
 var SUB={
-  centro:{saude:85,educacao:95,comercio:90},
-  campolim:{saude:80,educacao:88,comercio:78},
-  alemponte:{saude:62,educacao:70,comercio:66},
-  zonanorte:{saude:58,educacao:68,comercio:57},
-  eden:{saude:44,educacao:52,comercio:48},
-  wanelville:{saude:38,educacao:55,comercio:36},
-  aparecidinha:{saude:30,educacao:45,comercio:30}
+  centro:{saude:82,educacao:95,comercio:88},
+  sul:{saude:70,educacao:78,comercio:68},
+  norte:{saude:55,educacao:64,comercio:55},
+  leste:{saude:46,educacao:54,comercio:47},
+  oeste:{saude:40,educacao:56,comercio:36}
 };
 function criterio(id,c){
   if(c==="saude"||c==="educacao"||c==="comercio") return SUB[id][c];
@@ -700,7 +687,7 @@ var IC={
 function svgIcon(name,extra){return '<svg viewBox="0 0 24 24" '+(extra||'width="16" height="16"')+' fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+IC[name]+'</svg>';}
 
 /* =================== ESTADO =================== */
-var state={ tab:"mapa", mapMetric:"composto", region:"campolim", cmpA:"centro", cmpB:"wanelville", popup:null, persona:"idosos", cover:true,
+var state={ tab:"mapa", mapMetric:"composto", region:"centro", cmpA:"centro", cmpB:"oeste", popup:null, persona:"idosos", cover:true,
   customW:{saude:2,educacao:1,comercio:1,mobilidade:2,caminhabilidade:1,ambiente:1} };
 var animatePins=true;
 function reduzMovimento(){ return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
@@ -717,7 +704,7 @@ function animateCounts(root){
     requestAnimationFrame(step);
   });
 }
-var TABS=[["mapa","Mapa"],["regiao","Região"],["comparacao","Comparação"],["perfis","Para você"],["metodologia","Metodologia"]];
+var TABS=[["mapa","Mapa"],["regiao","Zona"],["comparacao","Comparação"],["perfis","Para você"],["metodologia","Metodologia"]];
 var METRICS=[["composto","Índice composto"],["servicos","Serviços"],["mobilidade","Mobilidade"],["caminhabilidade","Caminhabilidade"],["ambiente","Meio ambiente"]];
 function metricLabel(m){for(var i=0;i<METRICS.length;i++)if(METRICS[i][0]===m)return METRICS[i][1];return m;}
 
@@ -761,7 +748,7 @@ function renderMapa(){
       '<text class="pin-name" x="'+(p[0]+lbl.dx)+'" y="'+(p[1]+lbl.dy)+'" text-anchor="'+lbl.a+'" fill="var(--ink)">'+r.name+'</text></g>';
   }).join("");
 
-  var svg='<svg class="mapsvg" viewBox="0 0 '+MAP_VB[0]+' '+MAP_VB[1]+'" role="group" aria-label="Mapa real de Sorocaba com as regiões-piloto">'+
+  var svg='<svg class="mapsvg" viewBox="0 0 '+MAP_VB[0]+' '+MAP_VB[1]+'" role="group" aria-label="Mapa real de Sorocaba com as 5 zonas">'+
     '<defs><pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">'+
       '<rect width="7" height="7" fill="var(--map-void)"/><line x1="0" y1="0" x2="0" y2="7" stroke="var(--line-strong)" stroke-width="2"/></pattern>'+
       '<clipPath id="mapclip"><rect x="0" y="0" width="'+MAP_VB[0]+'" height="'+MAP_VB[1]+'" rx="10"/></clipPath>'+
@@ -791,7 +778,7 @@ function renderMapa(){
         '<span class="mp-t"><span class="n">'+pr.name+'</span><span class="s">'+mlabel+' · '+prel.have+'/'+prel.exp+' eixos</span></span>'+
         '<button class="mpop-close" data-close="1" aria-label="Fechar">'+svgIcon("close",'width="18" height="18"')+'</button></div>'+
       '<div class="mpop-axes">'+axline+'</div>'+compChip+
-      '<button class="mpop-cta" data-open="'+state.popup+'">Ver detalhes da região '+svgIcon("chev",'width="15" height="15"')+'</button></div>';
+      '<button class="mpop-cta" data-open="'+state.popup+'">Ver a zona e os bairros '+svgIcon("chev",'width="15" height="15"')+'</button></div>';
   }
 
   // legenda
@@ -813,21 +800,21 @@ function renderMapa(){
       '<span class="rk-val">'+v+'<small>/100</small></span>';
     return '<button class="rank'+sel+na+'" data-pin="'+id+'">'+
       '<span class="swatch" style="background:'+fillFor(v)+'"></span>'+
-      '<span class="rk-name"><span class="n">'+r.name+'</span><span class="s">'+rel.have+'/'+rel.exp+' eixos · '+r.setores.length+' setores</span></span>'+
+      '<span class="rk-name"><span class="n">'+r.name+'</span><span class="s">'+rel.have+'/'+rel.exp+' eixos · '+r.bairros.length+'+ bairros</span></span>'+
       valHTML+'<span class="chev">'+svgIcon("chev",'width="16" height="16"')+'</span></button>';
   }).join("");
 
   var html=noticeHTML()+
     '<div class="screen"><div class="map-head">'+
-      '<div><span class="eyebrow">Mapa</span><h2>O acesso de cada região</h2>'+
-      '<p class="lead">Não é um ranking de bairro bom ou ruim. É a leitura de <strong>acesso a serviços e infraestrutura</strong>. Troque o <strong>filtro</strong> abaixo para recolorir os pinos por eixo, e clique num <strong>pino</strong> para abrir a região:</p></div>'+
+      '<div><span class="eyebrow">Mapa</span><h2>O acesso de cada zona</h2>'+
+      '<p class="lead">Sorocaba dividida em <strong>5 zonas</strong> (Centro, Norte, Sul, Leste e Oeste). Não é ranking de bom ou ruim — é a leitura de <strong>acesso a serviços e infraestrutura</strong>. Troque o <strong>filtro</strong> para recolorir os pinos por eixo, e clique num <strong>pino</strong> para ver a zona e seus bairros:</p></div>'+
       '<div class="seg" role="group" aria-label="Métrica dos pinos">'+segs+'</div>'+
     '</div>'+
     '<div class="map-grid">'+
       '<div><div class="card map-card"><div class="map-stage">'+svg+popupHTML+'</div>'+
-        '<span class="soro-cap">Mapa: Google Maps&nbsp;&nbsp;|&nbsp;&nbsp;pinos nas regiões-piloto (posição ilustrativa)</span></div>'+
-        '<p class="map-hint">Toque num pino no mapa ou numa região na lista →</p></div>'+
-      '<div class="card ranklist"><h3>Regiões-piloto</h3>'+rows+'</div>'+
+        '<span class="soro-cap">Mapa: Google Maps&nbsp;&nbsp;|&nbsp;&nbsp;pinos nas 5 zonas (posição ilustrativa)</span></div>'+
+        '<p class="map-hint">Toque num pino no mapa ou numa zona na lista →</p></div>'+
+      '<div class="card ranklist"><h3>Zonas de Sorocaba</h3>'+rows+'</div>'+
     '</div></div>';
 
   document.getElementById("app").innerHTML=html;
@@ -882,7 +869,7 @@ function renderRegiao(){
   var r=REGIONS[state.region]; var comp=composite(r); var rel=reliability(r); var w=weightPct(r);
   var relPct=Math.round(rel.have/rel.exp*100);
 
-  var setoresChips=r.setores.map(function(s){return '<span class="chip">'+s+'</span>';}).join("");
+  var setoresChips=r.bairros.map(function(s){return '<span class="chip">'+s+'</span>';}).join("");
 
   var axesHTML=AXES.map(function(ax){
     if(ax.key==="pcd"){
@@ -896,7 +883,7 @@ function renderRegiao(){
       return '<div class="card axis">'+
         '<div class="axis-h"><div class="a-name"><span class="ai">'+svgIcon(ax.icon)+'</span>'+ax.label+'</div>'+
         '<div class="a-score"><div class="v" style="color:var(--ink-faint)">—</div><div class="w">peso 0%</div></div></div>'+
-        '<div class="na-body"><span class="hatch"></span><div><strong>Indicador indisponível nesta região.</strong> Área verde ainda não mapeada aqui — '+
+        '<div class="na-body"><span class="hatch"></span><div><strong>Indicador indisponível nesta zona.</strong> Área verde ainda não mapeada aqui — '+
         'o peso deste eixo foi <strong>redistribuído</strong> entre os '+rel.have+' eixos com dado ('+w.toFixed(1).replace(".",",")+'% cada).</div></div>'+
         '<div class="a-meta"><div><span class="lab">Fonte</span><span class="dat">'+ax.source+'</span></div>'+
         '<div><span class="lab">Fórmula</span><span class="dat">'+ax.formula+'</span></div></div></div>';
@@ -920,9 +907,9 @@ function renderRegiao(){
   }).join("");
 
   var html=noticeHTML()+'<div class="screen">'+
-    '<span class="eyebrow">Região</span>'+
-    '<div class="sel-row">'+pickerHTML("region","Região selecionada",state.region,'id="regSelect"')+
-    '<span class="lead" style="margin:0">Índice, detalhamento por eixo e a origem de cada número.</span></div>'+
+    '<span class="eyebrow">Zona</span>'+
+    '<div class="sel-row">'+pickerHTML("region","Zona selecionada",state.region,'id="regSelect"')+
+    '<span class="lead" style="margin:0">Índice, detalhamento por eixo, os bairros da zona e a origem de cada número.</span></div>'+
 
     '<div class="region-top">'+
       '<div class="card index-card">'+
@@ -930,13 +917,13 @@ function renderRegiao(){
         '<div class="gauge"><span class="num" data-count="'+comp+'">'+comp+'</span><span class="den">/ 100</span></div>'+
         '<div class="gauge-track"><div class="gauge-fill" style="width:'+comp+'%;background:'+ramp(comp/100)+'"></div></div>'+
         '<div class="seal"><span class="ring" style="--p:'+relPct+'"><i>'+relPct+'%</i></span>'+
-          '<span class="st"><b>Selo de confiabilidade</b><span>'+rel.have+' de '+rel.exp+' eixos calculados nesta região</span></span></div>'+
+          '<span class="st"><b>Selo de confiabilidade</b><span>'+rel.have+' de '+rel.exp+' eixos calculados nesta zona</span></span></div>'+
       '</div>'+
       '<div class="card setores-card">'+
-        '<h3>'+r.name+' · composição</h3>'+
-        '<p>Esta região-piloto agrega '+r.setores.length+' setores censitários do IBGE (Censo 2022):</p>'+
+        '<h3>Bairros da '+(r.name==="Centro"?"região central":r.name)+'</h3>'+
+        '<p>Alguns bairros que compõem esta zona ('+r.bairros.length+' de exemplo):</p>'+
         '<div class="chips">'+setoresChips+'</div>'+
-        '<div class="note">'+svgIcon("info",'width="14" height="14"')+'<span>A composição de cada região vive num arquivo de configuração legível (<span class="mono">regions.yaml</span>), não espalhada pelo código — assim qualquer pessoa audita o recorte.</span></div>'+
+        '<div class="note">'+svgIcon("info",'width="14" height="14"')+'<span>Bairros são exemplos ilustrativos. A lista completa e verificada de cada zona entra pelos dados (arquivo de configuração legível), não é chute.</span></div>'+
       '</div>'+
     '</div>'+
 
@@ -966,7 +953,7 @@ function renderComparacao(){
     var ax=null; for(var i=0;i<AXES.length;i++)if(AXES[i].key===k)ax=AXES[i];
     var va=A.scores[k], vb=B.scores[k];
     function bar(who,v){
-      if(v==null) return '<span class="who">'+who+'</span><div class="cmp-track na">sem dado nesta região</div>';
+      if(v==null) return '<span class="who">'+who+'</span><div class="cmp-track na">sem dado nesta zona</div>';
       return '<span class="who">'+who+'</span><div class="cmp-track"><i style="width:'+Math.max(v,3)+'%;background:'+ramp(v/100)+'">'+v+'</i></div>';
     }
     var delta = (va!=null&&vb!=null) ? (va-vb) : null;
@@ -977,12 +964,12 @@ function renderComparacao(){
 
   var html=noticeHTML()+'<div class="screen">'+
     '<span class="eyebrow">Comparação</span>'+
-    '<h2 style="font-size:22px;letter-spacing:-.02em;margin:2px 0 4px">Duas regiões, lado a lado</h2>'+
+    '<h2 style="font-size:22px;letter-spacing:-.02em;margin:2px 0 4px">Duas zonas, lado a lado</h2>'+
     '<p class="lead" style="margin-bottom:18px">Comparar acesso, eixo a eixo — para conversar sobre onde a infraestrutura chega e onde ainda não chega. Sem vencedor: só a leitura.</p>'+
     '<div class="cmp-pickers">'+
-      pickerHTML("cmpA","Região A",state.cmpA,'id="cmpASelect"')+
+      pickerHTML("cmpA","Zona A",state.cmpA,'id="cmpASelect"')+
       '<span class="cmp-vs">vs</span>'+
-      pickerHTML("cmpB","Região B",state.cmpB,'id="cmpBSelect"')+
+      pickerHTML("cmpB","Zona B",state.cmpB,'id="cmpBSelect"')+
     '</div>'+
     '<div class="cmp-summary">'+sumCard(A,cA)+sumCard(B,cB)+'</div>'+
     '<div class="card cmp-rows"><h3>Por eixo</h3><p class="lead" style="font-size:12.5px;margin:0 0 4px">A = '+A.name+' · B = '+B.name+'</p>'+rowsHTML+'</div>'+
@@ -1039,7 +1026,7 @@ function renderPerfis(){
       'Assim que a fonte existir, este perfil passa a funcionar como os outros.</p></div></div>';
   } else if(persona.custom && Object.keys(scoring.pesos).length===0){
     body=builder+'<div class="card persona-warn" style="border-color:var(--line-strong)">'+svgIcon("info",'width="22" height="22"')+
-      '<div><h3>Escolha pelo menos uma coisa</h3><p>Marque acima o que importa pra você para ver qual região combina mais.</p></div></div>';
+      '<div><h3>Escolha pelo menos uma coisa</h3><p>Marque acima o que importa pra você para ver qual zona combina mais.</p></div></div>';
   } else {
     var badgeName=persona.custom?"o seu perfil":persona.nome.toLowerCase();
     var rank=rankPerfil(scoring); var top=rank[0]; var tr=REGIONS[top.id];
@@ -1049,7 +1036,7 @@ function renderPerfis(){
       '<div class="pt-main"><span class="pt-score" data-count="'+top.score+'">'+top.score+'</span>'+
         '<div class="pt-info"><div class="pt-name">'+tr.name+'</div>'+
         '<div class="pt-reasons">Se destaca em <b>'+reasons.join('</b> e <b>')+'</b> — o que mais pesa nessa escolha.</div>'+
-        '<button class="pt-cta" data-region="'+top.id+'">Ver a região '+svgIcon("chev")+'</button></div></div></div>';
+        '<button class="pt-cta" data-region="'+top.id+'">Ver a zona '+svgIcon("chev")+'</button></div></div></div>';
     var list=rank.map(function(x,i){
       var r=REGIONS[x.id];
       var rs=x.top.map(function(t){return CRIT_LABEL[t.crit];}).join(", ");
@@ -1060,13 +1047,13 @@ function renderPerfis(){
         '<span class="pr-reasons">força em: '+rs+'</span></span>'+
         '<span class="pr-score">'+x.score+'</span></button>';
     }).join("");
-    body=builder+winner+'<div class="card persona-rank"><h3>Ranking das regiões para este perfil</h3>'+list+'</div>';
+    body=builder+winner+'<div class="card persona-rank"><h3>Ranking das zonas para este perfil</h3>'+list+'</div>';
   }
 
   var html=noticeHTML()+'<div class="screen">'+
     '<span class="eyebrow">Para você</span>'+
-    '<h2 style="font-size:26px;margin:2px 0 4px">Qual região combina com você?</h2>'+
-    '<p class="lead" style="margin-bottom:6px">Cada pessoa precisa de coisas diferentes da cidade. Escolha um perfil (ou <strong>crie o seu</strong>) e veja quais regiões, <strong>pelos dados</strong>, oferecem melhor o que você precisa. Não é conselho de onde morar — é leitura de acesso.</p>'+
+    '<h2 style="font-size:26px;margin:2px 0 4px">Qual zona combina com você?</h2>'+
+    '<p class="lead" style="margin-bottom:6px">Cada pessoa precisa de coisas diferentes da cidade. Escolha um perfil (ou <strong>crie o seu</strong>) e veja quais zonas, <strong>pelos dados</strong>, oferecem melhor o que você precisa. Não é conselho de onde morar — é leitura de acesso.</p>'+
     '<div class="pchips" role="group" aria-label="Perfis">'+chips+'</div>'+
     '<p class="persona-desc">'+svgIcon("info",'width="15" height="15"')+'<span>'+persona.desc+
       (pesosTxt?' &nbsp; <span class="pw">pesos: '+pesosTxt+'</span>':'')+'</span></p>'+
@@ -1116,13 +1103,13 @@ function renderMetodologia(){
     '<section id="m-calculo"><h2><span class="sec-ic">'+svgIcon("sliders")+'</span>Como calculamos, em 4 passos</h2>'+
       '<div class="steps">'+
         '<div class="step"><span class="step-n">1</span><div class="step-b"><div class="step-t">Nota de 0 a 100</div>'+
-          '<p>Comparamos as regiões entre si: a que tem menos de algo fica perto de 0; a que tem mais, perto de 100. Quando <em>menos é melhor</em> (como a distância até o mercado), a gente inverte.</p></div></div>'+
+          '<p>Comparamos as zonas entre si: a que tem menos de algo fica perto de 0; a que tem mais, perto de 100. Quando <em>menos é melhor</em> (como a distância até o mercado), a gente inverte.</p></div></div>'+
         '<div class="step"><span class="step-n">2</span><div class="step-b"><div class="step-t">Juntamos os eixos</div>'+
-          '<p>A nota da região é a <strong>média</strong> dos eixos que têm dado. Cada eixo pesa igual.</p></div></div>'+
+          '<p>A nota da zona é a <strong>média</strong> dos eixos que têm dado. Cada eixo pesa igual.</p></div></div>'+
         '<div class="step"><span class="step-n">3</span><div class="step-b"><div class="step-t">Faltou dado? Divide</div>'+
-          '<p>Se um eixo não tem dado numa região, o peso dele vai para os outros — <strong>nunca vira zero</strong>. Zerar puniria a região por uma falha de dado.</p></div></div>'+
+          '<p>Se um eixo não tem dado numa zona, o peso dele vai para os outros — <strong>nunca vira zero</strong>. Zerar puniria a zona por uma falha de dado.</p></div></div>'+
         '<div class="step"><span class="step-n">4</span><div class="step-b"><div class="step-t">Selo de confiança</div>'+
-          '<p>Cada região mostra quantos eixos deu para calcular (ex.: <strong>3 de 4</strong>). Nota alta com selo baixo pede cautela.</p></div></div>'+
+          '<p>Cada zona mostra quantos eixos deu para calcular (ex.: <strong>3 de 4</strong>). Nota alta com selo baixo pede cautela.</p></div></div>'+
       '</div>'+
       '<p class="m-note">'+svgIcon("info")+'<span>No mapa, a cor usa <strong>um tom só</strong> (mais forte = mais acesso). De propósito <strong>não</strong> é vermelho/verde, para não parecer "reprovado/aprovado".</span></p>'+
     '</section>'+
@@ -1139,7 +1126,7 @@ function renderMetodologia(){
     '<section id="m-fontes"><h2><span class="sec-ic">'+svgIcon("doc")+'</span>De onde vêm os dados</h2>'+
       '<p>Só usamos fontes públicas e confiáveis. Quando uma fonte não existe (ex.: horários de ônibus da URBES), o indicador fica <strong>indisponível</strong> — a gente não inventa.</p>'+
       '<div class="tbl-wrap"><table><thead><tr><th>Dado</th><th>Fonte</th></tr></thead><tbody>'+
-      '<tr><td>Mapa das regiões e população</td><td>IBGE · Censo 2022</td></tr>'+
+      '<tr><td>Mapa das zonas e população</td><td>IBGE · Censo 2022</td></tr>'+
       '<tr><td>Escolas</td><td>INEP · Catálogo de Escolas</td></tr>'+
       '<tr><td>Unidades de saúde</td><td>CNES / DataSUS</td></tr>'+
       '<tr><td>Ônibus, ruas, mercados, parques</td><td>OpenStreetMap</td></tr>'+
@@ -1147,9 +1134,9 @@ function renderMetodologia(){
 
     '<section id="m-limites"><h2><span class="sec-ic">'+svgIcon("warn")+'</span>O que ainda falta (dito na cara)</h2>'+
       '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>Acessibilidade sem base</b><p>Não há dado confiável de rampas, piso tátil ou semáforo sonoro. O eixo aparece, mas sem nota.</p></div></div>'+
-      '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>OpenStreetMap é feito por voluntários</b><p>A cobertura de ônibus, comércio e parques muda de região para região; precisa ser checada por amostragem.</p></div></div>'+
+      '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>OpenStreetMap é feito por voluntários</b><p>A cobertura de ônibus, comércio e parques muda de zona para zona; precisa ser checada por amostragem.</p></div></div>'+
       '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>Ônibus: só a distância, não o horário</b><p>Medimos se há ponto por perto, não a frequência real das linhas — é uma aproximação.</p></div></div>'+
-      '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>Regiões são recortes nossos</b><p>Juntamos setores do IBGE sob um nome de bairro conhecido; é uma escolha documentada, não uma fronteira oficial.</p></div></div>'+
+      '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>As zonas reúnem bairros</b><p>Cada zona (Centro, Norte, Sul, Leste, Oeste) agrupa vários bairros. A divisão e a lista de bairros são uma escolha documentada nos dados, não uma fronteira oficial da Prefeitura.</p></div></div>'+
     '</section>'+
 
     '<div class="foot"><span>CityLens · Sorocaba · protótipo de interface</span><span class="mono">v0 · esquema visual navegável</span></div>'+
@@ -1184,7 +1171,7 @@ function renderCover(){
       '<span class="cov-badge"><span class="dot"></span>Projeto escolar · protótipo</span>'+
       '<img class="cov-logo cl-light" src="'+LOGO_WM_LIGHT+'" alt="CityLens">'+
       '<img class="cov-logo cl-dark" src="'+LOGO_WM_DARK+'" alt="CityLens">'+
-      '<p class="cov-tag">O acesso urbano de <strong>Sorocaba</strong>, região por região</p>'+
+      '<p class="cov-tag">O acesso urbano de <strong>Sorocaba</strong>, zona por zona</p>'+
       '<p class="cov-sub">Um retrato transparente do <strong>acesso a serviços e infraestrutura</strong> — cada nota rastreável a um dado público, uma fórmula e uma data.</p>'+
       '<div class="cov-chips">'+chips+'</div>'+
       '<button class="cov-enter" id="covEnter">Explorar o mapa '+svgIcon("chev",'width="18" height="18"')+'</button>'+
