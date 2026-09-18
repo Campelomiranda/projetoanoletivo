@@ -522,27 +522,27 @@ var AXES = [
 var REGIONS = {
   centro:{name:"Centro",
     scores:{servicos:88,mobilidade:92,caminhabilidade:85,ambiente:42},
-    bairros:["Centro","Além Ponte","Santa Rosália","Vila Hortência","Mangal","Jardim Vergueiro"],
+    bairros:["Centro","Vila Hortência","Vila Assis","Vila Leão","Vila Trujillo","Vila Gabriel","Vila Santana","Jardim Vergueiro","Vila Augusta","Vila Independência","Vila Amélia"],
     raw:{saude:"0,68 UBS / 10.000 hab.",educacao:"95% da pop. a ≤ 1 km de escola",comercio:"170 m até mercado/farmácia",
          mobilidade:"92% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"122 interseções / km²",ambiente:"6,4 m² de área verde / hab."}},
   sul:{name:"Zona Sul",
     scores:{servicos:72,mobilidade:60,caminhabilidade:58,ambiente:70},
-    bairros:["Campolim","Jardim Simus","Jardim Europa","Parque Campolim","Cajuru"],
+    bairros:["Campolim","Parque Campolim","Jardim Europa","Jardim Simus","Cajuru do Sul","Jardim Saira","Jardim Portal da Colina","Central Parque Sorocaba","Jardim dos Estados","Jardim Novo Mundo","Jardim Ibiti do Paço"],
     raw:{saude:"0,52 UBS / 10.000 hab.",educacao:"80% da pop. a ≤ 1 km de escola",comercio:"300 m até mercado/farmácia",
          mobilidade:"60% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"70 interseções / km²",ambiente:"16,8 m² de área verde / hab."}},
   norte:{name:"Zona Norte",
     scores:{servicos:58,mobilidade:55,caminhabilidade:50,ambiente:52},
-    bairros:["Éden","Aparecidinha","Brigadeiro Tobias","Vila Angélica","Habiteto"],
+    bairros:["Éden","Aparecidinha","Brigadeiro Tobias","Jardim Abaeté","Jardim São Guilherme","Vila Angélica","Habiteto","Inhayba","Caputera","Itavuvu","Parque Manchester"],
     raw:{saude:"0,40 UBS / 10.000 hab.",educacao:"66% da pop. a ≤ 1 km de escola",comercio:"430 m até mercado/farmácia",
          mobilidade:"55% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"66 interseções / km²",ambiente:"10,1 m² de área verde / hab."}},
   leste:{name:"Zona Leste",
     scores:{servicos:49,mobilidade:47,caminhabilidade:44,ambiente:48},
-    bairros:["Vila Haro","Jardim Zulmira","Iporanga","Jardim Gonçalves"],
+    bairros:["Além Ponte","Jardim Santa Rosália","Vila Sabiá","Morros","Vila João Romão","Parada do Alto","Vila Colorau","Vila Zacarias","Ipiranga","Vila Haro","Jardim Zulmira"],
     raw:{saude:"0,34 UBS / 10.000 hab.",educacao:"55% da pop. a ≤ 1 km de escola",comercio:"560 m até mercado/farmácia",
          mobilidade:"47% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"56 interseções / km²",ambiente:"9,0 m² de área verde / hab."}},
   oeste:{name:"Zona Oeste",
     scores:{servicos:44,mobilidade:52,caminhabilidade:46,ambiente:null},
-    bairros:["Wanel Ville","Júlio de Mesquita Filho","Vila Helena","Parque São Bento","Jardim Bandeirantes"],
+    bairros:["Wanel Ville","Wanel Ville IV","Cerrado","Júlio de Mesquita Filho","Vila Helena","Parque São Bento","Jardim Bandeirantes","Jardim Ipanema","Jardim Nova Ipanema","Jardim Maria do Carmo","Jardim Guadalajara"],
     raw:{saude:"0,29 UBS / 10.000 hab.",educacao:"58% da pop. a ≤ 1 km de escola",comercio:"540 m até mercado/farmácia",
          mobilidade:"52% da pop. a ≤ 400 m de ponto de ônibus",caminhabilidade:"62 interseções / km²",ambiente:null}}
 };
@@ -921,9 +921,9 @@ function renderRegiao(){
       '</div>'+
       '<div class="card setores-card">'+
         '<h3>Bairros da '+(r.name==="Centro"?"região central":r.name)+'</h3>'+
-        '<p>Alguns bairros que compõem esta zona ('+r.bairros.length+' de exemplo):</p>'+
+        '<p>Alguns bairros desta zona ('+r.bairros.length+' dos principais):</p>'+
         '<div class="chips">'+setoresChips+'</div>'+
-        '<div class="note">'+svgIcon("info",'width="14" height="14"')+'<span>Bairros são exemplos ilustrativos. A lista completa e verificada de cada zona entra pelos dados (arquivo de configuração legível), não é chute.</span></div>'+
+        '<div class="note">'+svgIcon("info",'width="14" height="14"')+'<span>Classificação <strong>aproximada</strong> por zona (não oficial), a partir da lista de bairros da Wikipédia. Sorocaba tem ~250 bairros no total; a divisão oficial da Prefeitura pode diferir e é fácil de ajustar.</span></div>'+
       '</div>'+
     '</div>'+
 
