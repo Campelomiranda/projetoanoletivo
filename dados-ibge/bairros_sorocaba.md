@@ -21,11 +21,17 @@ aproximação** para o protótipo e pode ser corrigida.
 - **Zona Oeste** — Wanel Ville (5 subdivisões) e Cerrado.
 
 ## Zonas usadas no CityLens (5)
-- **Centro** — Centro, Vila Hortência, Vila Assis, Vila Leão, Vila Trujillo, Vila Gabriel, Vila Augusta, Vila Independência, Vila Jardini, Vila Fiori
-- **Zona Sul** — Campolim, Parque Campolim, Jardim Vergueiro, Jardim Europa, Jardim Simus, Cajuru do Sul, Jardim Saira, Jardim Portal da Colina, Central Parque Sorocaba, Jardim dos Estados, Jardim Ibiti do Paço
-- **Zona Norte** — Éden, Aparecidinha, Brigadeiro Tobias, Parque São Bento, Habiteto, Vila Helena, Jardim Abaeté, Jardim São Guilherme, Jardim Nova Esperança, Jardim São Conrado, Vila Santana, Jardim Maria Eugênia, Nova Sorocaba, Itavuvu
-- **Zona Leste** — Além Ponte, Jardim Santa Rosália, Vila Sabiá, Morros, Vila João Romão, Parada do Alto, Vila Colorau, Vila Zacarias, Ipiranga, Vila Haro, Jardim Zulmira
-- **Zona Oeste** — Wanel Ville (I, II, IV), Cerrado, Júlio de Mesquita Filho, Jardim Bandeirantes, Jardim Ipanema, Jardim Nova Ipanema, Jardim Maria do Carmo, Jardim Guadalajara
+
+> Síntese a partir dos guias locais que o grupo consolidou. Quando um bairro
+> aparecia em mais de uma zona (ex.: Parque Campolim e Jardim Simus surgiram em
+> Sul e Oeste; Jardim Santa Rosália em Leste e Sul), ficou na zona citada com
+> mais força pela última consolidação. Continua sendo **aproximação, não oficial**.
+
+- **Centro** — Centro, Além Linha, Vila Leão, Vila Trujillo, Vila Gabriel, Vila Augusta, Vila Independência, Vila Jardini, Vila Boa Vista, Vila Santa Rita
+- **Zona Sul** — Campolim, Parque Campolim, Jardim Vergueiro, Jardim Santa Rosália, Vila Assis, Jardim Simus, Jardim Europa, Jardim Saira, Jardim Portal da Colina, Central Parque Sorocaba
+- **Zona Norte** — Éden, Aparecidinha, Brigadeiro Tobias, Parque São Bento, Habiteto, Vila Helena, Jardim Abaeté, Jardim São Guilherme, Vila Progresso, Vila Santana, Vila Hortência, Vila Fiori, Vila Angélica, Itavuvu
+- **Zona Leste** — Além Ponte, Jardim Faculdade, Jardim Santa Cecília, Vila Haro, Vila Sabiá, Morros, Vila João Romão, Parada do Alto, Vila Zacarias, Ipiranga, Jardim Zulmira
+- **Zona Oeste** — Wanel Ville (I, II, IV), Cerrado, Júlio de Mesquita Filho, Jardim Bandeirantes, Jardim Emília, Jardim Ipanema, Jardim Nova Ipanema, Jardim Maria do Carmo
 
 Para trocar pela divisão oficial: ajuste as arrays `bairros:[...]` de cada zona
 em `mockups/radiografia-sorocaba.html`. No pipeline final, o ideal é mapear cada
