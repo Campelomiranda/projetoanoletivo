@@ -154,6 +154,27 @@
   .map-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:22px;align-items:start}
   .map-head{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:14px}
   .map-head h2{font-size:22px;letter-spacing:-.02em}
+  /* Busca por bairro */
+  .bsearch{position:relative;margin:0 0 18px;max-width:560px}
+  .bsearch-in{display:flex;align-items:center;gap:9px;background:var(--surface);border:1.5px solid var(--line-strong);border-radius:13px;padding:11px 13px;color:var(--ink-soft);transition:border-color .15s,box-shadow .15s}
+  .bsearch-in:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .bsearch-in svg{flex:none;color:var(--accent)}
+  .bsearch-in input{flex:1;border:0;background:transparent;outline:none;font-family:'Nunito',sans-serif;font-size:14.5px;color:var(--ink)}
+  .bsearch-in input::placeholder{color:var(--ink-soft);opacity:.75}
+  .bsearch-x{flex:none;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:0;border-radius:50%;background:var(--surface-2);color:var(--ink-soft);cursor:pointer}
+  .bsearch-x:hover{background:var(--line)}
+  .bsearch-out{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 6px);background:var(--surface);border:1.5px solid var(--line-strong);border-radius:13px;box-shadow:0 14px 40px rgba(0,0,0,.16);overflow:hidden;max-height:340px;overflow-y:auto}
+  .bsearch-item{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;background:transparent;padding:11px 13px;cursor:pointer;color:var(--ink);border-bottom:1px solid var(--line);font-family:'Nunito',sans-serif}
+  .bsearch-item:last-child{border-bottom:0}
+  .bsearch-item:hover,.bsearch-item.on{background:var(--accent-soft)}
+  .bsearch-item>svg:first-child{flex:none;color:var(--accent)}
+  .bsearch-item>svg:last-child{flex:none;color:var(--ink-soft);margin-left:2px}
+  .bi-name{flex:1;font-size:14px}
+  .bi-name b{color:var(--accent)}
+  .bi-ref{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);border:1px dashed var(--line-strong);border-radius:5px;padding:1px 5px;margin-left:5px;vertical-align:middle}
+  .bi-zone{flex:none;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:7px;padding:3px 9px}
+  .bsearch-empty{padding:13px;font-size:13.5px;color:var(--ink-soft)}
+  .bsearch-empty b{color:var(--ink)}
   .seg{display:inline-flex;flex-wrap:wrap;gap:3px;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:4px}
   .seg button{appearance:none;border:0;background:none;cursor:pointer;padding:6px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:var(--ink-soft);white-space:nowrap}
   .seg button:hover{color:var(--ink)}
@@ -575,6 +596,33 @@ var MAP_PATH=MAP2.soro;
 // Posições dos pinos em COORDENADAS DE PIXEL da imagem real do mapa (949×811),
 // alinhadas aos bairros mostrados no Google Maps. Ilustrativas.
 var PINS={centro:[515,500],norte:[560,205],sul:[470,660],leste:[772,470],oeste:[250,505],industrial:[690,150]};
+
+// Normaliza texto p/ busca: minúsculas, sem acento, sem pontuação extra
+function normalizar(s){
+  return (s||"").toString().toLowerCase()
+    .normalize("NFD").replace(/[̀-ͯ]/g,"")
+    .replace(/[^a-z0-9]+/g," ").trim();
+}
+// Índice de busca: cada bairro (e cada referência) → sua zona
+var BAIRRO_INDEX=(function(){
+  var out=[];
+  ORDER.forEach(function(id){
+    var r=REGIONS[id];
+    (r.bairros||[]).forEach(function(b){ out.push({nome:b,zona:id,zonaNome:r.name,ref:false,norm:normalizar(b)}); });
+    (r.refs||[]).forEach(function(b){ out.push({nome:b,zona:id,zonaNome:r.name,ref:true,norm:normalizar(b)}); });
+  });
+  return out;
+})();
+function buscarBairros(q){
+  var n=normalizar(q); if(!n) return [];
+  var starts=[], contains=[];
+  BAIRRO_INDEX.forEach(function(it){
+    var idx=it.norm.indexOf(n);
+    if(idx===0) starts.push(it);
+    else if(idx>0) contains.push(it);
+  });
+  return starts.concat(contains).slice(0,12);
+}
 var PIN_LBL={
   centro:{dx:0,dy:-25,a:"middle"},
   sul:{dx:0,dy:-25,a:"middle"},
@@ -695,7 +743,9 @@ var IC={
   cart:'<circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M3 4h2l2.4 11.4a1.5 1.5 0 0 0 1.5 1.2h7.7a1.5 1.5 0 0 0 1.5-1.2L21 8H6"/>',
   plus:'<path d="M12 5v14M5 12h14"/>',
   layers:'<path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17l9 5 9-5"/>',
-  doc:'<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/>'
+  doc:'<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/>',
+  search:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',
+  pin:'<path d="M12 21s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>'
 };
 function svgIcon(name,extra){return '<svg viewBox="0 0 24 24" '+(extra||'width="16" height="16"')+' fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+IC[name]+'</svg>';}
 
@@ -823,6 +873,13 @@ function renderMapa(){
       '<p class="lead">Sorocaba dividida nas <strong>6 zonas oficiais</strong> do zoneamento da Prefeitura/Urbes (Centro, Norte, Sul, Leste, Oeste e Industrial). Não é ranking de bom ou ruim — é a leitura de <strong>acesso a serviços e infraestrutura</strong>. Troque o <strong>filtro</strong> para recolorir os pinos por eixo, e clique num <strong>pino</strong> para ver a zona e seus bairros:</p></div>'+
       '<div class="seg" role="group" aria-label="Métrica dos pinos">'+segs+'</div>'+
     '</div>'+
+    '<div class="bsearch">'+
+      '<label class="bsearch-in">'+svgIcon("search",'width="18" height="18"')+
+        '<input id="bairroSearch" type="text" autocomplete="off" placeholder="Buscar um bairro específico (ex.: Campolim, Wanel Ville, Vila Gabriel)" aria-label="Buscar um bairro"/>'+
+        '<button type="button" class="bsearch-x" id="bairroClear" aria-label="Limpar busca" hidden>'+svgIcon("close",'width="16" height="16"')+'</button>'+
+      '</label>'+
+      '<div class="bsearch-out" id="bairroOut" role="listbox" hidden></div>'+
+    '</div>'+
     '<div class="map-grid">'+
       '<div><div class="card map-card"><div class="map-stage">'+svg+popupHTML+'</div>'+
         '<span class="soro-cap">Mapa: Google Maps&nbsp;&nbsp;|&nbsp;&nbsp;pinos nas 6 zonas (posição ilustrativa)</span></div>'+
@@ -851,6 +908,57 @@ function renderMapa(){
   if(closeBtn) closeBtn.addEventListener("click",function(){ state.popup=null; renderMapa(); });
   var ctaBtn=document.querySelector(".mpop-cta");
   if(ctaBtn) ctaBtn.addEventListener("click",function(){ openRegion(ctaBtn.dataset.open); });
+
+  // ---- Busca por bairro ----
+  var inp=document.getElementById("bairroSearch");
+  var out=document.getElementById("bairroOut");
+  var clr=document.getElementById("bairroClear");
+  var active=-1, matches=[];
+  function hl(nome,q){
+    var n=normalizar(nome), nn=normalizar(q), i=n.indexOf(nn);
+    if(nn&&i>=0){ return nome.slice(0,i)+'<b>'+nome.slice(i,i+q.trim().length)+'</b>'+nome.slice(i+q.trim().length); }
+    return nome;
+  }
+  function paintResults(q){
+    matches=buscarBairros(q); active=-1;
+    if(!q.trim()){ out.hidden=true; out.innerHTML=""; return; }
+    if(!matches.length){
+      out.hidden=false;
+      out.innerHTML='<div class="bsearch-empty">Nenhum bairro encontrado para <b>'+q.replace(/</g,"&lt;")+'</b>. Tente outro nome ou parte dele.</div>';
+      return;
+    }
+    out.hidden=false;
+    out.innerHTML=matches.map(function(it,i){
+      return '<button type="button" class="bsearch-item" data-zone="'+it.zona+'" data-i="'+i+'" role="option">'+
+        svgIcon("pin",'width="15" height="15"')+
+        '<span class="bi-name">'+hl(it.nome,q)+(it.ref?' <span class="bi-ref">referência</span>':'')+'</span>'+
+        '<span class="bi-zone">'+it.zonaNome+'</span>'+
+        svgIcon("chev",'width="14" height="14"')+'</button>';
+    }).join("");
+    Array.prototype.forEach.call(out.querySelectorAll(".bsearch-item"),function(b){
+      b.addEventListener("click",function(){ openRegion(b.dataset.zone); });
+    });
+  }
+  function setActive(d){
+    var items=out.querySelectorAll(".bsearch-item"); if(!items.length) return;
+    active=(active+d+items.length)%items.length;
+    Array.prototype.forEach.call(items,function(el,i){ el.classList.toggle("on",i===active); });
+    items[active].scrollIntoView({block:"nearest"});
+  }
+  if(inp){
+    inp.addEventListener("input",function(){ clr.hidden=!inp.value; paintResults(inp.value); });
+    inp.addEventListener("keydown",function(e){
+      if(e.key==="ArrowDown"){ e.preventDefault(); setActive(1); }
+      else if(e.key==="ArrowUp"){ e.preventDefault(); setActive(-1); }
+      else if(e.key==="Enter"){
+        var items=out.querySelectorAll(".bsearch-item");
+        var pick=active>=0?items[active]:items[0];
+        if(pick){ e.preventDefault(); openRegion(pick.dataset.zone); }
+      } else if(e.key==="Escape"){ inp.value=""; clr.hidden=true; paintResults(""); }
+    });
+    clr.addEventListener("click",function(){ inp.value=""; clr.hidden=true; paintResults(""); inp.focus(); });
+  }
+
   hideTip();
   animatePins=false;
 }
