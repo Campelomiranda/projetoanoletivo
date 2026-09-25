@@ -45,8 +45,10 @@ web/            App React + Leaflet (a construir), consome os arquivos estático
       setor a uma das 6 zonas por proximidade ao bairro (`src/step02_zonas.py`);
       lógica coberta por `--autoteste`.
 - [ ] **Rodar os passos 1 e 2 numa rede com IBGE/OSM** e conferir os mapas.
-- [ ] Passo 3 — extração de POIs via Overpass (OpenStreetMap).
-- [ ] Cálculo do índice por zona e geração do GeoJSON do site.
+- [x] **Passo 3 — script pronto** (rodar no Colab): baixa POIs do OpenStreetMap
+      (ônibus, saúde, escolas, mercados/farmácias, parques), conta por zona e
+      calcula uma nota 0–100 por zona (no notebook do Colab).
+- [ ] 4º eixo (caminhabilidade) via malha de ruas + geração do GeoJSON do site.
 - [ ] App React + Leaflet.
 
 ## Por onde começar
