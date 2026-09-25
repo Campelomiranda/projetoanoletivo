@@ -6,84 +6,90 @@
 <style>
   /* ============ TOKENS ============ */
   :root{
-    --paper:#F3F6F5;
-    --surface:#FFFFFF;
-    --surface-2:#F7FAF9;
-    --ink:#132320;
-    --ink-soft:#4C605B;
-    --ink-faint:#7C8E89;
-    --line:#DCE5E2;
-    --line-strong:#C4D2CE;
-    --accent:#0C6E6C;
-    --accent-soft:#0C6E6C1a;
-    --warn:#B26A00;
-    --warn-soft:#B26A0016;
-    --shadow:0 1px 2px rgba(19,35,32,.05),0 8px 24px rgba(19,35,32,.06);
-    --ramp-lo:234,244,242;
+    --paper:#F4EEE3;
+    --surface:#FFFCF6;
+    --surface-2:#F1E9DA;
+    --ink:#28241C;
+    --ink-soft:#6B6456;
+    --ink-faint:#9A9280;
+    --line:#E6DCCA;
+    --line-strong:#D6CAB3;
+    --accent:#0E7C71;
+    --accent-soft:#0E7C7118;
+    --accent2:#DD7A3C;
+    --accent2-soft:#DD7A3C1e;
+    --warn:#B5720A;
+    --warn-soft:#B5720A16;
+    --shadow:0 2px 4px rgba(58,46,26,.05),0 16px 36px rgba(58,46,26,.09);
+    --ramp-lo:236,242,236;
     --ramp-mid:95,176,172;
     --ramp-hi:10,79,82;
-    --map-void:#E7EEEC;
-    --map-stroke:#FFFFFF;
-    --map-land:#E6EDEA;
-    --map-neighbor:#D6E0DC;
-    --map-stroke2:#BFCDC8;
-    --map-neighlbl:#889892;
-    --map-soro-fill:#D8EAE6;
+    --map-void:#EDE6D8;
+    --map-stroke:#FFFCF6;
+    --map-land:#EEE7D9;
+    --map-neighbor:#E2D9C8;
+    --map-stroke2:#D0C4AE;
+    --map-neighlbl:#9A927F;
+    --map-soro-fill:#E4E7DD;
     --map-veil:rgba(0,0,0,0);
   }
   :root:not([data-theme="light"]){
     @media (prefers-color-scheme: dark){
-      --paper:#0A1211;
-      --surface:#111C1A;
-      --surface-2:#0E1817;
-      --ink:#EAF3F0;
-      --ink-soft:#9FB4AF;
-      --ink-faint:#6E8480;
-      --line:#22322E;
-      --line-strong:#2C403B;
-      --accent:#35B7B0;
-      --accent-soft:#35B7B01f;
-      --warn:#E39B3C;
-      --warn-soft:#E39B3C1c;
-      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
-      --ramp-lo:18,46,43;
+      --paper:#16130E;
+      --surface:#221C15;
+      --surface-2:#1A1610;
+      --ink:#F1EBDF;
+      --ink-soft:#B2A994;
+      --ink-faint:#867D6B;
+      --line:#332C21;
+      --line-strong:#453B2C;
+      --accent:#37BBA9;
+      --accent-soft:#37BBA91f;
+      --accent2:#E89A5A;
+      --accent2-soft:#E89A5A20;
+      --warn:#E3A44C;
+      --warn-soft:#E3A44C1c;
+      --shadow:0 2px 4px rgba(0,0,0,.32),0 16px 40px rgba(0,0,0,.42);
+      --ramp-lo:22,44,40;
       --ramp-mid:46,143,134;
       --ramp-hi:88,224,214;
-      --map-void:#16211F;
-      --map-stroke:#0A1211;
-      --map-land:#0E1917;
-      --map-neighbor:#152220;
-      --map-stroke2:#26332F;
-      --map-neighlbl:#5E726D;
-      --map-soro-fill:#123230;
-      --map-veil:rgba(8,15,14,0.45);
+      --map-void:#1B1610;
+      --map-stroke:#16130E;
+      --map-land:#1A1610;
+      --map-neighbor:#221C14;
+      --map-stroke2:#33291E;
+      --map-neighlbl:#6E6555;
+      --map-soro-fill:#14322F;
+      --map-veil:rgba(10,8,5,0.45);
     }
   }
   :root[data-theme="dark"]{
-    --paper:#0A1211;
-    --surface:#111C1A;
-    --surface-2:#0E1817;
-    --ink:#EAF3F0;
-    --ink-soft:#9FB4AF;
-    --ink-faint:#6E8480;
-    --line:#22322E;
-    --line-strong:#2C403B;
-    --accent:#35B7B0;
-    --accent-soft:#35B7B01f;
-    --warn:#E39B3C;
-    --warn-soft:#E39B3C1c;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
-    --ramp-lo:18,46,43;
+    --paper:#16130E;
+    --surface:#221C15;
+    --surface-2:#1A1610;
+    --ink:#F1EBDF;
+    --ink-soft:#B2A994;
+    --ink-faint:#867D6B;
+    --line:#332C21;
+    --line-strong:#453B2C;
+    --accent:#37BBA9;
+    --accent-soft:#37BBA91f;
+    --accent2:#E89A5A;
+    --accent2-soft:#E89A5A20;
+    --warn:#E3A44C;
+    --warn-soft:#E3A44C1c;
+    --shadow:0 2px 4px rgba(0,0,0,.32),0 16px 40px rgba(0,0,0,.42);
+    --ramp-lo:22,44,40;
     --ramp-mid:46,143,134;
     --ramp-hi:88,224,214;
-    --map-void:#16211F;
-    --map-stroke:#0A1211;
-    --map-land:#0E1917;
-    --map-neighbor:#152220;
-    --map-stroke2:#26332F;
-    --map-neighlbl:#5E726D;
-    --map-soro-fill:#123230;
-    --map-veil:rgba(8,15,14,0.45);
+    --map-void:#1B1610;
+    --map-stroke:#16130E;
+    --map-land:#1A1610;
+    --map-neighbor:#221C14;
+    --map-stroke2:#33291E;
+    --map-neighlbl:#6E6555;
+    --map-soro-fill:#14322F;
+    --map-veil:rgba(10,8,5,0.45);
   }
 
   *{box-sizing:border-box}
@@ -135,7 +141,7 @@
   .tabs-inner::-webkit-scrollbar{height:0}
 
   /* ============ NOTICE ============ */
-  .notice{display:flex;gap:10px;align-items:flex-start;background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 28%,transparent);border-radius:12px;padding:11px 14px;margin:20px 0 4px;font-size:13px;color:var(--ink)}
+  .notice{display:flex;gap:10px;align-items:flex-start;background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 28%,transparent);border-radius:16px;padding:13px 16px;margin:20px 0 4px;font-size:13px;color:var(--ink)}
   .notice svg{flex:none;width:16px;height:16px;margin-top:2px;color:var(--warn)}
   .notice b{color:var(--warn)}
 
@@ -144,11 +150,11 @@
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){.screen{animation:none}*{scroll-behavior:auto!important}}
 
-  .eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;font-family:'Nunito',monospace}
+  .eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:700;font-family:'Nunito',monospace}
   .lead{color:var(--ink-soft);font-size:14.5px;max-width:64ch}
 
   /* ============ CARDS ============ */
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
 
   /* ============ MAPA ============ */
   .map-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:22px;align-items:start}
@@ -185,7 +191,7 @@
 
   .map-card{padding:14px 14px 30px;position:relative}
   .map-stage{position:relative}
-  .mapsvg{width:100%;height:auto;display:block;touch-action:manipulation;overflow:hidden;border-radius:10px;background:var(--map-land)}
+  .mapsvg{width:100%;height:auto;display:block;touch-action:manipulation;overflow:hidden;border-radius:16px;background:var(--map-land)}
   .mapsvg-choro{background:var(--surface-2)}
   .setor{stroke:var(--surface);stroke-width:0.35;cursor:pointer}
   .setor:hover{stroke:var(--ink);stroke-width:1.3}
