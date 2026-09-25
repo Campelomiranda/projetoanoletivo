@@ -173,6 +173,9 @@
   .bi-name b{color:var(--accent)}
   .bi-ref{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);border:1px dashed var(--line-strong);border-radius:5px;padding:1px 5px;margin-left:5px;vertical-align:middle}
   .bi-zone{flex:none;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:7px;padding:3px 9px}
+  .bi-score{flex:none;font-family:'Anton','Nunito',sans-serif;font-size:15px;line-height:1;border-radius:7px;padding:5px 8px 4px;min-width:34px;text-align:center;letter-spacing:.01em}
+  .bi-score small{font-size:8.5px;font-weight:400;opacity:.85;margin-left:1px}
+  .bi-score.na{font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;background:var(--surface-2);color:var(--ink-soft)}
   .bsearch-empty{padding:13px;font-size:13.5px;color:var(--ink-soft)}
   .bsearch-empty b{color:var(--ink)}
   .seg{display:inline-flex;flex-wrap:wrap;gap:3px;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:4px}
@@ -929,10 +932,15 @@ function renderMapa(){
     }
     out.hidden=false;
     out.innerHTML=matches.map(function(it,i){
+      var comp=composite(REGIONS[it.zona]);
+      var scoreHTML = comp==null
+        ? '<span class="bi-score na">s/d</span>'
+        : '<span class="bi-score" style="background:'+fillFor(comp)+';color:'+textOn(comp)+'">'+comp+'<small>/100</small></span>';
       return '<button type="button" class="bsearch-item" data-zone="'+it.zona+'" data-i="'+i+'" role="option">'+
         svgIcon("pin",'width="15" height="15"')+
         '<span class="bi-name">'+hl(it.nome,q)+(it.ref?' <span class="bi-ref">referência</span>':'')+'</span>'+
         '<span class="bi-zone">'+it.zonaNome+'</span>'+
+        scoreHTML+
         svgIcon("chev",'width="14" height="14"')+'</button>';
     }).join("");
     Array.prototype.forEach.call(out.querySelectorAll(".bsearch-item"),function(b){
