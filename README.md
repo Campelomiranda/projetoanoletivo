@@ -44,12 +44,16 @@ web/            App React + Leaflet (a construir), consome os arquivos estático
 - [x] **Passo 2 do pipeline — script pronto** (rodar localmente): atribui cada
       setor a uma das 6 zonas por proximidade ao bairro (`src/step02_zonas.py`);
       lógica coberta por `--autoteste`.
-- [ ] **Rodar os passos 1 e 2 numa rede com IBGE/OSM** e conferir os mapas.
-- [x] **Passo 3 — script pronto** (rodar no Colab): baixa POIs do OpenStreetMap
-      (ônibus, saúde, escolas, mercados/farmácias, parques), conta por zona e
-      calcula uma nota 0–100 por zona (no notebook do Colab).
-- [ ] 4º eixo (caminhabilidade) via malha de ruas + geração do GeoJSON do site.
-- [ ] App React + Leaflet.
+- [x] **Passo 3 + 4 rodados no Colab**: POIs do OpenStreetMap + malha de ruas,
+      medindo a **distância a pé** de cada setor até saúde, escolas, comércio,
+      ônibus e praças — nota real nos **4 eixos** por zona (incl. caminhabilidade).
+- [x] **Dados reais no site** (`mockups/`): as notas das 6 zonas vêm do pipeline
+      (OSM + IBGE), não mais de valores ilustrativos.
+- [x] **Metodologia documentada** — ver [`METODOLOGIA.md`](METODOLOGIA.md).
+- [ ] **Mapa por setor no site** (choropleth a partir do `setores_sorocaba.geojson`),
+      no lugar dos pinos por zona. *(motor do mapa já validado)*
+- [ ] Saúde via **CNES** e escolas via **INEP** (hoje ainda do OSM).
+- [ ] População real por setor (Agregados do Censo 2022) para média por habitante.
 
 ## Por onde começar
 
