@@ -83,7 +83,6 @@ regions:
       - "Vila Gabriel"
       - "Vila Progresso"
       - "Vila Porto"
-      - "Vila Rica"
       - "Parque Vitória Régia"
       - "Retiro São João"
       - "Jardim Iguatemi"
@@ -93,8 +92,6 @@ regions:
       - "Vila Barão"
       - "Vila Nova Esperança"
       - "Jardim Zulmira"
-      - "Jardim Simus"
-      - "Jardim Vera Cruz"
       - "Santa Terezinha"
       - "Vila Trujillo"
       - "Vila Carvalho"
@@ -122,6 +119,9 @@ regions:
       - "Central Parque"
       - "Largo do Divino"
       - "Jardim São Paulo"
+      - "Vila Rica"
+      - "Jardim Simus"
+      - "Jardim Vera Cruz"
     # Pontos de referência do mapa (só documentam a zona; fora do recorte):
     referencias:
       - "Região do Cerqueira"
