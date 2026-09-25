@@ -1,18 +1,18 @@
 # =============================================================================
-# Composição das regiões-piloto — Radiografia Urbana de Sorocaba
+# Composição das ZONAS — CityLens · Radiografia Urbana de Sorocaba
 # =============================================================================
-# Cada região-piloto é um agrupamento de SETORES CENSITÁRIOS do IBGE (Censo 2022)
-# sob um nome de bairro reconhecível. A composição fica AQUI (config legível),
-# nunca espalhada pelo código — assim qualquer pessoa audita o recorte.
+# Unidade de análise = as 6 ZONAS OFICIAIS do zoneamento da Prefeitura/Urbes
+# (Centro, Norte, Oeste, Sul, Leste, Industrial). Esta config é a fonte única
+# da composição — o site (mockups/) e o pipeline leem a mesma divisão.
 #
-# Como preencher:
-#   1. Rode o passo 1 do pipeline para gerar a lista de setores de Sorocaba
-#      (src/step01_setores_populacao.py imprime e salva os códigos disponíveis).
-#   2. Para cada região, cole abaixo os códigos (CD_SETOR, 15 dígitos) que a compõem.
-#   3. Um setor deve pertencer a NO MÁXIMO uma região (sem sobreposição).
+# Cada zona lista os BAIRROS transcritos do mapa oficial. O passo 2 do pipeline
+# (step02_zonas.py) geocodifica esses nomes e atribui cada SETOR CENSITÁRIO do
+# IBGE à zona do bairro mais próximo (método "nearest_bairro"), gravando o
+# resultado em data/processed/setores_por_zona.csv. Você NÃO digita setor a setor.
 #
-# ⚠️ Os códigos da região "centro" abaixo são um EXEMPLO ILUSTRATIVO só para você
-#    entender o formato — troque-os pelos códigos reais antes de calcular o índice.
+# Regra do projeto — NÃO INVENTAR DADO: bairro que não geocodificar é reportado
+# e ignorado (nunca chutado); zona sem nenhum bairro geocodificado interrompe o
+# passo com aviso.
 # =============================================================================
 
 meta:
@@ -20,12 +20,19 @@ meta:
   uf: "SP"
   codigo_ibge: "3552205"
   censo: 2022
+  fonte_zonas: >
+    Mapa oficial de zoneamento da Prefeitura de Sorocaba / Urbes (PDFs em
+    mapa-01-macrozoneamento.pdf, mapa-02-zoneamento.pdf, mapa_zoneamento.pdf).
+    Bairros transcritos região por região; a lista cobre a maioria, mas nem
+    todos os rótulos do PDF são legíveis.
+  metodo_recorte: "nearest_bairro"   # setor -> zona do bairro geocodificado mais próximo
   observacao: >
-    Regiões são recortes analíticos (agregados de setores do IBGE), não
-    fronteiras oficiais de bairro. O recorte é uma escolha documentada.
+    As zonas são as oficiais; a atribuição de cada setor à sua zona é uma
+    aproximação por proximidade (recorte analítico documentado), até existir a
+    geometria oficial das zonas em formato vetorial.
 
-# Eixos esperados do índice (para o selo de confiabilidade = calculados / esperados).
-# PCD fica FORA do cálculo no MVP (sempre "dados insuficientes"), então não entra aqui.
+# Eixos esperados do índice (selo de confiabilidade = calculados / esperados).
+# PCD (acessibilidade) fica FORA do cálculo no MVP (sempre "dados insuficientes").
 eixos_esperados:
   - servicos_essenciais
   - mobilidade
@@ -34,40 +41,166 @@ eixos_esperados:
 
 regions:
 
-  # ---- EXEMPLO PREENCHIDO (trocar pelos códigos reais) -----------------------
   centro:
     nome: "Centro"
-    # ⚠️ EXEMPLO — estes códigos são fictícios, apenas para ilustrar o formato:
-    setores:
-      - "355220505000012"
-      - "355220505000013"
-      - "355220505000027"
-      - "355220505000031"
-
-  # ---- REGIÕES A PREENCHER ---------------------------------------------------
-  # Deixe 'setores: []' até você colar os códigos reais. O pipeline trata uma
-  # região sem setores como AINDA NÃO CONFIGURADA (não inventa dados).
-
-  campolim:
-    nome: "Campolim"
+    # Bairros do mapa oficial (geocodificados p/ o recorte por proximidade):
+    bairros:
+      - "Centro"
+    # Pontos de referência do mapa (só documentam a zona; fora do recorte):
+    referencias:
+      - "Catedral Metropolitana"
+      - "Mercado Municipal"
+      - "Museu Ferroviário"
+      - "Rodoviária"
+      - "Estação Ferroviária"
+      - "PUC"
+      - "FADI"
+      - "UNISO"
+    # Override manual OPCIONAL: códigos de setor forçados a esta zona.
+    # Vazio = tudo decidido por proximidade no step02. Não precisa preencher.
     setores: []
 
-  alem_ponte:
-    nome: "Além Ponte"
-    setores: []
-
-  zona_norte:
+  norte:
     nome: "Zona Norte"
+    # Bairros do mapa oficial (geocodificados p/ o recorte por proximidade):
+    bairros:
+      - "Jardim Botucatu"
+      - "Jardim Maria Eugênia"
+      - "Parque Laranjeiras"
+      - "Jardim Guaíba"
+      - "Jardim São Guilherme"
+      - "Jardim Santa Marina"
+      - "Parque São Bento"
+      - "Jardim Novo Horizonte"
+      - "Jardim Maria Antônia Prado"
+      - "Jardim Guadalupe"
+      - "Vila Nova Sorocaba"
+      - "Vila Angélica"
+      - "Jardim Húngaros"
+      - "Jardim Brasilândia"
+      - "Vila Fiori"
+      - "Jardim Maria do Carmo"
+      - "Vila Gabriel"
+      - "Vila Progresso"
+      - "Vila Porto"
+      - "Vila Rica"
+      - "Parque Vitória Régia"
+      - "Retiro São João"
+      - "Jardim Iguatemi"
+      - "Jardim Morumbi"
+      - "Jardim Leocádia"
+      - "Vila Cardoso"
+      - "Vila Barão"
+      - "Vila Nova Esperança"
+      - "Jardim Zulmira"
+      - "Jardim Simus"
+      - "Jardim Vera Cruz"
+      - "Santa Terezinha"
+      - "Vila Trujillo"
+      - "Vila Carvalho"
+      - "Vila Santana"
+      - "Jardim Santa Rosália"
+    # Pontos de referência do mapa (só documentam a zona; fora do recorte):
+    referencias:
+      - "Fazenda Ipanema"
+      - "Aeroporto"
+    # Override manual OPCIONAL: códigos de setor forçados a esta zona.
+    # Vazio = tudo decidido por proximidade no step02. Não precisa preencher.
     setores: []
 
-  eden:
-    nome: "Éden"
+  oeste:
+    nome: "Zona Oeste"
+    # Bairros do mapa oficial (geocodificados p/ o recorte por proximidade):
+    bairros:
+      - "Jardim Santa Bárbara"
+      - "Júlio de Mesquita Filho"
+      - "Jardim Wanel Ville"
+      - "Parque Esmeralda"
+      - "Jardim Ouro Fino"
+      - "Parque Ouro Fino"
+      - "Parque Manchester"
+      - "Central Parque"
+      - "Largo do Divino"
+      - "Jardim São Paulo"
+    # Pontos de referência do mapa (só documentam a zona; fora do recorte):
+    referencias:
+      - "Região do Cerqueira"
+      - "Aeroclube de Itupararanga (represa)"
+    # Override manual OPCIONAL: códigos de setor forçados a esta zona.
+    # Vazio = tudo decidido por proximidade no step02. Não precisa preencher.
     setores: []
 
-  wanel_ville:
-    nome: "Wanel Ville"
+  sul:
+    nome: "Zona Sul"
+    # Bairros do mapa oficial (geocodificados p/ o recorte por proximidade):
+    bairros:
+      - "Vila Jardini"
+      - "Jardim Magnólia"
+      - "Jardim Paulistano"
+      - "Jardim Europa"
+      - "Jardim dos Estados"
+      - "Jardim América"
+      - "Jardim Portal da Colina"
+      - "Jardim Emília"
+      - "Jardim Sandra"
+      - "Parque da Biquinha"
+      - "Vila Assis"
+      - "Parque Água Vermelha"
+      - "Jardim Guadalajara"
+      - "Jardim São Carlos"
+      - "Parque Campolim"
+    # Pontos de referência do mapa (só documentam a zona; fora do recorte):
+    referencias:
+      - "Região do Mangal"
+    # Override manual OPCIONAL: códigos de setor forçados a esta zona.
+    # Vazio = tudo decidido por proximidade no step02. Não precisa preencher.
     setores: []
 
-  aparecidinha:
-    nome: "Aparecidinha"
+  leste:
+    nome: "Zona Leste"
+    # Bairros do mapa oficial (geocodificados p/ o recorte por proximidade):
+    bairros:
+      - "Jardim Gonçalves"
+      - "Jardim Sol"
+      - "Jardim Bandeirantes"
+      - "Jardim Piratininga"
+      - "Jardim Granja"
+      - "Vila Haro"
+      - "Parque Três Meninos"
+      - "Vila Hortência"
+      - "Jardim Gutierres"
+      - "Jardim Prestes de Barros"
+      - "Vila Colorau"
+      - "Vila Barcelona"
+      - "Jardim Parada do Alto"
+    # Pontos de referência do mapa (só documentam a zona; fora do recorte):
+    referencias:
+      - "Zoológico Municipal"
+      - "Senac"
+    # Override manual OPCIONAL: códigos de setor forçados a esta zona.
+    # Vazio = tudo decidido por proximidade no step02. Não precisa preencher.
+    setores: []
+
+  industrial:
+    nome: "Zona Industrial"
+    # Bairros do mapa oficial (geocodificados p/ o recorte por proximidade):
+    bairros:
+      - "Aparecidinha"
+      - "Brigadeiro Tobias"
+      - "Alto da Boa Vista"
+      - "Parque Chico Mendes"
+    # Pontos de referência do mapa (só documentam a zona; fora do recorte):
+    referencias:
+      - "Paço Municipal (Prefeitura)"
+      - "Câmara Municipal"
+      - "Fórum Cível e Criminal"
+      - "Fórum do Trabalho"
+      - "Tribunal de Contas"
+      - "Teatro Municipal"
+      - "Biblioteca Municipal"
+      - "Receita Federal"
+      - "UNIP"
+      - "SEST SENAT"
+    # Override manual OPCIONAL: códigos de setor forçados a esta zona.
+    # Vazio = tudo decidido por proximidade no step02. Não precisa preencher.
     setores: []

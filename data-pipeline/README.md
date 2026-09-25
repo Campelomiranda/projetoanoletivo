@@ -73,15 +73,48 @@ Se algo estiver faltando ou com formato diferente, o script **para com uma
 mensagem explicando o que fazer** (e lista as colunas disponíveis) — em vez de
 adivinhar.
 
-## 4. Preencher as regiões-piloto
+## 4. Rodar o passo 2 — atribuir cada setor a uma das 6 zonas
 
-Com a lista de setores em mãos (`data/processed/setores_sorocaba.txt`), edite
-[`config/regions.yaml`](config/regions.yaml) e informe quais setores compõem
-cada região. Já há **uma região de exemplo preenchida** para você ver o formato.
+A unidade de análise do CityLens são as **6 zonas oficiais** de Sorocaba
+(Centro, Norte, Oeste, Sul, Leste, Industrial). O passo 2 decide **a que zona
+cada setor pertence**, sem você digitar setor a setor:
+
+```bash
+python data-pipeline/src/step02_zonas.py
+```
+
+Como ele decide (método **`nearest_bairro`**):
+
+1. lê os bairros de cada zona em [`config/regions.yaml`](config/regions.yaml)
+   (transcritos do mapa oficial de zoneamento da Prefeitura/Urbes);
+2. geocodifica cada bairro pelo **Nominatim/OpenStreetMap** (com cache em
+   `data/processed/geocode_bairros.json`, respeitando ≤ 1 requisição/segundo);
+3. atribui cada setor à zona do **bairro geocodificado mais próximo** do seu
+   centroide.
+
+Saídas:
+
+- `data/processed/setores_por_zona.csv` — `CD_SETOR, zona, bairro_mais_proximo, dist_km`;
+- `data/processed/step02_zonas.png` — mapa de conferência, uma cor por zona.
+
+Regra **não inventar dado**: bairro que não geocodificar é avisado e ignorado;
+zona que ficar **sem nenhum** bairro geocodificado **interrompe** o passo. Sem
+internet, o script explica e para — não simula.
+
+> Testar a lógica sem internet:
+> `python data-pipeline/src/step02_zonas.py --autoteste`
+> (roda o núcleo de atribuição com dados sintéticos e confere o resultado).
+
+É um recorte **aproximado e documentado**: as zonas são oficiais, mas a fronteira
+setor-a-setor é inferida por proximidade. Se um setor cair na zona errada,
+ajuste os bairros em `regions.yaml` (ou use o campo opcional `setores:` como
+override manual) e rode de novo. Nada aqui altera as fronteiras oficiais — é só
+o recorte analítico do protótipo.
 
 ## Próximos passos (ainda não implementados)
 
-- `step02_*` — extração de POIs via Overpass/OpenStreetMap (ônibus, escolas,
+- `step03_*` — extração de POIs via Overpass/OpenStreetMap (ônibus, escolas,
   saúde, mercados, farmácias, parques, vias) para o polígono de Sorocaba.
-- cálculo do índice (normalização min-max, pesos com redistribuição, selo).
-- geração do GeoJSON consumido pelo app web.
+- cálculo do índice por zona (normalização min-max, pesos com redistribuição,
+  selo de confiabilidade).
+- geração do GeoJSON consumido pelo app web (mesma divisão do `regions.yaml`).

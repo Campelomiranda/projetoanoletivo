@@ -34,13 +34,19 @@ web/            App React + Leaflet (a construir), consome os arquivos estático
 
 ## Estado atual
 
-- [x] **Esquema visual interativo** das 4 telas (`mockups/`).
+- [x] **Esquema visual interativo** com busca por bairro e as **6 zonas
+      oficiais** de Sorocaba (`mockups/`).
 - [x] **Estrutura do repositório + ambiente do pipeline** (`data-pipeline/`).
-- [x] **Config das regiões** (`data-pipeline/config/regions.yaml`).
-- [ ] **Passo 1 do pipeline** — carregar malha de setores (IBGE) + população e
-      plotar um mapa de conferência (`src/step01_setores_populacao.py`).
-- [ ] Passo 2 — extração de POIs via Overpass (OpenStreetMap).
-- [ ] Cálculo do índice e geração do GeoJSON do site.
+- [x] **Config das 6 zonas** (`data-pipeline/config/regions.yaml`).
+- [x] **Passo 1 do pipeline — script pronto** (rodar localmente): carrega a
+      malha de setores (IBGE) + população e plota um mapa de conferência
+      (`src/step01_setores_populacao.py`).
+- [x] **Passo 2 do pipeline — script pronto** (rodar localmente): atribui cada
+      setor a uma das 6 zonas por proximidade ao bairro (`src/step02_zonas.py`);
+      lógica coberta por `--autoteste`.
+- [ ] **Rodar os passos 1 e 2 numa rede com IBGE/OSM** e conferir os mapas.
+- [ ] Passo 3 — extração de POIs via Overpass (OpenStreetMap).
+- [ ] Cálculo do índice por zona e geração do GeoJSON do site.
 - [ ] App React + Leaflet.
 
 ## Por onde começar
