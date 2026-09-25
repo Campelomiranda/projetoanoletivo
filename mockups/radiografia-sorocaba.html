@@ -514,7 +514,7 @@
       </span>
     </div>
     <span class="spacer"></span>
-    <span class="mock-badge"><span class="dot"></span>Dados reais · OSM + IBGE</span>
+    <span class="mock-badge"><span class="dot"></span>Dados reais · IBGE + CNES + INEP + OSM</span>
     <button class="theme-btn" id="themeBtn" title="Alternar tema" aria-label="Alternar tema claro/escuro">
       <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
     </button>
@@ -554,7 +554,7 @@ var AXES = [
    source:"—", date:"—", formula:"sem cálculo no MVP"}
 ];
 
-// Unidade principal = ZONA. Cada zona reúne bairros. Valores REAIS (OSM + IBGE, set/2026).
+// Unidade principal = ZONA. Cada zona reúne bairros. Valores REAIS (IBGE + CNES + INEP + OSM, set/2026).
 var REGIONS = {
   centro:{name:"Centro",
     scores:{servicos:94,mobilidade:93,caminhabilidade:99,ambiente:98},
@@ -913,7 +913,7 @@ function renderMapa(){
     '<div class="screen"><div class="map-head">'+
       '<div><span class="eyebrow">Mapa</span><h2>O acesso de cada zona</h2>'+
       '<p class="lead">Cada <strong>setor censitário</strong> do IBGE (1.148 no total) pintado pelo <strong>acesso real a pé</strong> — verde é mais perto dos serviços, vermelho é mais longe. Troque o <strong>filtro</strong> para recolorir por eixo; passe o mouse num setor para ver as distâncias, e clique para abrir a zona:</p></div>'+
-      '<div class="seg" role="group" aria-label="Métrica dos pinos">'+segs+'</div>'+
+      '<div class="seg" role="group" aria-label="Cor dos setores por eixo">'+segs+'</div>'+
     '</div>'+
     '<div class="bsearch">'+
       '<label class="bsearch-in">'+svgIcon("search",'width="18" height="18"')+
@@ -1299,7 +1299,7 @@ function renderMetodologia(){
         '<div class="step"><span class="step-n">4</span><div class="step-b"><div class="step-t">Selo de confiança</div>'+
           '<p>Cada zona mostra quantos eixos deu para calcular (ex.: <strong>3 de 4</strong>). Nota alta com selo baixo pede cautela.</p></div></div>'+
       '</div>'+
-      '<p class="m-note">'+svgIcon("info")+'<span>No mapa, a cor usa <strong>um tom só</strong> (mais forte = mais acesso). De propósito <strong>não</strong> é vermelho/verde, para não parecer "reprovado/aprovado".</span></p>'+
+      '<p class="m-note">'+svgIcon("info")+'<span>No mapa por setor, <strong>verde</strong> = mais perto dos serviços e <strong>vermelho</strong> = mais longe. É um retrato de <strong>acesso</strong>, não uma nota de "aprovado/reprovado".</span></p>'+
     '</section>'+
 
     '<section id="m-eixos"><h2><span class="sec-ic">'+svgIcon("layers")+'</span>O que a gente mede</h2>'+
@@ -1315,8 +1315,8 @@ function renderMetodologia(){
       '<p>Só usamos fontes públicas e confiáveis. Quando uma fonte não existe (ex.: horários de ônibus da URBES), o indicador fica <strong>indisponível</strong> — a gente não inventa.</p>'+
       '<div class="tbl-wrap"><table><thead><tr><th>Dado</th><th>Fonte</th></tr></thead><tbody>'+
       '<tr><td>Mapa das zonas e população</td><td>IBGE · Censo 2022</td></tr>'+
-      '<tr><td>Escolas</td><td>OpenStreetMap (INEP no próximo passo)</td></tr>'+
-      '<tr><td>Unidades de saúde</td><td>OpenStreetMap (CNES/DataSUS no próximo passo)</td></tr>'+
+      '<tr><td>Unidades de saúde</td><td>CNES · DataSUS (abr/2026)</td></tr>'+
+      '<tr><td>Escolas</td><td>INEP · Censo Escolar 2025</td></tr>'+
       '<tr><td>Ônibus, ruas, mercados, parques</td><td>OpenStreetMap</td></tr>'+
       '</tbody></table></div></section>'+
 
@@ -1328,7 +1328,7 @@ function renderMetodologia(){
       '<div class="limit"><span class="lm-ic">'+svgIcon("warn")+'</span><div><b>A pé pela rua, mas sem calçada e sem morro</b><p>A distância segue o traçado das ruas a partir do centro de cada setor, mas o OpenStreetMap não diz se a calçada é boa, se há iluminação ou quanto a rua sobe. Saúde vem do CNES e escolas do INEP (oficiais); ônibus, comércio e praças, do OSM. Setores sem caminho a pé até um serviço (50 dos 1.148, a maioria na Zona Industrial) ficam com nota 0 nesse eixo.</p></div></div>'+
     '</section>'+
 
-    '<div class="foot"><span>CityLens · Sorocaba · dados abertos OSM + IBGE</span><span class="mono">v1 · dados reais · set/2026</span></div>'+
+    '<div class="foot"><span>CityLens · Sorocaba · IBGE + CNES + INEP + OpenStreetMap</span><span class="mono">v1 · dados reais · set/2026</span></div>'+
     '</div></div></div>';
 
   document.getElementById("app").innerHTML=html;
@@ -1343,18 +1343,13 @@ function renderMetodologia(){
 
 /* =================== TELA 0 · CAPA =================== */
 function renderCover(){
-  var covPins=ORDER.map(function(id,i){
-    var p=PINS[id]; var v=composite(REGIONS[id]);
-    var cls=reduzMovimento()?"":"cov-pin";
-    return '<circle class="'+cls+'" style="animation-delay:'+(0.35+i*0.09).toFixed(2)+'s" cx="'+p[0]+'" cy="'+p[1]+'" r="16" fill="'+ramp(v/100)+'" stroke="#fff" stroke-width="3.5"/>';
-  }).join("");
   var eixos=["Serviços","Mobilidade","Caminhabilidade","Meio ambiente","Acessibilidade"];
   var chips=eixos.map(function(e,i){return '<span class="cov-chip" style="animation-delay:'+(0.5+i*0.07).toFixed(2)+'s">'+e+'</span>';}).join("");
-  var svg='<svg class="cov-map" viewBox="0 0 '+MAP_VB[0]+' '+MAP_VB[1]+'" aria-hidden="true" preserveAspectRatio="xMidYMid meet">'+
-    '<defs><clipPath id="covclip"><rect x="0" y="0" width="'+MAP_VB[0]+'" height="'+MAP_VB[1]+'" rx="18"/></clipPath></defs>'+
-    '<g clip-path="url(#covclip)"><image href="'+MAP_IMG+'" x="0" y="0" width="'+MAP_VB[0]+'" height="'+MAP_VB[1]+'" preserveAspectRatio="xMidYMid slice"/>'+
-      '<rect x="0" y="0" width="'+MAP_VB[0]+'" height="'+MAP_VB[1]+'" fill="var(--map-veil)"/></g>'+
-    covPins+'</svg>';
+  // capa mostra o mapa REAL por setor (colorido pelo índice), estático
+  var covSet=(typeof SET!=="undefined"?SET:[]).map(function(s){
+    return '<path d="'+s[0]+'" fill="'+choroFill(s[2])+'" stroke="rgba(255,255,255,.22)" stroke-width="0.3"/>';
+  }).join("");
+  var svg='<svg class="cov-map" viewBox="0 0 '+SVB[0]+' '+SVB[1]+'" aria-hidden="true" preserveAspectRatio="xMidYMid meet">'+covSet+'</svg>';
   var html='<div class="cover">'+
     '<div class="cov-left">'+
       '<span class="cov-badge"><span class="dot"></span>Projeto escolar · protótipo</span>'+
@@ -1364,7 +1359,7 @@ function renderCover(){
       '<p class="cov-sub">Um retrato transparente do <strong>acesso a serviços e infraestrutura</strong> — cada nota rastreável a um dado público, uma fórmula e uma data.</p>'+
       '<div class="cov-chips">'+chips+'</div>'+
       '<button class="cov-enter" id="covEnter">Explorar o mapa '+svgIcon("chev",'width="18" height="18"')+'</button>'+
-      '<p class="cov-note">Não é ranking de bairro bom ou ruim. Números calculados com dados abertos (OpenStreetMap + IBGE, set/2026).</p>'+
+      '<p class="cov-note">Não é ranking de bairro bom ou ruim. Números calculados com dados abertos: IBGE, CNES, INEP e OpenStreetMap (set/2026).</p>'+
     '</div>'+
     '<div class="cov-right">'+svg+'</div>'+
   '</div>';
