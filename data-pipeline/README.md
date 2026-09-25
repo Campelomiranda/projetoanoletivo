@@ -5,7 +5,22 @@ arquivos estáticos do site. Regra de ouro: **não inventar dado**. Fonte ausent
 ou com formato inesperado → o indicador fica *indisponível* e o script avisa;
 nunca simula valor.
 
-## 1. Montar o ambiente Python
+## Caminho FÁCIL — rodar no navegador (Google Colab), sem instalar nada
+
+Não quer instalar Python nem lidar com o `geopandas` no Windows? Use o notebook
+pronto **[`notebooks/CityLens_rodar_no_colab.ipynb`](notebooks/CityLens_rodar_no_colab.ipynb)**:
+
+1. Abra <https://colab.research.google.com> → aba **Upload** → escolha esse
+   arquivo `.ipynb` (baixe-o do GitHub primeiro, botão **Download raw file**).
+2. No Colab: menu **Ambiente de execução → Executar tudo**.
+3. Em ~2–4 min ele baixa a malha do IBGE sozinho, localiza os bairros pelo
+   OpenStreetMap e mostra o **mapa das 6 zonas** + a contagem de setores por zona.
+
+É autossuficiente (não precisa clonar o repositório nem baixar dados à mão) e
+segue a mesma regra de **não inventar dado**. As seções abaixo são o caminho
+"raiz", para rodar na sua própria máquina.
+
+## 1. Montar o ambiente Python (caminho local)
 
 Requer Python 3.10+.
 
