@@ -8,7 +8,7 @@ nunca simula valor.
 ## Caminho FÁCIL — rodar no navegador (Google Colab), sem instalar nada
 
 Não quer instalar Python nem lidar com o `geopandas` no Windows? Use o notebook
-pronto **[`notebooks/CityLens_rodar_no_colab.ipynb`](notebooks/CityLens_rodar_no_colab.ipynb)**:
+pronto **[`CityLens_rodar_no_colab.ipynb`](../CityLens_rodar_no_colab.ipynb)** (na raiz do repositório):
 
 1. Abra <https://colab.research.google.com> → aba **Upload** → escolha esse
    arquivo `.ipynb` (baixe-o do GitHub primeiro, botão **Download raw file**).
