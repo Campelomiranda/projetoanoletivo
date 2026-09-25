@@ -4,8 +4,8 @@ Como cada nota do CityLens é calculada, com quais fontes e quais limites.
 Princípio inegociável: **não inventar dado**. Todo número tem fonte pública,
 fórmula e data; o que não dá para medir fica marcado como *indisponível*.
 
-> Situação atual dos dados: **set/2026**. Serviços de saúde e escolas ainda vêm
-> do OpenStreetMap (ver *Limitações* e *Próximos passos*).
+> Situação atual dos dados: **set/2026**. Saúde vem do **CNES** (abr/2026) e
+> escolas do **INEP** (2025); ônibus, comércio e praças vêm do OpenStreetMap.
 
 ## 1. Unidade de análise
 
@@ -25,9 +25,17 @@ fórmula e data; o que não dá para medir fica marcado como *indisponível*.
 | O quê | Fonte | Como é obtido |
 |---|---|---|
 | Malha de setores censitários | **IBGE** — Censo 2022 | pacote `geobr` |
-| Pontos de ônibus, comércio, praças/parques, ruas | **OpenStreetMap** | `osmnx` / Overpass |
-| Saúde e escolas (provisório) | **OpenStreetMap** | `osmnx` / Overpass |
+| Estabelecimentos de saúde | **CNES** (abr/2026) | `geobr.read_health_facilities` |
+| Escolas | **INEP** — Censo Escolar 2025 | `geobr.read_schools` |
+| Ônibus, comércio, praças/parques, ruas | **OpenStreetMap** | `osmnx` / Overpass |
 | Divisão em 6 zonas | **Prefeitura de Sorocaba / Urbes** | transcrição do mapa oficial de zoneamento |
+
+**Recorte da saúde (CNES):** dos 2.073 estabelecimentos, 1.408 são consultórios
+particulares isolados; ficam de fora. Usamos os tipos de unidade (`tp_unidade`)
+{1, 2, 4, 5, 7, 15, 20, 21, 36, 62, 70, 71, 73} — postos, UBS, policlínicas,
+hospitais, pronto-socorros, UPAs, CAPS e clínicas de especialidade (411 em
+Sorocaba). **Escolas (INEP):** só as em atividade, sem as localizadas apenas por
+cidade/bairro (451 escolas). Essa escolha de tipos muda bastante a nota de saúde.
 
 ## 3. Como cada eixo é medido
 
@@ -77,8 +85,12 @@ Os quatro eixos do índice:
 - **A pé, mas sem calçada, iluminação ou declive**: a distância segue o traçado
   das ruas, mas o OpenStreetMap não diz se a calçada existe/é boa, se há
   iluminação, nem quanto a rua sobe.
-- **Saúde e escolas vêm do OSM** por enquanto, cuja cobertura é incompleta para
-  UBS e escolas públicas — números podem subestimar o acesso real.
+- **Setores sem caminho a pé** até um serviço (50 dos 1.148, a maioria na Zona
+  Industrial; 38 no caso da saúde) ficam com **nota 0** naquele eixo — o serviço
+  existe, mas não há rota de pedestre até ele na malha do OSM.
+- **A escolha dos tipos de saúde (CNES) afeta a nota**: incluir/excluir tipos de
+  unidade muda bastante o resultado das zonas afastadas. O recorte usado está na
+  seção 2 e pode ser revisto.
 - **Recorte setor→zona é aproximado** (proximidade ao bairro), até existir a
   geometria vetorial oficial das zonas.
 - É uma **radiografia de acesso**, não um ranking de "bairro bom ou ruim": mede
@@ -94,9 +106,8 @@ por setor e por zona, e exporta os arquivos de resultado
 
 ## 7. Próximos passos de dados
 
-- **Saúde** a partir do **CNES** (Cadastro Nacional de Estabelecimentos de Saúde).
-- **Escolas** a partir do **INEP / Censo Escolar**.
-- **População por setor** (Agregados do Censo 2022) para ponderar as médias por
-  habitante de forma exata.
-- **Mapa por setor** no site (choropleth a partir do `setores_sorocaba.geojson`),
-  no lugar dos pinos por zona.
+- [x] **Saúde** a partir do **CNES** e **escolas** a partir do **INEP**.
+- [x] **Mapa por setor** no site (choropleth a partir do `setores_sorocaba.geojson`).
+- [ ] **População por setor** (Agregados do Censo 2022) para ponderar as médias
+  por habitante de forma exata (hoje: setor ≈ mesma população).
+- [ ] Revisar a lista de **tipos de unidade do CNES** que contam como acesso.
