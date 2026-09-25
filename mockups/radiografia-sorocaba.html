@@ -642,10 +642,11 @@ var SUB={
   sul:{saude:70,educacao:78,comercio:68},
   norte:{saude:55,educacao:64,comercio:55},
   leste:{saude:46,educacao:54,comercio:47},
-  oeste:{saude:40,educacao:56,comercio:36}
+  oeste:{saude:40,educacao:56,comercio:36},
+  industrial:{saude:45,educacao:60,comercio:50}
 };
 function criterio(id,c){
-  if(c==="saude"||c==="educacao"||c==="comercio") return SUB[id][c];
+  if(c==="saude"||c==="educacao"||c==="comercio"){ var s=SUB[id]; return s?s[c]:null; }
   return REGIONS[id].scores[c]; // mobilidade, caminhabilidade, ambiente
 }
 var CRIT_LABEL={saude:"saúde por perto",educacao:"escolas por perto",comercio:"comércio por perto",
