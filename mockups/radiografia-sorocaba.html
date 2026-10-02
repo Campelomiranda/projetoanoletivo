@@ -162,6 +162,8 @@
 
   .eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:700;font-family:'Nunito',monospace}
   .lead{color:var(--ink-soft);font-size:14.5px;max-width:64ch}
+  /* Texto corrido justificado (estilo Word) */
+  .lead,.prose p,.prose li,.gl,.notice div,.na-body div,.step-b p,.limit p,.mini p,.m-note span,.persona-warn p,.persona-desc,.pt-reasons,.pq-hero .ph-body p,.pq-quote,.setores-card>p{text-align:justify;text-justify:inter-word;-webkit-hyphens:auto;hyphens:auto}
 
   /* ============ CARDS ============ */
   .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
@@ -929,7 +931,7 @@ function renderTabs(){
 /* =================== NOTICE (persistente) =================== */
 function noticeHTML(){
   return '<div class="notice">'+svgIcon("info",'width="16" height="16"')+
-    '<div><b>Dados reais.</b> Medimos a distância <b>a pé</b> de cada setor do IBGE até o serviço mais perto — saúde (CNES), escolas (INEP), ônibus, comércio e praças (OpenStreetMap). Sem caminho a pé → <b>indisponível</b>, nunca chutado.</div></div>';
+    '<div><b>Dados reais.</b> Distância <b>a pé</b> até cada serviço — saúde (CNES), escolas (INEP), ônibus, comércio e praças (OSM). Sem caminho → <b>indisponível</b>, nunca chutado.</div></div>';
 }
 
 /* =================== TELA 1 · MAPA =================== */
@@ -1005,7 +1007,7 @@ function renderMapa(){
   var html=noticeHTML()+
     '<div class="screen"><div class="map-head">'+
       '<div><span class="eyebrow">Mapa</span><h2>O acesso de cada zona</h2>'+
-      '<p class="lead"><strong>1.148 setores</strong> do IBGE pintados pelo acesso a pé: <strong>verde</strong> = perto, <strong>vermelho</strong> = longe. Troque o filtro; passe o mouse num setor ou clique para abrir a zona.</p></div>'+
+      '<p class="lead"><strong>1.148 setores</strong> do IBGE pelo acesso a pé: <strong>verde</strong> = perto, <strong>vermelho</strong> = longe. Passe o mouse ou clique para abrir a zona.</p></div>'+
       '<div class="seg" role="group" aria-label="Cor dos setores por eixo">'+segs+'</div>'+
     '</div>'+
     '<div class="bsearch">'+
@@ -1158,7 +1160,7 @@ function renderRegiao(){
         '<div class="axis-h"><div class="a-name"><span class="ai">'+svgIcon(ax.icon)+'</span>'+ax.label+'</div>'+
         '<div class="a-score"><div class="v" style="color:var(--warn)">63%</div><div class="w">dizem "ruim"</div></div></div>'+
         '<div class="a-bar"><i style="width:63%;background:#D1495B"></i></div>'+
-        '<div class="na-body"><div>Sem dado objetivo de rampas e piso tátil por zona. Mas na nossa <strong>pesquisa de campo</strong> (57 moradores de Sorocaba), <strong>63% acham o bairro pouco acessível</strong> para quem tem deficiência.</div></div>'+
+        '<div class="na-body"><div>Sem dado objetivo por zona (rampas, piso tátil). Na <strong>pesquisa de campo</strong> com 57 moradores, <strong>63% acham o bairro pouco acessível</strong>.</div></div>'+
         '<button class="pt-cta pcd-ir" style="align-self:flex-start">Ver a pesquisa '+svgIcon("chev",'width="15" height="15"')+'</button></div>';
     }
     var v=r.scores[ax.key];
@@ -1192,7 +1194,7 @@ function renderRegiao(){
   var html=noticeHTML()+'<div class="screen">'+
     '<span class="eyebrow">Zona</span>'+
     '<div class="sel-row">'+pickerHTML("region","Zona selecionada",state.region,'id="regSelect"')+
-    '<span class="lead" style="margin:0">Índice, detalhamento por eixo, os bairros da zona e a origem de cada número.</span></div>'+
+    '<span class="lead" style="margin:0">Índice, eixos, bairros e a origem de cada número.</span></div>'+
 
     '<div class="region-top">'+
       '<div class="card index-card">'+
@@ -1308,7 +1310,7 @@ function renderPerfis(){
   if(persona.indisponivel){
     body='<div class="card persona-warn" style="border-color:var(--line-strong)">'+svgIcon("access",'width="22" height="22"')+
       '<div><h3>Não dá para ranquear zonas por acessibilidade — mas os moradores falaram.</h3>'+
-      '<p>Não existe base objetiva de rampas, piso tátil e semáforo sonoro por zona em Sorocaba, então não inventamos um ranking. O que temos é a <strong>percepção de quem vive a cidade</strong>: na nossa pesquisa de campo, <strong>63% dos 57 moradores</strong> acham o bairro pouco acessível.</p>'+
+      '<p>Sem base objetiva de rampas, piso tátil ou semáforo sonoro por zona, não inventamos um ranking. Mas na pesquisa de campo, <strong>63% dos 57 moradores</strong> acham o bairro pouco acessível.</p>'+
       '<button class="pt-cta pcd-ir" style="margin-top:14px">Ver a pesquisa '+svgIcon("chev",'width="15" height="15"')+'</button></div></div>';
   } else if(persona.custom && Object.keys(scoring.pesos).length===0){
     body=builder+'<div class="card persona-warn" style="border-color:var(--line-strong)">'+svgIcon("info",'width="22" height="22"')+
@@ -1339,7 +1341,7 @@ function renderPerfis(){
   var html=noticeHTML()+'<div class="screen">'+
     '<span class="eyebrow">Para você</span>'+
     '<h2 style="font-size:26px;margin:2px 0 4px">Qual zona combina com você?</h2>'+
-    '<p class="lead" style="margin-bottom:6px">Escolha um perfil (ou <strong>crie o seu</strong>) e veja quais zonas oferecem melhor o que você precisa. Não é conselho de onde morar — é leitura de acesso.</p>'+
+    '<p class="lead" style="margin-bottom:6px">Escolha um perfil (ou <strong>crie o seu</strong>) e veja quais zonas combinam mais. Não é conselho de onde morar — é leitura de acesso.</p>'+
     '<div class="pchips" role="group" aria-label="Perfis">'+chips+'</div>'+
     '<p class="persona-desc">'+svgIcon("info",'width="15" height="15"')+'<span>'+persona.desc+
       (pesosTxt?' &nbsp; <span class="pw">pesos: '+pesosTxt+'</span>':'')+'</span></p>'+
@@ -1385,7 +1387,7 @@ function renderPesquisa(){
     '<div class="ph-big"><span class="n">63%</span><span class="l">dizem "Ruim"</span></div>'+
     '<div class="ph-body">'+
       '<h3>Acessibilidade para quem tem deficiência ou dificuldade de locomoção</h3>'+
-      '<p>Foi o tema central da pesquisa. Dos 57 moradores, <strong>só 3 (5%)</strong> acham o bairro acessível; <strong>36 (63%)</strong> consideram <strong>Ruim</strong>. Nas respostas abertas aparecem calçadas com buracos e falta de rampas para cadeirantes.</p>'+
+      '<p>Tema central da pesquisa. Só <strong>3 (5%)</strong> acham o bairro acessível; <strong>36 (63%)</strong> dizem <strong>Ruim</strong>. Nas respostas abertas: calçadas com buracos e falta de rampas.</p>'+
       '<div class="ph-bars">'+
         '<div class="pq-row"><span class="pq-k">Sim, é acessível</span><span class="pq-bar"><i style="width:5%;background:'+G+'"></i></span><span class="pq-v">3<small>5%</small></span></div>'+
         '<div class="pq-row"><span class="pq-k">Regular</span><span class="pq-bar"><i style="width:32%;background:'+A+'"></i></span><span class="pq-v">18<small>32%</small></span></div>'+
@@ -1394,7 +1396,7 @@ function renderPesquisa(){
     '</div>'+
   '</div>';
 
-  var servicos=grupo("layers","Serviços por perto","O que os moradores enxergam de serviços e comércio no dia a dia.",[
+  var servicos=grupo("layers","Serviços por perto","Serviços e comércio no dia a dia.",[
     card("Pontos de ônibus próximos são fáceis de achar?",[["Sim",37,65,G],["Regular",14,25,A],["Não",6,10,R]]),
     card("Tem mercado ou supermercado por perto?",[["Sim",45,79,G],["Regular",9,16,A],["Não",3,5,R]]),
     card("Tem hospital público ou UBS por perto?",[["Sim",46,81,G],["Não",11,19,R]]),
@@ -1403,7 +1405,7 @@ function renderPesquisa(){
     card("Quantidade de comércios no bairro",[["Muito bom",19,33,G],["Bom",15,26,G2],["Regular",17,30,A],["Ruim",6,11,R]])
   ]);
 
-  var rua=grupo("sliders","Rua, mobilidade e ambiente","Como avaliam calçada, transporte, trânsito e o entorno.",[
+  var rua=grupo("sliders","Rua, mobilidade e ambiente","Calçada, transporte, trânsito e entorno.",[
     card("Como são as calçadas?",[["Muito bom",5,9,G],["Bom",14,25,G2],["Regular",22,39,A],["Ruim",15,27,R]]),
     card("Como é o transporte público?",[["Muito bom",4,7,G],["Bom",20,35,G2],["Regular",21,37,A],["Ruim",12,21,R]]),
     card("Acesso fácil a outras regiões da cidade?",[["Sim",43,75,G],["Não",14,25,R]]),
@@ -1414,7 +1416,7 @@ function renderPesquisa(){
     card("Nível de barulho",[["Baixo ou nenhum",16,28,G],["Normal",25,44,G2],["Alto",10,18,A],["Muito alto",6,10,R]])
   ]);
 
-  var seg=grupo("info","Satisfação e segurança","A nota geral do bairro, a percepção de segurança e de roubos/furtos.",[
+  var seg=grupo("info","Satisfação e segurança","Nota geral, segurança e roubos/furtos.",[
     card("Como avalia o bairro onde mora?",[["Muito bom",9,16,G],["Bom",22,39,G2],["Regular",20,35,A],["Ruim",6,10,R]]),
     card("Como considera a segurança?",[["Muito bom",6,10,G],["Bom",20,35,G2],["Regular",21,37,A],["Ruim",10,18,R]]),
     card("O bairro é afetado por roubos ou furtos?",[["Não",6,11,G],["Raramente",27,47,G2],["Regular",16,28,A],["Sim",8,14,R]])
@@ -1435,16 +1437,16 @@ function renderPesquisa(){
     ['Segurança','Trânsito','Calçadas e rampas','Iluminação','Limpeza / lixo','Lazer','Asfalto e obras']
       .map(function(t){return '<span class="pq-theme">'+t+'</span>';}).join('')+'</div>';
   var destacam='<div class="pq-group"><h3><span class="sec-ic">'+svgIcon("doc")+'</span>O que destacam e o que querem mudar</h3>'+
-    '<p class="gl">À esquerda, o que os moradores mais valorizam (pergunta 22). Abaixo, os temas e falas que mais apareceram quando pedimos o que poderia melhorar (pergunta 23, aberta).</p>'+
+    '<p class="gl">O que mais valorizam (pergunta 22) e os temas e falas sobre o que melhorar (pergunta 23, aberta).</p>'+
     '<div class="pq-wrap"><div>'+positivo+'</div>'+
     '<div><div class="card pq-card"><div class="pq-h">Temas mais citados para melhorar</div>'+temas+
-      '<p class="gl" style="margin:12px 0 0">Acessibilidade e calçadas aparecem lado a lado com segurança — coerente com os 63% que acham o bairro pouco acessível.</p></div></div></div>'+
+      '<p class="gl" style="margin:12px 0 0">Acessibilidade e calçadas vêm junto com segurança — coerente com os 63% que acham o bairro pouco acessível.</p></div></div></div>'+
     quotes+'</div>';
 
   var perfilBairros=['Wanel Ville','Caputera','Vila Haro','Jardim Simus','Brigadeiro Tobias','Jd. Zulmira','Campolim','Éden','Jardim Europa','Prestes de Barros','Bosque dos Eucaliptos','José de Alencar','Jardim Santa Cruz','Aparecidinha (morros)']
     .map(function(b){return '<span class="chip">'+b+'</span>';}).join('')+'<span class="chip">+ outros</span>';
   var perfil='<div class="pq-group"><h3><span class="sec-ic">'+svgIcon("info")+'</span>Quem respondeu</h3>'+
-    '<p class="gl">A amostra é majoritariamente de estudantes (14 a 17 anos) e cobre bairros de várias zonas de Sorocaba — por isso lemos como percepção, não como estatística representativa.</p>'+
+    '<p class="gl">Amostra majoritariamente de estudantes (14 a 17 anos), de várias zonas de Sorocaba — por isso é percepção, não estatística representativa.</p>'+
     '<div class="pq-wrap">'+
       card("Faixa etária",[["14 a 17",44,77,NEU],["18 a 29",10,17,NEU],["30 a 45",1,2,NEU],["46 a 59",1,2,NEU],["60 ou mais",1,2,NEU]])+
       card("Gênero",[["Masculino",28,49,NEU],["Feminino",27,47,NEU],["Outra",2,4,NEU],["Prefiro não opinar",0,0,NEU]])+
@@ -1452,12 +1454,12 @@ function renderPesquisa(){
     '<div class="card pq-card" style="margin-top:14px"><div class="pq-h">Bairros citados pelos respondentes</div>'+
       '<div class="pq-samp">'+perfilBairros+'</div></div></div>';
 
-  var nota='<p class="m-note">'+svgIcon("info")+'<span><strong>Como ler esta aba.</strong> São <strong>57 respostas</strong> de uma pesquisa de campo do nosso grupo (SENAC). É <strong>percepção dos moradores</strong> — o que eles sentem —, diferente da distância medida nas outras abas. Como é uma amostra de conveniência (quase toda de estudantes), ela <strong>não entra no índice</strong> das zonas: serve para dar voz a quem vive a cidade, especialmente sobre acessibilidade, onde ainda não há dado objetivo de rampas e piso tátil.</span></p>';
+  var nota='<p class="m-note">'+svgIcon("info")+'<span><strong>Como ler.</strong> 57 respostas de uma pesquisa de campo do grupo (SENAC). É <strong>percepção</strong>, não a distância medida nas outras abas. Por ser amostra de conveniência (quase toda de estudantes), <strong>não entra no índice</strong> das zonas — serve para dar voz a quem vive a cidade.</span></p>';
 
   var html=noticeHTML()+'<div class="screen">'+
     '<span class="eyebrow">Pesquisa de campo · SENAC</span>'+
     '<h2 style="font-size:27px;margin:2px 0 6px">O que os moradores sentem</h2>'+
-    '<p class="lead" style="margin-bottom:6px">Ouvimos <strong>57 moradores</strong> sobre acessibilidade e o dia a dia do bairro. Aqui vale a <strong>percepção</strong> de quem mora — ela conversa com os dados de distância, mas não substitui.</p>'+
+    '<p class="lead" style="margin-bottom:6px"><strong>57 moradores</strong> ouvidos sobre acessibilidade e o dia a dia do bairro. É <strong>percepção</strong> de quem mora — complementa os dados de distância, não substitui.</p>'+
     nota+
     destaque+servicos+rua+seg+destacam+perfil+
     '<div class="foot"><span>CityLens · Sorocaba · Pesquisa de campo (SENAC) · 57 respostas</span><span class="mono">percepção dos moradores</span></div>'+
