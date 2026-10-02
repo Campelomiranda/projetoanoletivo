@@ -151,12 +151,12 @@
   .tabs-inner::-webkit-scrollbar{height:0}
 
   /* ============ NOTICE ============ */
-  .notice{display:flex;gap:10px;align-items:flex-start;background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent);border-radius:16px;padding:13px 16px;margin:20px 0 4px;font-size:13px;color:var(--ink)}
+  .notice{display:flex;gap:10px;align-items:flex-start;background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent);border-radius:16px;padding:13px 16px;margin:14px 0 2px;font-size:13px;color:var(--ink)}
   .notice svg{flex:none;width:16px;height:16px;margin-top:2px;color:var(--accent)}
   .notice b{color:var(--accent)}
 
   main{padding-bottom:70px}
-  .screen{padding-top:22px;animation:fade .4s ease both}
+  .screen{padding-top:14px;animation:fade .4s ease both}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){.screen{animation:none}*{scroll-behavior:auto!important}}
 
@@ -170,10 +170,10 @@
 
   /* ============ MAPA ============ */
   .map-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:22px;align-items:start}
-  .map-head{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:14px}
+  .map-head{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end;justify-content:space-between;margin-bottom:10px}
   .map-head h2{font-size:22px;letter-spacing:-.02em}
   /* Busca por bairro */
-  .bsearch{position:relative;margin:0 0 18px;max-width:560px}
+  .bsearch{position:relative;margin:0 0 12px;max-width:560px}
   .bsearch-in{display:flex;align-items:center;gap:9px;background:var(--surface);border:1.5px solid var(--line-strong);border-radius:13px;padding:11px 13px;color:var(--ink-soft);transition:border-color .15s,box-shadow .15s}
   .bsearch-in:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
   .bsearch-in svg{flex:none;color:var(--accent)}
@@ -201,7 +201,7 @@
   .seg button:hover{color:var(--ink)}
   .seg button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:600}
 
-  .map-card{padding:14px 14px 30px;position:relative}
+  .map-card{padding:14px 14px 22px;position:relative}
   .map-stage{position:relative}
   .mapsvg{width:100%;height:auto;display:block;touch-action:manipulation;overflow:hidden;border-radius:16px;background:var(--map-land)}
   .mapsvg-choro{background:var(--surface-2)}
@@ -253,7 +253,7 @@
   .mpop-comp b{color:var(--ink-soft)}
   .mpop-cta{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;border:0;border-top:1px solid var(--line);background:none;cursor:pointer;padding:11px;font-family:inherit;font-size:13px;font-weight:600;color:var(--accent);border-radius:0 0 13px 13px}
   .mpop-cta:hover{background:var(--accent-soft)}
-  .map-hint{font-size:12px;color:var(--ink-faint);text-align:center;margin-top:2px}
+  .map-hint{font-size:12px;color:var(--ink-faint);text-align:left;margin:12px 2px 0}
 
   .legend{margin-top:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .legend .bar{height:10px;flex:1;min-width:160px;border-radius:5px;border:1px solid var(--line)}
@@ -264,6 +264,8 @@
 
   /* ranked list */
   .ranklist{padding:8px}
+  .map-side{display:flex;flex-direction:column}
+  .map-src{font-size:11px;color:var(--ink-faint);font-family:'Nunito',monospace;letter-spacing:.02em;margin:9px 2px 0;line-height:1.4}
   .ranklist h3{font-size:13px;padding:8px 10px 4px;color:var(--ink-soft);font-weight:600}
   .rank{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;background:none;cursor:pointer;padding:9px 10px;border-radius:10px;color:var(--ink)}
   .rank:hover{background:var(--surface-2)}
@@ -1018,10 +1020,12 @@ function renderMapa(){
       '<div class="bsearch-out" id="bairroOut" role="listbox" hidden></div>'+
     '</div>'+
     '<div class="map-grid">'+
-      '<div><div class="card map-card"><div class="map-stage">'+svg+popupHTML+'</div>'+
-        '<span class="soro-cap">Setores: IBGE (Censo 2022)&nbsp;&nbsp;|&nbsp;&nbsp;notas: OpenStreetMap (distância a pé)</span>'+legend+'</div>'+
-        '<p class="map-hint">Passe o mouse num setor para ver as distâncias, ou clique numa zona na lista →</p></div>'+
-      '<div class="card ranklist"><h3>Zonas de Sorocaba</h3>'+rows+'</div>'+
+      '<div class="card map-card"><div class="map-stage">'+svg+popupHTML+'</div>'+legend+'</div>'+
+      '<div class="map-side">'+
+        '<div class="card ranklist"><h3>Zonas de Sorocaba</h3>'+rows+'</div>'+
+        '<p class="map-hint">Passe o mouse num setor para ver as distâncias, ou clique numa zona na lista.</p>'+
+        '<p class="map-src">Setores: IBGE (Censo 2022) · notas: OpenStreetMap (distância a pé).</p>'+
+      '</div>'+
     '</div></div>';
 
   document.getElementById("app").innerHTML=html;
