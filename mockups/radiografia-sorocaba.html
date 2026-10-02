@@ -1154,10 +1154,12 @@ function renderRegiao(){
 
   var axesHTML=AXES.map(function(ax){
     if(ax.key==="pcd"){
-      return '<div class="card axis warn">'+
-        '<div class="axis-h"><div class="a-name"><span class="ai">'+svgIcon(ax.icon)+'</span>'+ax.label+'</div></div>'+
-        '<div class="warn-body">'+svgIcon("warn",'width="16" height="16"')+
-        '<div>⚠️ <strong>Dados insuficientes para calcular este indicador.</strong><br>Eixo mantido na interface, sem nota, até existir base confiável de acessibilidade (rampas, piso tátil, semáforo sonoro).</div></div></div>';
+      return '<div class="card axis">'+
+        '<div class="axis-h"><div class="a-name"><span class="ai">'+svgIcon(ax.icon)+'</span>'+ax.label+'</div>'+
+        '<div class="a-score"><div class="v" style="color:var(--warn)">63%</div><div class="w">dizem "ruim"</div></div></div>'+
+        '<div class="a-bar"><i style="width:63%;background:#D1495B"></i></div>'+
+        '<div class="na-body"><div>Sem dado objetivo de rampas e piso tátil por zona. Mas na nossa <strong>pesquisa de campo</strong> (57 moradores de Sorocaba), <strong>63% acham o bairro pouco acessível</strong> para quem tem deficiência.</div></div>'+
+        '<button class="pt-cta pcd-ir" style="align-self:flex-start">Ver a pesquisa '+svgIcon("chev",'width="15" height="15"')+'</button></div>';
     }
     var v=r.scores[ax.key];
     if(v==null){
@@ -1217,6 +1219,9 @@ function renderRegiao(){
   document.getElementById("app").innerHTML=html;
   animateCounts(document.getElementById("app"));
   document.getElementById("regSelect").addEventListener("change",function(e){ state.region=e.target.value; renderRegiao(); });
+  Array.prototype.forEach.call(document.querySelectorAll(".pcd-ir"),function(b){
+    b.addEventListener("click",function(){ state.tab="pesquisa"; render(); window.scrollTo({top:0,behavior:"smooth"}); });
+  });
 }
 
 /* =================== TELA 3 · COMPARAÇÃO =================== */
@@ -1301,11 +1306,10 @@ function renderPerfis(){
 
   var body;
   if(persona.indisponivel){
-    body='<div class="card persona-warn">'+svgIcon("warn",'width="22" height="22"')+
-      '<div><h3>Ainda não dá para recomendar por acessibilidade.</h3>'+
-      '<p>Este é o eixo em que o projeto escolhe ser honesto: não existe base confiável de rampas, '+
-      'piso tátil e semáforo sonoro por região em Sorocaba. Recomendar aqui seria inventar dado. '+
-      'Assim que a fonte existir, este perfil passa a funcionar como os outros.</p></div></div>';
+    body='<div class="card persona-warn" style="border-color:var(--line-strong)">'+svgIcon("access",'width="22" height="22"')+
+      '<div><h3>Não dá para ranquear zonas por acessibilidade — mas os moradores falaram.</h3>'+
+      '<p>Não existe base objetiva de rampas, piso tátil e semáforo sonoro por zona em Sorocaba, então não inventamos um ranking. O que temos é a <strong>percepção de quem vive a cidade</strong>: na nossa pesquisa de campo, <strong>63% dos 57 moradores</strong> acham o bairro pouco acessível.</p>'+
+      '<button class="pt-cta pcd-ir" style="margin-top:14px">Ver a pesquisa '+svgIcon("chev",'width="15" height="15"')+'</button></div></div>';
   } else if(persona.custom && Object.keys(scoring.pesos).length===0){
     body=builder+'<div class="card persona-warn" style="border-color:var(--line-strong)">'+svgIcon("info",'width="22" height="22"')+
       '<div><h3>Escolha pelo menos uma coisa</h3><p>Marque acima o que importa pra você para ver qual zona combina mais.</p></div></div>';
@@ -1352,6 +1356,9 @@ function renderPerfis(){
   });
   Array.prototype.forEach.call(document.querySelectorAll("[data-region]"),function(b){
     b.addEventListener("click",function(){ state.region=b.dataset.region; state.tab="regiao"; render(); window.scrollTo({top:0,behavior:"smooth"}); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll(".pcd-ir"),function(b){
+    b.addEventListener("click",function(){ state.tab="pesquisa"; render(); window.scrollTo({top:0,behavior:"smooth"}); });
   });
 }
 
