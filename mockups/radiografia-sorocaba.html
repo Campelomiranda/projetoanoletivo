@@ -18,6 +18,7 @@
     --accent-soft:#2E6BD618;
     --accent2:#2E8FCF;
     --accent2-soft:#2E8FCF1e;
+    --royal:#2B4ACE;
     --warn:#B5720A;
     --warn-soft:#B5720A16;
     --shadow:0 2px 4px rgba(20,40,80,.06),0 16px 36px rgba(20,40,80,.10);
@@ -47,6 +48,7 @@
       --accent-soft:#5A97F01f;
       --accent2:#58B4E8;
       --accent2-soft:#58B4E820;
+      --royal:#6E8CFF;
       --warn:#E3A44C;
       --warn-soft:#E3A44C1c;
       --shadow:0 2px 4px rgba(0,0,0,.34),0 16px 40px rgba(0,0,0,.46);
@@ -76,6 +78,7 @@
     --accent-soft:#5A97F01f;
     --accent2:#58B4E8;
     --accent2-soft:#58B4E820;
+    --royal:#6E8CFF;
     --warn:#E3A44C;
     --warn-soft:#E3A44C1c;
     --shadow:0 2px 4px rgba(0,0,0,.34),0 16px 40px rgba(0,0,0,.46);
@@ -128,10 +131,10 @@
   .brand{display:flex;align-items:center;gap:11px;min-width:0;cursor:pointer;border-radius:12px;transition:opacity .14s ease,transform .14s ease}
   .brand:hover{opacity:.82;transform:translateY(-1px)}
   .brand:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-  .glyph{width:34px;height:34px;flex:none;border-radius:9px;background:#111d1b;display:grid;place-items:center;box-shadow:var(--shadow)}
+  .glyph{width:34px;height:34px;flex:none;border-radius:9px;background:var(--royal);display:grid;place-items:center;box-shadow:var(--shadow)}
   .glyph-img{width:25px;height:25px;display:block;object-fit:contain}
   .brand-txt{display:flex;flex-direction:column;line-height:1.05;min-width:0}
-  .brand-txt .b1{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:16px;white-space:nowrap}
+  .brand-txt .b1{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:16px;white-space:nowrap;color:var(--royal)}
   .brand-txt .b2{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
   .spacer{flex:1}
   .mock-badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 32%,transparent);padding:5px 10px;border-radius:999px}
