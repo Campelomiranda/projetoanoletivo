@@ -295,6 +295,7 @@
   /* ============ REGIÃO ============ */
   .sel-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:18px}
   .picker{position:relative}
+  .picker-field{position:relative;display:inline-block}
   .picker select{appearance:none;font-family:inherit;font-size:15px;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:11px;padding:10px 40px 10px 14px;cursor:pointer;box-shadow:var(--shadow)}
   .picker select:hover{border-color:var(--accent)}
   .picker .ic{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--ink-faint)}
@@ -1161,8 +1162,9 @@ function showSetorTip(e,s){
 /* =================== TELA 2 · REGIÃO =================== */
 function pickerHTML(id,label,value,handlerAttr){
   var opts=ORDER.map(function(k){return '<option value="'+k+'"'+(k===value?" selected":"")+'>'+REGIONS[k].name+'</option>';}).join("");
-  return '<div class="picker"><span class="pl">'+label+'</span><select '+handlerAttr+' aria-label="'+label+'">'+opts+'</select>'+
-    '<span class="ic">'+svgIcon("down",'width="18" height="18"')+'</span></div>';
+  return '<div class="picker"><span class="pl">'+label+'</span>'+
+    '<span class="picker-field"><select '+handlerAttr+' aria-label="'+label+'">'+opts+'</select>'+
+    '<span class="ic">'+svgIcon("down",'width="18" height="18"')+'</span></span></div>';
 }
 
 function renderRegiao(){
