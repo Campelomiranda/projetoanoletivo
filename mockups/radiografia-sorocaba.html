@@ -737,7 +737,7 @@ function aplicarDadosReais(){
     REGIONS[z].scores={servicos:R(a.serv/a.n),mobilidade:R(a.mob/a.n),caminhabilidade:R(a.cam/a.n),ambiente:R(a.amb/a.n)};
     REGIONS[z].raw={ saude:"posto/clínica a "+fmtm(med(a.ms))+" a pé", educacao:"escola a "+fmtm(med(a.me))+" a pé",
       comercio:fmtm(med(a.mc))+" a pé até mercado/farmácia", mobilidade:"ponto de ônibus a "+fmtm(med(a.mo))+" a pé",
-      caminhabilidade:R(med(a.dz))+"% dos serviços a ≤ 800 m a pé", ambiente:"praça/parque a "+fmtm(med(a.mp))+" a pé" };
+      caminhabilidade:(med(a.dz)==null?"—":R(med(a.dz))+"% dos serviços a ≤ 800 m a pé"), ambiente:"praça/parque a "+fmtm(med(a.mp))+" a pé" };
     if(typeof SUB!=="undefined") SUB[z]={saude:R(a.sau/a.n),educacao:R(a.esc/a.n),comercio:R(a.com/a.n)};
   });
 }
@@ -1078,10 +1078,11 @@ function renderMapa(){
   var out=document.getElementById("bairroOut");
   var clr=document.getElementById("bairroClear");
   var active=-1, matches=[];
+  function escHTML(t){ return (t==null?"":""+t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
   function hl(nome,q){
     var n=normalizar(nome), nn=normalizar(q), i=n.indexOf(nn);
-    if(nn&&i>=0){ return nome.slice(0,i)+'<b>'+nome.slice(i,i+q.trim().length)+'</b>'+nome.slice(i+q.trim().length); }
-    return nome;
+    if(nn&&i>=0){ return escHTML(nome.slice(0,i))+'<b>'+escHTML(nome.slice(i,i+q.trim().length))+'</b>'+escHTML(nome.slice(i+q.trim().length)); }
+    return escHTML(nome);
   }
   function paintResults(q){
     matches=buscarBairros(q); active=-1;
@@ -1202,7 +1203,7 @@ function renderRegiao(){
         '<div class="rw"><span class="k">Educação</span><span class="val">'+r.raw.educacao+'</span></div>'+
         '<div class="rw"><span class="k">Comércio</span><span class="val">'+r.raw.comercio+'</span></div>';
     } else {
-      rawRows='<div class="rw"><span class="k">Medido</span><span class="val">'+r.raw[ax.key]+'</span></div>';
+      rawRows='<div class="rw"><span class="k">Típico</span><span class="val">'+r.raw[ax.key]+'</span></div>';
     }
     return '<div class="card axis">'+
       '<div class="axis-h"><div class="a-name"><span class="ai">'+svgIcon(ax.icon)+'</span>'+ax.label+'</div>'+
@@ -1225,7 +1226,7 @@ function renderRegiao(){
         '<div class="gauge"><span class="num" data-count="'+comp+'">'+comp+'</span><span class="den">/ 100</span></div>'+
         '<div class="gauge-track"><div class="gauge-fill" style="width:'+comp+'%;background:'+ramp(comp/100)+'"></div></div>'+
         '<div class="seal"><span class="ring" style="--p:'+relPct+'"><i>'+relPct+'%</i></span>'+
-          '<span class="st"><b>Selo de confiabilidade</b><span>'+rel.have+' de '+rel.exp+' eixos calculados nesta zona</span></span></div>'+
+          '<span class="st"><b>Cobertura dos indicadores</b><span>'+rel.have+' de '+rel.exp+' eixos calculados nesta zona</span></span></div>'+
       '</div>'+
       '<div class="card setores-card">'+
         '<h3>Bairros da '+(r.name==="Centro"?"região central":r.name)+'</h3>'+
@@ -1519,13 +1520,13 @@ function renderMetodologia(){
     '<section id="m-calculo"><h2><span class="sec-ic">'+svgIcon("sliders")+'</span>Como calculamos, em 4 passos</h2>'+
       '<div class="steps">'+
         '<div class="step"><span class="step-n">1</span><div class="step-b"><div class="step-t">Nota de 0 a 100</div>'+
-          '<p>Distância <strong>a pé</strong> de cada setor até o item mais perto: perto vale 100, longe vale 0 (ônibus: 200 m = 100, 800 m = 0). A nota da zona é a <strong>média dos setores</strong> — quase uma média por morador.</p></div></div>'+
+          '<p>Distância <strong>a pé</strong> de cada setor até o item mais perto: perto vale 100, longe vale 0 (ônibus: 200 m = 100, 800 m = 0). A nota da zona é a <strong>média simples dos setores</strong> (cada setor pesa igual; não é ponderada por população, então aproxima — mas não é exatamente — uma média por morador). Já a <strong>distância</strong> mostrada em cada eixo é a <strong>mediana</strong> dos setores: o valor típico, menos sensível a extremos.</p></div></div>'+
         '<div class="step"><span class="step-n">2</span><div class="step-b"><div class="step-t">Juntamos os eixos</div>'+
           '<p>A nota da zona é a <strong>média</strong> dos eixos que têm dado. Cada eixo pesa igual.</p></div></div>'+
         '<div class="step"><span class="step-n">3</span><div class="step-b"><div class="step-t">Faltou dado? Divide</div>'+
           '<p>Se um eixo não tem dado numa zona, o peso dele vai para os outros — <strong>nunca vira zero</strong>. Zerar puniria a zona por uma falha de dado.</p></div></div>'+
-        '<div class="step"><span class="step-n">4</span><div class="step-b"><div class="step-t">Selo de confiança</div>'+
-          '<p>Cada zona mostra quantos eixos deu para calcular (ex.: <strong>3 de 4</strong>). Nota alta com selo baixo pede cautela.</p></div></div>'+
+        '<div class="step"><span class="step-n">4</span><div class="step-b"><div class="step-t">Cobertura dos indicadores</div>'+
+          '<p>Mostra quantos eixos deu para calcular (ex.: <strong>3 de 4</strong>). É a <strong>completude dos dados</strong>, não uma medida de confiança estatística ou de qualidade da fonte. Nota alta com cobertura baixa pede cautela.</p></div></div>'+
       '</div>'+
       '<p class="m-note">'+svgIcon("info")+'<span>No mapa, cada <strong>zona</strong> aparece em <strong>verde</strong> (mais perto dos serviços) a <strong>vermelho</strong> (mais longe). É um retrato de <strong>acesso</strong>, não uma nota de "aprovado/reprovado".</span></p>'+
     '</section>'+
