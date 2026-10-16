@@ -1612,8 +1612,12 @@ function render(){
   else renderMetodologia();
 }
 
-/* tema */
+/* tema: claro é o principal (de dia); escuro automático das 18h às 6h. O botão sobrepõe manualmente. */
+var themeManual=false;
+function autoTheme(){ var h=new Date().getHours(); return (h>=18||h<6)?"dark":"light"; }
+document.documentElement.setAttribute("data-theme", autoTheme());
 document.getElementById("themeBtn").addEventListener("click",function(){
+  themeManual=true;                 // escolha manual passa a valer até recarregar a página
   var cur=themeMode();
   document.documentElement.setAttribute("data-theme", cur==="dark"?"light":"dark");
   render();
@@ -1627,9 +1631,15 @@ document.getElementById("themeBtn").addEventListener("click",function(){
     home.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); voltarInicio(); } });
   }
 })();
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){
-  if(!document.documentElement.getAttribute("data-theme")) render();
-});
+// Reavalia o tema automático a cada minuto: troca p/ escuro às 18h e p/ claro às 6h se a página ficar aberta (a menos que o usuário tenha usado o botão).
+setInterval(function(){
+  if(themeManual) return;
+  var alvo=autoTheme();
+  if(document.documentElement.getAttribute("data-theme")!==alvo){
+    document.documentElement.setAttribute("data-theme",alvo);
+    render();
+  }
+},60000);
 
 render();
 </script>
