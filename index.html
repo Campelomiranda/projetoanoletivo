@@ -439,6 +439,15 @@
   .pb-opt{appearance:none;border:0;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--ink-soft);padding:6px 12px;border-radius:7px;transition:background .12s ease,color .12s ease}
   .pb-opt:hover{color:var(--ink)}
   .pb-opt.on{background:var(--accent);color:#fff}
+  /* Pódio (Para você) */
+  .persona-podium{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+  .pod-card{padding:16px 14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
+  .pod-win{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:0 6px 20px color-mix(in srgb,var(--accent) 18%,transparent)}
+  .pod-rank{font-family:'Nunito',monospace;font-size:12px;font-weight:700;color:var(--ink-faint);letter-spacing:.06em}
+  .pod-score{font-family:'Anton','Nunito',sans-serif;font-size:40px;line-height:1;color:var(--accent-ink)}
+  .pod-name{font-weight:700;font-size:15px;color:var(--ink)}
+  .pod-reasons{font-size:11.5px;color:var(--ink-faint);line-height:1.4}
+  @media (max-width:560px){ .persona-podium{grid-template-columns:1fr} }
 
   /* ============ METODOLOGIA ============ */
   .method{display:grid;grid-template-columns:210px 1fr;gap:34px;align-items:start}
@@ -1349,13 +1358,19 @@ function renderPerfis(){
   } else {
     var badgeName=persona.custom?"o seu perfil":persona.nome.toLowerCase();
     var rank=rankPerfil(scoring); var top=rank[0]; var tr=REGIONS[top.id];
-    var reasons=top.top.map(function(t){return CRIT_LABEL[t.crit];});
-    var winner='<div class="card persona-top">'+
-      '<span class="pt-badge">Melhor para '+badgeName+'</span>'+
-      '<div class="pt-main"><span class="pt-score" data-count="'+top.score+'">'+top.score+'</span>'+
-        '<div class="pt-info"><div class="pt-name">'+tr.name+'</div>'+
-        '<div class="pt-reasons">Se destaca em <b>'+reasons.join('</b> e <b>')+'</b> — o que mais pesa nessa escolha.</div>'+
-        '<button class="pt-cta" data-region="'+top.id+'">Ver a zona '+svgIcon("chev")+'</button></div></div></div>';
+    var medals=["1º","2º","3º"];
+    var winner='<div class="pt-badge" style="margin-bottom:12px">Melhores zonas para '+badgeName+'</div>'+
+      '<div class="persona-podium">'+
+      rank.slice(0,3).map(function(x,i){
+        var r=REGIONS[x.id]; var rs=x.top.map(function(t){return CRIT_LABEL[t.crit];}).join(", ");
+        return '<div class="card pod-card'+(i===0?' pod-win':'')+'">'+
+          '<span class="pod-rank">'+medals[i]+'</span>'+
+          '<span class="pod-score" data-count="'+x.score+'">'+x.score+'</span>'+
+          '<div class="pod-name">'+r.name+'</div>'+
+          '<div class="pod-reasons">força em '+rs+'</div>'+
+          '<button class="pt-cta" data-region="'+x.id+'" style="margin-top:10px">Ver a zona '+svgIcon("chev",'width="14" height="14"')+'</button>'+
+        '</div>';
+      }).join("")+'</div>';
     var list=rank.map(function(x,i){
       var r=REGIONS[x.id];
       var rs=x.top.map(function(t){return CRIT_LABEL[t.crit];}).join(", ");
@@ -1366,7 +1381,7 @@ function renderPerfis(){
         '<span class="pr-reasons">força em: '+rs+'</span></span>'+
         '<span class="pr-score">'+x.score+'</span></button>';
     }).join("");
-    body=builder+winner+'<div class="card persona-rank"><h3>Ranking das zonas para este perfil</h3>'+list+'</div>';
+    body=builder+winner+'<div class="card persona-rank"><h3>Ranking completo das zonas</h3>'+list+'</div>';
   }
 
   var html=noticeHTML()+'<div class="screen">'+
